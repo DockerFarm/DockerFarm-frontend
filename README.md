@@ -1,5 +1,7 @@
 # DockerFarm-frontend
 
+![Build Status](http://jenkins.dockerfarm.cf/buildStatus/icon?job=DockerFarm-frontend/master)
+
 ![image](https://user-images.githubusercontent.com/2585676/40734484-8f5f291c-6473-11e8-8e9e-58add225b45b.png)
 
 DockerFarm is a awesome docker management tool!
