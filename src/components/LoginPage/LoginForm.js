@@ -1,11 +1,11 @@
 import React from 'react';
 import { Form, Icon, Input, Button} from 'semantic-ui-react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm } from 'redux-form/immutable';
 
 const loginForm = ({
     handleSubmit
 }) => (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} as='form'>
         <Form.Field>
             <label>Email</label>
             <Field 
