@@ -1,6 +1,6 @@
 const config = {
     development : {
-        backendUrl : 'http://localhost:3000'
+        backendUrl: 'http://api.dockerfarm.cf'
     },
     production : {
         backendUrl : 'http://api.dockerfarm.cf'
