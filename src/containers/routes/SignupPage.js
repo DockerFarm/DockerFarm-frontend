@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import config from 'config';
 import { center } from 'styles/style-utils';
-import { LoginForm } from 'components/LoginPage';
+import { SignupForm } from 'components/SignupPage';
 import { Logo } from 'components/base/ui';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -29,7 +29,7 @@ const CenterLogo = styled(Logo)`
     display:block;
     margin:10px auto;
 `
-class LoginPage extends Component {
+class SignupPage extends Component {
 
     componentDidMount() {
         const { AuthAction } = this.props;
@@ -38,10 +38,11 @@ class LoginPage extends Component {
 
     submit = async form => {
         const { AuthAction, history } = this.props;
+        const { email, password, username } = form.toJS();
         try {
-            const data = await AuthAction.login(form.toJS());
-            alert('Login Success');
-            history.push('/');
+            const data = await AuthAction.signup({ email, password, username});
+            alert('Signup Success');
+            history.push('/login');
         } catch(e) {
 
         }
@@ -64,7 +65,7 @@ class LoginPage extends Component {
                     <div>
                         <CenterLogo/>
                     </div>
-                    <LoginForm
+                    <SignupForm
                         onSubmit={this.submit}
                         onGithubLogin={this.onGithubLogin}
                         onGoogleLogin={this.onGoogleLogin}
@@ -86,4 +87,4 @@ export default compose(
             AuthAction: bindActionCreators(auth, dispatch)
         })
     )
-)(LoginPage);
+)(SignupPage);
