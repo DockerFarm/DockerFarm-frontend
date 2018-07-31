@@ -8,7 +8,15 @@ import { Link } from 'react-router-dom';
 const max20 = maxLength(20);
 const min8 = minLength(8);
 
-const loginForm = ({
+const validate = values => {
+    const errors = {}
+    if( values.get('password') !== values.get('passwordConfirm')) { 
+        errors.passwordConfirm = 'password mismatch!';
+    }
+    return errors
+};
+
+const signupForm = ({
     handleSubmit,
     serverError,
     onGoogleLogin,
@@ -24,7 +32,19 @@ const loginForm = ({
                 validate={[required, max20, email]}
                 component={ControlInput}
                 iconPosition='left' 
-                placeholder='Input Your Email'
+                placeholder='Input your email'
+            />
+        </Form.Field>
+        <Form.Field>
+            <Field
+                label='Username'
+                icon='user' 
+                type='text'
+                name='username'
+                validate={[required, max20]}
+                component={ControlInput}
+                iconPosition='left' 
+                placeholder='Input your username'
             />
         </Form.Field>
         <Form.Field>
@@ -36,11 +56,23 @@ const loginForm = ({
                 validate={[required, min8 ]}
                 component={ControlInput}
                 iconPosition='left' 
-                placeholder='Input Your Password'
+                placeholder='Input your password'
             />
         </Form.Field>
         <Form.Field>
-            <span>Don't have an account? <Link to='/signup'>Sign Up</Link></span>
+            <Field
+                label='Password Confirm'
+                icon='lock' 
+                type='password'
+                name='passwordConfirm'
+                validate={[required, min8 ]}
+                component={ControlInput}
+                iconPosition='left' 
+                placeholder='Input your password again'
+            />
+        </Form.Field>
+        <Form.Field>
+            <span>Already have an account? <Link to='/login'>Log in</Link></span>
         </Form.Field>
         <Form.Field>
             <Message
@@ -54,8 +86,8 @@ const loginForm = ({
                 fluid 
                 color='teal' 
                 type='submit'>
-                <Icon name='sign in alternate'/>
-                Login
+                <Icon name='signup'/>
+                Signup
             </Button>
         </Form.Field>
         <Form.Field>
@@ -66,7 +98,7 @@ const loginForm = ({
                 onClick={onGoogleLogin}
             >
                 <Icon name='google plus'/>
-                Google Login
+                Signup With Google 
             </Button>
         </Form.Field>
         <Form.Field>
@@ -76,12 +108,13 @@ const loginForm = ({
                 onClick={onGithubLogin}
             >
                 <Icon name='github' />
-                Github Login
+                Signup With Github
             </Button>
         </Form.Field>
     </Form>
 )
 
 export default reduxForm({
-    form: 'login'
-})(loginForm);
+    form: 'signup',
+    validate
+})(signupForm);
