@@ -3,6 +3,7 @@ import { Form, Message, Label, Icon, Input, Button} from 'semantic-ui-react';
 import { Field, reduxForm } from 'redux-form/immutable';
 import { maxLength, minLength, required, email } from 'lib/validation';
 import { ControlInput } from 'components/base/ui';
+import { Link } from 'react-router-dom';
 
 const max20 = maxLength(20);
 const min8 = minLength(8);
@@ -37,6 +38,9 @@ const loginForm = ({
                 iconPosition='left' 
                 placeholder='Input Your Password'
             />
+        </Form.Field>
+        <Form.Field>
+            <span>Don't have an account? <Link to='/signup'>Sign Up</Link></span>
         </Form.Field>
         <Form.Field>
             <Message
