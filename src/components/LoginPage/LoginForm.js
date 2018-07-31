@@ -1,31 +1,48 @@
 import React from 'react';
-import { Form, Icon, Input, Button} from 'semantic-ui-react';
+import { Form, Message, Label, Icon, Input, Button} from 'semantic-ui-react';
 import { Field, reduxForm } from 'redux-form/immutable';
+import { maxLength, minLength, required, email } from 'lib/validation';
+import { ControlInput } from 'components/base/ui';
+
+const max20 = maxLength(20);
+const min8 = minLength(8);
 
 const loginForm = ({
-    handleSubmit
+    handleSubmit,
+    serverError,
+    onGoogleLogin,
+    onGithubLogin
 }) => (
     <Form onSubmit={handleSubmit} as='form'>
         <Form.Field>
-            <label>Email</label>
-            <Field 
+            <Field
+                label='Email'
                 icon='mail' 
                 type='text'
                 name='email'
-                component={Input}
+                validate={[required, max20, email]}
+                component={ControlInput}
                 iconPosition='left' 
                 placeholder='Input Your Email'
             />
         </Form.Field>
         <Form.Field>
-            <label>Password</label>
-            <Field 
+            <Field
+                label='Password'
                 icon='lock' 
                 type='password'
                 name='password'
-                component={Input}
+                validate={[required, min8 ]}
+                component={ControlInput}
                 iconPosition='left' 
                 placeholder='Input Your Password'
+            />
+        </Form.Field>
+        <Form.Field>
+            <Message
+                error
+                header={serverError}
+                visible={serverError}
             />
         </Form.Field>
         <Form.Field>
@@ -41,7 +58,9 @@ const loginForm = ({
             <Button 
                 fluid 
                 color='google plus' 
-                type='submit'>
+                type='button'
+                onClick={onGoogleLogin}
+            >
                 <Icon name='google plus'/>
                 Google Login
             </Button>
@@ -49,7 +68,9 @@ const loginForm = ({
         <Form.Field>
             <Button 
                 fluid 
-                type='submit'>
+                type='button'
+                onClick={onGithubLogin}
+            >
                 <Icon name='github' />
                 Github Login
             </Button>
