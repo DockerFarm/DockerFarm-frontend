@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { bindActionCreators } from 'redux';
 import * as auth from 'store/modules/auth';
+import * as user from 'store/modules/user';
 import { compose } from 'recompose';
 
 const Wrapper = styled.div`
@@ -37,9 +38,10 @@ class LoginPage extends Component {
     }
 
     submit = async form => {
-        const { AuthAction, history } = this.props;
+        const { AuthAction, UserAction, history } = this.props;
         try {
             const data = await AuthAction.login(form.toJS());
+            await UserAction.selectMyInfo();
             alert('Login Success');
             history.push('/');
         } catch(e) {
@@ -83,7 +85,8 @@ export default compose(
             error: state.auth.getIn(['error','message'])
         }),
         dispatch => ({
-            AuthAction: bindActionCreators(auth, dispatch)
+            AuthAction: bindActionCreators(auth, dispatch),
+            UserAction: bindActionCreators(user, dispatch)
         })
     )
 )(LoginPage);
