@@ -12,7 +12,7 @@ export default function withAuth(SecretComponent) {
             let renderComponent = null; 
             
             if( processed ) {
-                if( !user || !user.email  ) {
+                if(!user || !user.get('email')) {
                     renderComponent = <Redirect to='/login'/>;
                 } else {
                     renderComponent = <SecretComponent/>
@@ -29,6 +29,9 @@ export default function withAuth(SecretComponent) {
             state => ({
                 user: state.user.get('user'),
                 processed: state.user.get('processed')
+            }),
+            dispatch=> ({
+
             })
         )
     )(AuthComponent);
