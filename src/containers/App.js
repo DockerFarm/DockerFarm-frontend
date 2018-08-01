@@ -31,5 +31,10 @@ class App extends Component {
 
 export default compose(
     withRouter,
-    connect( dispatch => ({ UserAction: bindActionCreators(user, dispatch) }))
+    connect( 
+        null,
+        dispatch => ({ 
+            UserAction: bindActionCreators(user, dispatch)
+        }
+    ))
 )(App);

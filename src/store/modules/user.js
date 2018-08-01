@@ -15,7 +15,6 @@ const initialState = Map({
 
 
 export default handleActions({
-    
     ...pender({
         type: MY_INFO,
         onSuccess(state, action) {
