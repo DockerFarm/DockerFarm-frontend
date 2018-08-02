@@ -43,7 +43,7 @@ class LoginPage extends Component {
             const data = await AuthAction.login(form.toJS());
             await UserAction.selectMyInfo();
             alert('Login Success');
-            history.push('/');
+            history.push('/admin');
         } catch(e) {
 
         }
