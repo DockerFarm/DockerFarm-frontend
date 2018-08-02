@@ -16,7 +16,7 @@ class Routes extends Component {
 
         return (
             <Switch>
-                <Route exact path='/' component={withAuth(MainPage)} />
+                <Route path='/admin' component={withAuth(MainPage)} />
                 <Route exact path='/login' component={LoginPage} />
                 <Route exact path='/signup' component={SignupPage} />
             </Switch>
