@@ -1,13 +1,74 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import { Sidebar, Menu, Segment, Icon, Header, Image } from 'semantic-ui-react';
+import { Route, Switch, NavLink, Link} from 'react-router-dom';
+import {
+    ContainerPage,
+    ImagePage,
+    SettingPage
+} from './admin';
+import { Logo } from 'components/base/ui';
+import styled from 'styled-components';
 
+
+const Wrapper = styled.div`
+    height:100vh;
+`;
+
+const ContentWrapper = styled.div`
+    padding: 15px;
+`
+
+const SideDrawer = styled(Sidebar)`
+    & {
+        width:250px !important;
+    }
+`
+
+const MenuItem = styled(Menu.Item)`
+    text-align:left !important;
+`
 class MainPage extends Component {
 
     render() {
         return (
-            <div>
-                MainPage
-            </div>
+            <Wrapper>
+                <Sidebar.Pushable as='div'>
+                <SideDrawer
+                    as={Menu}
+                    animation='overlay'
+                    onHide={this.handleSidebarHide}
+                    inverted
+                    color='teal'
+                    vertical
+                    visible
+                >
+                    <MenuItem as={Link} to='/admin' >
+                        <Logo/>
+                    </MenuItem>
+                    <MenuItem as={NavLink} to='/admin/containers' >
+                        <Icon name='th list' />
+                        Containers
+                    </MenuItem>
+                    <MenuItem as={NavLink} to='/admin/images'>
+                        <Icon name='clone'/>
+                        Images
+                    </MenuItem>
+                    <MenuItem as={NavLink} to='/admin/settings'>
+                        <Icon name='settings'/>
+                        Setting
+                    </MenuItem>
+                </SideDrawer>
+
+                <Sidebar.Pusher style={{marginLeft:'250px'}}>
+                    <ContentWrapper>
+                        <Route path='/admin/containers' component={ContainerPage}/>
+                        <Route path='/admin/images' component={ImagePage}/>
+                        <Route path='/admin/settings' component={SettingPage}/>
+                    </ContentWrapper>
+                </Sidebar.Pusher>
+                </Sidebar.Pushable>
+            </Wrapper>
         )
     }
 }
