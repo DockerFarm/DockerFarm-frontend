@@ -3,10 +3,12 @@ import { penderReducer } from 'redux-pender';
 import { reducer as formReducer } from 'redux-form/immutable';
 import auth from './auth';
 import user from './user';
+import endPoint from './endpoint';
 
 export default combineReducers({
     auth,
     user,
+    endPoint,
     form: formReducer,
     pender: penderReducer
 });
