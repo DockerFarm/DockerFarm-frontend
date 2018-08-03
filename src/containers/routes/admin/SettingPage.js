@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { ControlInput } from 'components/base/ui';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm } from 'redux-form/immutable';
 import { compose } from 'recompose';
+import * as endPoint from 'store/modules/endpoint';
+import { bindActionCreators } from 'redux';
 import { 
     Segment, 
     Header, 
@@ -11,11 +13,46 @@ import {
     Checkbox,
     Button
 } from 'semantic-ui-react';
+import { connect } from 'react-redux';
 
 
 class SettingPage extends Component {
 
+    async componentWillMount() {
+        const { EndpointAction } = this.props;
+        try{
+            await EndpointAction.selectAllEndpoint(); 
+        }catch(e){
+
+        }
+    }
+
+    submit = values => {
+        console.log(values);
+    }
+
     render() {
+        const list = this.props.list.toJS();
+
+        const noData = (
+            <Table.Row>
+                <Table.Cell textAlign='center' colSpan='3'>No Data Found!</Table.Cell>    
+            </Table.Row>
+        );
+        
+        const listData = (
+                <React.Fragment>
+                    {
+                            list.map( ep => (
+                                <Table.Row key={ep.name}>
+                                    <Table.Cell textAlign='left'></Table.Cell>
+                                    <Table.Cell textAlign='left'>{ep.name}</Table.Cell>
+                                    <Table.Cell textAlign='left'>{ep.url}</Table.Cell>
+                                </Table.Row>
+                            ))
+                    }
+                </React.Fragment>
+        );
         return (
             <Segment.Group>
                 <Segment>
@@ -34,12 +71,12 @@ class SettingPage extends Component {
                             </Table.Row>
                         </Table.Header>
                         <Table.Body>
-                            <Table.Row>
-                                <Table.Cell textAlign='center' colSpan='3'>No Data Found!</Table.Cell>    
-                            </Table.Row>
+                            {
+                                list.length > 0 ? listData: noData
+                            }
                         </Table.Body>
                     </Table>
-                    <Form as='form'>
+                    <Form as='form' onSubmit={this.submit}>
                         <Form.Group>
                             <Form.Field width={4}>
                                 <Field 
@@ -82,5 +119,13 @@ class SettingPage extends Component {
 export default compose(
     reduxForm({
         form : 'endpoint'
-    })    
+    }),
+    connect(
+        state => ({
+            list: state.endPoint.get('list')
+        }),
+        dispatch => ({
+            EndpointAction: bindActionCreators(endPoint, dispatch)
+        })
+    )
 )(SettingPage);
