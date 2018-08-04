@@ -1,8 +1,8 @@
 import React from 'react';
-import { Form, Message, Label, Icon, Input, Button} from 'semantic-ui-react';
+import { Form, Message, Icon, Button} from 'semantic-ui-react';
 import { Field, reduxForm } from 'redux-form/immutable';
 import { maxLength, minLength, required, email } from 'lib/validation';
-import { ControlInput } from 'components/base/ui';
+import { ControlInput } from 'components/base/form';
 import { Link } from 'react-router-dom';
 
 const max20 = maxLength(20);
