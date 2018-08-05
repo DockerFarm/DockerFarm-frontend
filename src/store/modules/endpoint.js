@@ -6,8 +6,9 @@ import { Map, List, fromJS } from 'immutable';
 const LIST_ENDPOINT = 'endpoint/LIST';
 const ADD_ENDPOINT = 'endpoint/ADD';
 const REMOVE_ENDPOINT = 'endpoint/REMOVE';
-const SET_MODE = 'endpoint/SET_MODE';
+const UPDATE_ENDPOINT = 'endpoint/UPDATE';
 const SELECT_ROW = 'endpoint/SELECT_ROW';
+
 
 
 export const REGISTER_MODE = 'REGISTER';
@@ -16,6 +17,7 @@ export const MODIFY_MODE = 'MODIFY';
 export const selectAllEndpoint = createAction(LIST_ENDPOINT, EndpointApi.selectAllEndpoint);
 export const addEndpoint = createAction(ADD_ENDPOINT, EndpointApi.addEndpoint);
 export const removeEndpoint = createAction(REMOVE_ENDPOINT, EndpointApi.removeEndpoint);
+export const updateEndpoint = createAction(UPDATE_ENDPOINT, EndpointApi.updateEndpoint);
 export const selectRow = createAction(SELECT_ROW);
 
 const initialState = Map({
@@ -33,7 +35,7 @@ export default handleActions({
     ...pender({
         type: LIST_ENDPOINT,
         onSuccess(state, action) {
-            return state.set('list', List(action.payload.data))
+            return state.set('list', List(action.payload.data.data))
                         .set('error', null)
         },
         onFailure(state, action) {
@@ -54,6 +56,12 @@ export default handleActions({
         },
         onFailure(state, action) {
             return state.set('error', fromJS(action.pyload.response.data));
+        }
+    }),
+    ...pender({
+        type: UPDATE_ENDPOINT,
+        onFailure(state, action) {
+            return state.set('error', fromJS(action.payload.response.data));
         }
     })
 
