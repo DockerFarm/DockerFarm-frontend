@@ -1,5 +1,6 @@
 import React from 'react';
 import { Table, Icon, Label } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import { LinkTitle } from 'components/base/ui';
 
 const ContainerListItem = ({
@@ -21,7 +22,9 @@ const ContainerListItem = ({
         <Table.Row >
             <Table.Cell textAlign='center'>{id}</Table.Cell>
             <Table.Cell textAlign='center'>
-                <LinkTitle>{name}</LinkTitle>
+                <Link to={`/admin/containers/${id}`}>
+                    <LinkTitle>{name}</LinkTitle>
+                </Link>
                 <Icon onClick={ () => onInspect(id,name) } name='info circle' color='blue' style={{marginLeft: '5px'}}/> 
             </Table.Cell>
             <Table.Cell textAlign='center'>{image}</Table.Cell>
@@ -34,7 +37,7 @@ const ContainerListItem = ({
             <Table.Cell textAlign='center'>
                 { 
                     port.map( v =>
-                        <Label color='blue'>{`${v.private}:${v.public}`}</Label>
+                        <Label color='blue' style={{marginBottom:'5px'}}>{`${v.public}->${v.private}`}</Label>
                     )
                 }
             </Table.Cell>

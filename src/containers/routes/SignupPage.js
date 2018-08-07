@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import config from 'config';
 import { center } from 'styles/style-utils';
-import { SignupForm } from 'components/SignupPage';
+import { SignupForm } from 'components/signup';
 import { Logo } from 'components/base/ui';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
