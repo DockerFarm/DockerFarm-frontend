@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import config from 'config';
 import { center } from 'styles/style-utils';
-import { LoginForm } from 'components/LoginPage';
+import { LoginForm } from 'components/login';
 import { Logo } from 'components/base/ui';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
