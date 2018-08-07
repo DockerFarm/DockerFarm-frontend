@@ -1,6 +1,6 @@
-import SettingPage from './SettingPage';
-import ImagePage from './ImagePage';
-import ContainerPage from './ContainerPage';
+import { SettingPage } from './setting';
+import { ImagePage } from './image';
+import ContainerPage from './container';
 
 export {
     SettingPage,
