@@ -20,6 +20,7 @@ const ContainerInspectModal = ({
         <Modal.Content>
             <ReactJson 
                 src={data}
+                collapsed
             />
         </Modal.Content>
     </Modal>

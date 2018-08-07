@@ -3,8 +3,7 @@ import { Segment, Header, Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
-import { ContainerList, ContainerInspectModal } from 'components/admin/ContainerPage';
-import { toJS } from 'immutable';
+import { ContainerList, ContainerInspectModal } from 'components/admin/container';
 import * as container from 'store/modules/container';
 
 class ContainerPage extends Component {
@@ -44,7 +43,7 @@ class ContainerPage extends Component {
     render() {
         const { 
             list,
-            inspectData,
+            rawData,
             state
         } = this.props;
         return (
@@ -64,7 +63,7 @@ class ContainerPage extends Component {
                 <ContainerInspectModal 
                     show={state.get('show')}
                     name={state.get('name')}
-                    data={inspectData.toJS()}
+                    data={rawData.toJS()}
                     onClose={this.onClose}
                 /> 
             </Segment.Group>
@@ -76,7 +75,7 @@ export default compose(
     connect(
         state => ({
             list: state.container.get('list'),
-            inspectData: state.container.get('inspectData'),
+            rawData: state.container.getIn(['modalState','data']),
             state: state.container.get('modalState')
         }),
         dispatch => ({

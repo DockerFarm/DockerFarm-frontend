@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import LoginPage from './LoginPage';
 import SignupPage from './SignupPage';
-import MainPage from './MainPage';
+import AdminPage from './AdminPage';
 import * as user from 'store/modules/user';
 import { bindActionCreators } from 'redux';
 
@@ -16,7 +16,7 @@ class Routes extends Component {
 
         return (
             <Switch>
-                <Route path='/admin' component={withAuth(MainPage)} />
+                <Route path='/admin' component={withAuth(AdminPage)} />
                 <Route exact path='/login' component={LoginPage} />
                 <Route exact path='/signup' component={SignupPage} />
             </Switch>
