@@ -16,9 +16,7 @@ const EndpointListItem = ({
             }
         </Table.Cell>
         <Table.Cell textAlign='left'>
-            <LinkTitle onClick={ () => onRowSelect(ep)}>
-                {ep.name}
-            </LinkTitle>
+            <LinkTitle onClick={ () => onRowSelect(ep)} label={ep.name} />
         </Table.Cell>
         <Table.Cell textAlign='left'>{ep.url}</Table.Cell>
         <Table.Cell textAlign='center'>{moment(ep.createdAt).format('YYYY.MM.DD')}</Table.Cell>

@@ -22,9 +22,7 @@ const ContainerListItem = ({
         <Table.Row >
             <Table.Cell textAlign='center'>{id}</Table.Cell>
             <Table.Cell textAlign='center'>
-                <Link to={`/admin/containers/${id}`}>
-                    <LinkTitle>{name}</LinkTitle>
-                </Link>
+                <LinkTitle to={`/admin/containers/${id}`} label={name} />
                 <Icon onClick={ () => onInspect(id,name) } name='info circle' color='blue' style={{marginLeft: '5px'}}/> 
             </Table.Cell>
             <Table.Cell textAlign='center'>{image}</Table.Cell>
