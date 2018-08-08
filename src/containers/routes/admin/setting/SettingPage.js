@@ -3,12 +3,13 @@ import { initialize} from 'redux-form/immutable';
 import { compose } from 'recompose';
 import * as endPoint from 'store/modules/endpoint';
 import { bindActionCreators } from 'redux';
-import { EndpointForm, EndpointList } from 'components/admin/SettingPage';
+import { EndpointForm, EndpointList } from 'components/admin/setting';
 import { 
     Segment, 
     Header,
     Icon
 } from 'semantic-ui-react';
+import { toast } from 'react-toastify';
 import { connect } from 'react-redux';
 
 
@@ -29,10 +30,10 @@ class SettingPage extends Component {
         try {
             if( selectRow && selectRow.get('_id') ){
                 await EndpointAction.updateEndpoint(selectRow.get('_id'), values.toJS());
-                alert('Endpoint updated!');
+                toast.success("🚀 Endpoint registered !");
             } else {
                 await EndpointAction.addEndpoint(values.toJS());
-                alert('Endpoint registered!');
+                toast.success("🚀 Endpoint updated !");
                 setForm(null);
             }
             await EndpointAction.selectAllEndpoint();
@@ -53,7 +54,7 @@ class SettingPage extends Component {
         
         try { 
             await EndpointAction.removeEndpoint(selectRow.get('_id'));
-            alert('Endpoint is Deleted!');
+            toast.success("🚀 Endpoint deleted !");
             setForm(null);
             await EndpointAction.selectAllEndpoint();
         } catch(e) {

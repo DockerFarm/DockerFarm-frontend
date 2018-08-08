@@ -10,6 +10,7 @@ import { bindActionCreators } from 'redux';
 import * as auth from 'store/modules/auth';
 import * as user from 'store/modules/user';
 import { compose } from 'recompose';
+import { toast } from 'react-toastify';
 
 const Wrapper = styled.div`
     background: #2f2f2f;    
@@ -42,7 +43,7 @@ class LoginPage extends Component {
         try {
             const data = await AuthAction.login(form.toJS());
             await UserAction.selectMyInfo();
-            alert('Login Success');
+            toast.success("🚀 Login Success !");
             history.push('/admin');
         } catch(e) {
 
