@@ -21,9 +21,9 @@ const ContainerList = ({
     const listData = (
         <React.Fragment>
             {
-                list.map(container => (
+                list.map((container,i) => (
                     <ContainerListItem
-                        key={container.id}
+                        key={i}
                         container={container}
                         onInspect={onInspect}
                     />
