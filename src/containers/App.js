@@ -6,6 +6,8 @@ import * as user from 'store/modules/user';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { Loader } from 'components/base/common';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import 'semantic-ui-css/semantic.min.css';
 
 class App extends Component {
@@ -26,6 +28,11 @@ class App extends Component {
             <div>
                 <Routes/>
                 <Loader/>
+                <ToastContainer 
+                    position={toast.POSITION.RIGHT}
+                    hideProgressBar={true}
+                    autoClose={1000} 
+                />
             </div>
         );
     }

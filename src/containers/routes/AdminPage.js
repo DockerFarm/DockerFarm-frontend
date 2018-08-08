@@ -25,6 +25,12 @@ const SideDrawer = styled(Sidebar)`
     }
 `
 
+const Pusher = styled(Sidebar.Pusher)`
+    margin-left:250px !important;
+    height:100% !important;
+    overflow-y: scroll !important;
+`
+
 const MenuItem = styled(Menu.Item)`
     text-align:left !important;
 `
@@ -60,13 +66,13 @@ class MainPage extends Component {
                     </MenuItem>
                 </SideDrawer>
 
-                <Sidebar.Pusher style={{marginLeft:'250px'}}>
+                <Pusher>
                     <ContentWrapper>
                         <Route path='/admin/containers' component={ContainerPage}/>
                         <Route path='/admin/images' component={ImagePage}/>
                         <Route path='/admin/settings' component={SettingPage}/>
                     </ContentWrapper>
-                </Sidebar.Pusher>
+                </Pusher>
                 </Sidebar.Pushable>
             </Wrapper>
         )

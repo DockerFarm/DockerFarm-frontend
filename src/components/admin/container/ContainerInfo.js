@@ -1,31 +1,50 @@
 import React, { Component } from 'react';
-import { Table, Button, Icon} from 'semantic-ui-react';
+import { Table, Button, Icon, Label} from 'semantic-ui-react';
+import { forIn } from 'lodash';
 import moment from 'moment';
 
 const GrpButton = ({
     color,
     onClick,
     icon,
-    label
+    label,
+    disabled
 }) => (
 
     <Button
         color={color}
         onClick={onClick}
+        disabled={disabled}
         type='button'
     >
         <Icon name={icon}/>{label}
    </Button>
 )
 
-const createBtn = (color, onClick, icon, label) => (
+const createBtn = ({color, onClick, icon, label, disableStatus}) => (
     {
         color,
         onClick,
         icon,
-        label
+        label,
+        disableStatus
     }
 ) ;
+
+const renderStatus = status => {
+    let color = ''
+    const colorMap = {
+        teal: ['created', 'restarting', 'running'],
+        red: ['removing', 'paused', 'exited', 'dead']
+    };
+
+    forIn(colorMap, (v,k) => {
+        if(v.indexOf(status) !== -1) color = k;
+    });
+
+    return <Label color={color}>{status}</Label>
+};
+
 const ContainerInfo = ({
     id,
     name,
@@ -33,28 +52,73 @@ const ContainerInfo = ({
     image,
     startedAt,
     created,
-    onStart,
-    onStop,
-    onKill,
-    onRestart,
-    onPause,
-    onResume,
-    onRemove,
-    onRecreate
+    onCommand
 }) => {
+    
+    const createCommand = command => () => onCommand(command);
 
-    const btnGroup = [
-        createBtn('teal',onStart,'play','Start'),
-        createBtn('red',onStop,'stop','Stop'),
-        createBtn('red',onKill,'bomb','Kill'),
-        createBtn('blue',onRestart,'sync','Restart'),
+    const commandGroup1 = [
+        createBtn({ 
+            color: 'teal', 
+            onClick: createCommand('start'), 
+            icon: 'play', 
+            label: 'Start', 
+            disableStatus: ['running','restarting','created']
+        }),
+        createBtn({ 
+            color: 'red', 
+            onClick: createCommand('stop'), 
+            icon: 'stop', 
+            label: 'Stop', 
+            disableStatus: ['exited','removing','dead']
+        }),
+        createBtn({ 
+            color: 'red', 
+            onClick: createCommand('kill'), 
+            icon: 'bomb', 
+            label: 'Kill', 
+            disableStatus: ['exited','removing','dead']
+        }),
+        createBtn({ 
+            color: 'blue', 
+            onClick: createCommand('restart'), 
+            icon: 'sync', 
+            label: 'Restart', 
+            disableStatus: []
+        })
     ];
-    const btnGroup2 = [
-        createBtn('blue',onPause,'pause','Pause'),
-        createBtn('blue',onResume,'forward','Resume'),
-        createBtn('red',onRemove,'trash','Remove'),
-        createBtn('red',onRecreate,'sync','Recreate')
+
+    const commandGroup2 = [
+        createBtn({ 
+            color: 'blue', 
+            onClick: createCommand('pause'), 
+            icon: 'pause', 
+            label: 'Pause', 
+            disableStatus: ['exited','dead','removing']
+        }),
+        createBtn({ 
+            color: 'blue', 
+            onClick: createCommand('resume'), 
+            icon: 'forward', 
+            label: 'Resume', 
+            disableStatus: ['running','restarting','created','exited','dead','removing']
+        }),
+        createBtn({ 
+            color: 'red', 
+            onClick: createCommand('trash'), 
+            icon: 'remove', 
+            label: 'Remove', 
+            disableStatus: ['removing']
+        }),
+        createBtn({ 
+            color: 'red', 
+            onClick: createCommand('update'), 
+            icon: 'sync', 
+            label: 'Recreate', 
+            disableStatus: []
+        })
     ];
+
     return (
             <Table>
                 <Table.Body>
@@ -68,7 +132,7 @@ const ContainerInfo = ({
                     </Table.Row>
                     <Table.Row>
                         <Table.Cell>Status</Table.Cell>
-                        <Table.Cell>{status}</Table.Cell>
+                        <Table.Cell>{renderStatus(status)}</Table.Cell>
                     </Table.Row>
                     <Table.Row>
                         <Table.Cell>Image</Table.Cell>
@@ -88,26 +152,28 @@ const ContainerInfo = ({
                         <Table.HeaderCell colSpan='2'>
                             <Button.Group style={{marginRight:'4px', marginBottom:'4px'}}>
                                 {
-                                    btnGroup.map( btn => (
+                                    commandGroup1.map( btn => (
                                         <GrpButton
                                             key={btn.label}
                                             color={btn.color} 
                                             icon={btn.icon} 
                                             label={btn.label} 
                                             onClick={btn.onClick} 
+                                            disabled={btn.disableStatus.indexOf(status) != -1}
                                         />
                                     ))
                                 }
                             </Button.Group>
                             <Button.Group >
                                 {
-                                    btnGroup2.map( btn => (
+                                    commandGroup2.map( btn => (
                                         <GrpButton
                                             key={btn.label}
                                             color={btn.color} 
                                             icon={btn.icon} 
                                             label={btn.label} 
                                             onClick={btn.onClick} 
+                                            disabled={btn.disableStatus.indexOf(status) != -1}
                                         />
                                     ))
                                 }

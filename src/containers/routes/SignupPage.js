@@ -9,6 +9,7 @@ import styled from 'styled-components';
 import { bindActionCreators } from 'redux';
 import * as auth from 'store/modules/auth';
 import { compose } from 'recompose';
+import { toast } from 'react-toastify';
 
 const Wrapper = styled.div`
     background: #2f2f2f;    
@@ -41,7 +42,9 @@ class SignupPage extends Component {
         const { email, password, username } = form.toJS();
         try {
             const data = await AuthAction.signup({ email, password, username});
-            alert('Signup Success');
+            toast.success("🚀 Signup Success !", {
+                position: toast.POSITION.RIGHT
+            });
             history.push('/login');
         } catch(e) {
 
