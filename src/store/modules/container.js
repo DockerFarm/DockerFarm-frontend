@@ -7,10 +7,15 @@ const LIST = 'CONTAINER/LIST';
 const INSPECT_RAW = 'CONTAINER/INSPECT_RAW';
 const INSPECT = 'CONTAINER/INSPECT';
 const SET_MODAL_STATE = 'CONTAINER/SET_MODAL_STATE';
+const COMMAND = 'CONTAINER/COMMAND';
+
 
 export const getContainerList = createAction(LIST, ContainerApi.getContainerList);
 export const getContainerInfo = createAction(INSPECT, ContainerApi.getContainerInfo);
 export const getContainerInspectRaw = createAction(INSPECT_RAW, ContainerApi.getContainerInspectRaw);
+export const commandToContainer = createAction(COMMAND, ContainerApi.commandToContainer);
+
+
 export const setModalState = createAction(SET_MODAL_STATE);
 
 const initialState = Map({
@@ -54,6 +59,12 @@ export default handleActions({
         onSuccess(state, action) {
             console.log(fromJS(action.payload.data.result));
             return state.set('inspectData', fromJS(action.payload.data.result));
+        }
+    }),
+    ...pender({
+        type: COMMAND,
+        onSuccess(state, action){
+
         }
     })
 }, initialState);
