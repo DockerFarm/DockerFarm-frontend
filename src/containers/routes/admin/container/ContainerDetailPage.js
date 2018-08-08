@@ -6,6 +6,7 @@ import { Segment, Header, Icon, Label, Table, Button} from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
 import * as container from 'store/modules/container';
 import { ContainerInfo, ContainerDetail } from 'components/admin/container';
+import { toast } from 'react-toastify';
 
 
 
@@ -16,6 +17,22 @@ class ContainerDetailPage extends Component {
         try {
             await ContainerAction.getContainerInfo(match.params.id);
         } catch(e) {
+
+        }
+    }
+
+    handleCommand = async command => {
+        const { ContainerAction, history, match } = this.props;
+        
+        try {
+            await ContainerAction.commandToContainer({id: match.params.id, command});
+            toast.success("🚀 Command Successed !", );
+            if( command === 'remove' ){
+                history.push('/admin/containers');
+            } else {
+                await ContainerAction.getContainerInfo(match.params.id)
+            }
+        } catch(e){
 
         }
     }
@@ -36,6 +53,7 @@ class ContainerDetailPage extends Component {
                     <Segment>
                         <ContainerInfo 
                             {...inspectData.get('info').toJS()}
+                            onCommand={this.handleCommand}
                         />
                     </Segment>
                 </Segment.Group>
