@@ -25,7 +25,8 @@ const initialState = Map({
         detail: Map({
             env: List([]),
             labels: Map({})
-        })
+        }),
+        volume: List([])
     }),
     modalState: Map({
         show: false,
@@ -57,14 +58,7 @@ export default handleActions({
     ...pender({
         type: INSPECT,
         onSuccess(state, action) {
-            console.log(fromJS(action.payload.data.result));
             return state.set('inspectData', fromJS(action.payload.data.result));
-        }
-    }),
-    ...pender({
-        type: COMMAND,
-        onSuccess(state, action){
-
         }
     })
 }, initialState);
