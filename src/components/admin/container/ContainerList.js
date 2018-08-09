@@ -4,7 +4,8 @@ import ContainerListItem from './ContainerListItem';
 import {
     Table,
     Icon,
-    Label
+    Label,
+    Checkbox
 } from 'semantic-ui-react';
 
 const ContainerList = ({
@@ -14,7 +15,7 @@ const ContainerList = ({
 
     const noData = (
         <TableNoData
-            numOfCell={6}
+            numOfCell={10}
         />
     );
 
@@ -36,6 +37,7 @@ const ContainerList = ({
             <Table color='teal' fixed>
                 <Table.Header>
                     <Table.Row>
+                        <Table.HeaderCell textAlign='center' width={1}><Checkbox/></Table.HeaderCell>
                         <Table.HeaderCell textAlign='center'>Id</Table.HeaderCell>
                         <Table.HeaderCell textAlign='center'>Name</Table.HeaderCell>
                         <Table.HeaderCell textAlign='center'>Image</Table.HeaderCell>
