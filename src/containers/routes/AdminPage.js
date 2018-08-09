@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Sidebar, Menu, Segment, Icon, Header, Image } from 'semantic-ui-react';
-import { Route, Switch, NavLink, Link} from 'react-router-dom';
+import { Route, Redirect, Switch, NavLink, Link} from 'react-router-dom';
 import {
     ContainerPage,
     ImagePage,
@@ -34,6 +34,7 @@ const Pusher = styled(Sidebar.Pusher)`
 const MenuItem = styled(Menu.Item)`
     text-align:left !important;
 `
+
 class MainPage extends Component {
 
     render() {
