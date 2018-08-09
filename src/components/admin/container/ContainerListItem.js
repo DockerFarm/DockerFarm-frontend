@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Icon, Label } from 'semantic-ui-react';
+import { Table, Icon, Label, Checkbox} from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { LinkTitle } from 'components/base/ui';
 
@@ -20,6 +20,7 @@ const ContainerListItem = ({
 
     return (
         <Table.Row >
+            <Table.Cell textAlign='center'><Checkbox /></Table.Cell>
             <Table.Cell textAlign='center'>{id}</Table.Cell>
             <Table.Cell textAlign='center'>
                 <LinkTitle to={`/admin/containers/${id}`} label={name} />

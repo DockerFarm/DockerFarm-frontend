@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Segment, Header, Icon, Label, Table, Button} from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
 import * as container from 'store/modules/container';
-import { ContainerInfo, ContainerDetail } from 'components/admin/container';
+import { ContainerInfo, ContainerDetail, ContainerVolume } from 'components/admin/container';
 import { toast } from 'react-toastify';
 
 
@@ -68,6 +68,19 @@ class ContainerDetailPage extends Component {
                         <ContainerDetail 
                             {...inspectData.get('detail').toJS()}
                         />
+                    </Segment>
+                </Segment.Group>
+                <Segment.Group>
+                    <Segment>
+                        <Header as='h5'>
+                            <Icon name='hdd'/>
+                            Container Volume
+                        </Header>
+                    </Segment>
+                    <Segment>
+                        <ContainerVolume 
+                            volume={inspectData.get('volume').toJS()}
+                        />                        
                     </Segment>
                 </Segment.Group>
             </React.Fragment>
