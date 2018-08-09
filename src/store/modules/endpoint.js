@@ -37,15 +37,6 @@ export default handleActions({
         onSuccess(state, action) {
             return state.set('list', List(action.payload.data.data))
                         .set('error', null)
-        },
-        onFailure(state, action) {
-            return state.set('error', fromJS(action.payload.response.data));
-        }
-    }),
-    ...pender({
-        type: ADD_ENDPOINT,
-        onFailure(state, action) {
-            return state.set('error', fromJS(action.payload.response.data));
         }
     }),
     ...pender({
@@ -53,15 +44,6 @@ export default handleActions({
         onSuccess(state, action) {
             return state.set('selectRow', null)
                         .set('mode', REGISTER_MODE);
-        },
-        onFailure(state, action) {
-            return state.set('error', fromJS(action.pyload.response.data));
-        }
-    }),
-    ...pender({
-        type: UPDATE_ENDPOINT,
-        onFailure(state, action) {
-            return state.set('error', fromJS(action.payload.response.data));
         }
     })
 
