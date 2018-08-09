@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
+import { PageNotFound } from './error';
 import { withAuth } from 'components/hoc';
-import { connect } from 'react-redux';
-import { compose } from 'recompose';
 import LoginPage from './LoginPage';
 import SignupPage from './SignupPage';
 import AdminPage from './AdminPage';
-import * as user from 'store/modules/user';
-import { bindActionCreators } from 'redux';
 
 
 class Routes extends Component {
@@ -16,9 +13,11 @@ class Routes extends Component {
 
         return (
             <Switch>
+                <Route exact path='/' render={ () => <Redirect to='/admin' />} />
                 <Route path='/admin' component={withAuth(AdminPage)} />
                 <Route exact path='/login' component={LoginPage} />
                 <Route exact path='/signup' component={SignupPage} />
+                <Route component={PageNotFound}/>
             </Switch>
         )
     }

@@ -20,16 +20,10 @@ export default handleActions({
         return state.set('error', null);
     },
     ...pender({
-        type: LOCAL_LOGIN,
-        onFailure(state, action) {
-            return state.set('error', fromJS(action.payload.response.data));
-        }
+        type: LOCAL_LOGIN
     }),
     ...pender({
-        type: LOCAL_SIGNUP,
-        onFailure(state, action) {
-            return state.set('error', fromJS(action.payload.response.data));
-        }
+        type: LOCAL_SIGNUP
     })
     
 }, initialState);
