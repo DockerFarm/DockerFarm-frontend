@@ -1,5 +1,6 @@
 import React from 'react';
 import { Table, Label, Select } from 'semantic-ui-react';
+import { LinkTitle } from 'components/base/ui';
 
 const ImageList = ({
     list
@@ -7,20 +8,25 @@ const ImageList = ({
     <Table>
         <Table.Header>
             <Table.Row>
-                <Table.HeaderCell>Id</Table.HeaderCell>
-                <Table.HeaderCell>Tag</Table.HeaderCell>
-                <Table.HeaderCell>Size</Table.HeaderCell>
-                <Table.HeaderCell>Created</Table.HeaderCell>
+                <Table.HeaderCell textAlign='center'>Id</Table.HeaderCell>
+                <Table.HeaderCell textAlign='left'>Tag</Table.HeaderCell>
+                <Table.HeaderCell textAlign='center'>Size</Table.HeaderCell>
+                <Table.HeaderCell textAlign='center'>Created</Table.HeaderCell>
             </Table.Row>
         </Table.Header>
         <Table.Body>
             {
                 list.map( v => (
                     <Table.Row key={v.id}>
-                        <Table.Cell>{v.id}</Table.Cell>
-                        <Table.Cell><Label color='blue'>{v.tag}</Label></Table.Cell>
-                        <Table.Cell>{v.size}</Table.Cell>
-                        <Table.Cell>{v.created}</Table.Cell>
+                        <Table.Cell textAlign='center'>
+                            <LinkTitle 
+                                to={`/admin/images/${v.id}`}
+                                label={v.id} 
+                            />
+                        </Table.Cell>
+                        <Table.Cell textAlign='left'><Label color='blue'>{v.tag}</Label></Table.Cell>
+                        <Table.Cell textAlign='center'>{v.size}</Table.Cell>
+                        <Table.Cell textAlign='center'>{v.created}</Table.Cell>
                     </Table.Row>
                 ))
             }
