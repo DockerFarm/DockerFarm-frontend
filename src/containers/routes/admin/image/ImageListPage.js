@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Segment, Header, Icon} from 'semantic-ui-react';
+import { Segment, Header, Icon, Form} from 'semantic-ui-react';
+import { SectionHeader } from 'components/base/ui';
 import { Aux } from 'components/hoc';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
-import { ImageList } from 'components/admin/image';
+import { ImageList, ImageSearchForm } from 'components/admin/image';
 import * as image from 'store/modules/image';
 
 class ImageListPage extends Component {
@@ -23,20 +24,19 @@ class ImageListPage extends Component {
     render() {
         const { list } = this.props;
         return (
-            <Segment.Group>
-                <Segment>
-                    <Header as='h5'>
-                        <Icon name='list'/>
-                        Image Management
-                    </Header>
-                </Segment>
-                <Segment>
-                    <ImageList
-                        list={list.toJS()}
-                    />
-                </Segment>
-            </Segment.Group>
-        
+            <Aux>
+                <SectionHeader 
+                    title='Search Image'
+                />
+                <ImageSearchForm 
+                />
+                <SectionHeader 
+                    title='Image Management'
+                />
+                <ImageList
+                    list={list.toJS()}
+                />
+            </Aux>
         ) 
     }
 }
