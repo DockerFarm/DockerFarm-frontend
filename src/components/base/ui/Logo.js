@@ -1,9 +1,19 @@
 import React from 'react';
 
 const logo = ({
-    className
+    className,
+    width,
+    height
 }) => (
-    <img src='/img/logo.gif' alt='dockerfarm' className={className}/>
+    <img 
+        src='/img/logo.svg' 
+        alt='dockerfarm' 
+        className={className}
+        style={{
+            width,
+            height
+        }}
+    />
 )
 
 export default logo;
