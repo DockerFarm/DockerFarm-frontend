@@ -65,7 +65,10 @@ class LoginPage extends Component {
             <Wrapper>
                 <StyledForm>
                     <div>
-                        <CenterLogo/>
+                        <CenterLogo
+                            width='100%'
+                            height='80px'
+                        />
                     </div>
                     <LoginForm
                         onSubmit={this.submit}
