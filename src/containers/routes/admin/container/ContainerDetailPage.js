@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Segment, Header, Icon, Label, Table, Button} from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
 import * as container from 'store/modules/container';
+import * as common from 'store/modules/common';
 import { ContainerInfo, ContainerDetail, ContainerVolume } from 'components/admin/container';
 import { toast } from 'react-toastify';
 
@@ -13,9 +14,10 @@ import { toast } from 'react-toastify';
 class ContainerDetailPage extends Component {
 
     async componentWillMount() {
-        const { ContainerAction, match } = this.props
+        const { ContainerAction, CommonAction, match, inspectData } = this.props
         try {
             await ContainerAction.getContainerInfo(match.params.id);
+            CommonAction.addMenuTitle({ title: inspectData.getIn(['info','name'])})
         } catch(e) {
 
         }
@@ -96,7 +98,8 @@ export default compose(
             inspectData: state.container.get('inspectData')
         }),
         dispatch => ({
-            ContainerAction: bindActionCreators(container, dispatch)
+            ContainerAction: bindActionCreators(container, dispatch),
+            CommonAction: bindActionCreators(common, dispatch) 
         })
     )
 )(ContainerDetailPage);
