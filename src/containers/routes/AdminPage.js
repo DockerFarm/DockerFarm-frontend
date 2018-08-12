@@ -8,6 +8,7 @@ import {
     SettingPage
 } from './admin';
 import { Logo } from 'components/base/ui';
+import { GlobalNavigationBar } from 'containers/routes/admin/header';
 import styled from 'styled-components';
 
 
@@ -68,6 +69,7 @@ class MainPage extends Component {
                 </SideDrawer>
 
                 <Pusher>
+                    <GlobalNavigationBar name='Admin' />
                     <ContentWrapper>
                         <Route path='/admin/containers' component={ContainerPage}/>
                         <Route path='/admin/images' component={ImagePage}/>
