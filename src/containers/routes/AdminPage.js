@@ -51,8 +51,15 @@ class MainPage extends Component {
                     vertical
                     visible
                 >
-                    <MenuItem as={Link} to='/admin' >
-                        <Logo/>
+                    <MenuItem 
+                        as={Link} 
+                        to='/admin' 
+                        style={{height:'60px'}}
+                    >
+                        <Logo
+                            width='100%'
+                            height='48px'
+                        />
                     </MenuItem>
                     <MenuItem as={NavLink} to='/admin/containers' >
                         <Icon name='th list' />

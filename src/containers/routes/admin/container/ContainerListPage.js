@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
 import { ContainerList, ContainerInspectModal } from 'components/admin/container';
+import { Aux } from 'components/hoc';
+import { SectionHeader } from 'components/base/ui';
 import * as container from 'store/modules/container';
 
 class ContainerPage extends Component {
@@ -47,26 +49,22 @@ class ContainerPage extends Component {
             state
         } = this.props;
         return (
-            <Segment.Group>
-                <Segment>
-                    <Header as='h5'>
-                        <Icon name='list'/>
-                        Container Management
-                    </Header>
-                </Segment>
-                <Segment>
-                    <ContainerList
-                        list={list.toJS()}
-                        onInspect={this.onInspect}
-                    />
-                </Segment>
+            <Aux>
+                <SectionHeader 
+                    title='Container List'
+                    icon='list'
+                />
+                <ContainerList
+                    list={list.toJS()}
+                    onInspect={this.onInspect}
+                />
                 <ContainerInspectModal 
                     show={state.get('show')}
                     name={state.get('name')}
                     data={rawData.toJS()}
                     onClose={this.onClose}
                 /> 
-            </Segment.Group>
+            </Aux>
         ) 
     }
 }

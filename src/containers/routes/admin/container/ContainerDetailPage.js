@@ -8,21 +8,22 @@ import * as container from 'store/modules/container';
 import * as common from 'store/modules/common';
 import { ContainerInfo, ContainerDetail, ContainerVolume } from 'components/admin/container';
 import { toast } from 'react-toastify';
+import { Aux } from 'components/hoc';
+import { SectionHeader } from 'components/base/ui';
 
 
 
 class ContainerDetailPage extends Component {
 
     async componentWillMount() {
-        const { ContainerAction, CommonAction, match, inspectData } = this.props
+        const { ContainerAction, match } = this.props
         try {
-            await ContainerAction.getContainerInfo(match.params.id);
-            CommonAction.addMenuTitle({ title: inspectData.getIn(['info','name'])})
+            await ContainerAction.getContainerInfo(match.params.id)
         } catch(e) {
 
         }
     }
-
+    
     handleCommand = async command => {
         const { ContainerAction, history, match } = this.props;
         
@@ -40,52 +41,40 @@ class ContainerDetailPage extends Component {
     }
 
     render() {
-        const { inspectData } = this.props;
+        const { inspectData, CommonAction } = this.props;
 
+        CommonAction.updateMenuTitle({
+            index: 1,
+            menu: {
+                title: inspectData.getIn(['info','name'])
+            }
+        })
 
         return (
-            <React.Fragment>
-                <Segment.Group>
-                    <Segment>
-                        <Header as='h5'>
-                            <Icon name='list'/>
-                            Container Information
-                        </Header>
-                    </Segment>
-                    <Segment>
-                        <ContainerInfo 
-                            {...inspectData.get('info').toJS()}
-                            onCommand={this.handleCommand}
-                        />
-                    </Segment>
-                </Segment.Group>
-                <Segment.Group>
-                    <Segment>
-                        <Header as='h5'>
-                            <Icon name='list'/>
-                            Container Details
-                        </Header>
-                    </Segment>
-                    <Segment>
-                        <ContainerDetail 
-                            {...inspectData.get('detail').toJS()}
-                        />
-                    </Segment>
-                </Segment.Group>
-                <Segment.Group>
-                    <Segment>
-                        <Header as='h5'>
-                            <Icon name='hdd'/>
-                            Container Volume
-                        </Header>
-                    </Segment>
-                    <Segment>
-                        <ContainerVolume 
-                            volume={inspectData.get('volume').toJS()}
-                        />                        
-                    </Segment>
-                </Segment.Group>
-            </React.Fragment>
+            <Aux>
+                <SectionHeader
+                    title='Container Information'
+                    icon='list'
+                />
+                <ContainerInfo 
+                    {...inspectData.get('info').toJS()}
+                    onCommand={this.handleCommand}
+                />
+                <SectionHeader
+                    title='Container Details'
+                    icon='list'
+                />
+                <ContainerDetail 
+                    {...inspectData.get('detail').toJS()}
+                />
+                <SectionHeader
+                    title='Container Volume'
+                    icon='hdd'
+                />
+                <ContainerVolume 
+                    volume={inspectData.get('volume').toJS()}
+                />                        
+            </Aux>
         )
     }
 }
