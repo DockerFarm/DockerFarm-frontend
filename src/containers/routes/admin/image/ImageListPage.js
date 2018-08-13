@@ -27,11 +27,13 @@ class ImageListPage extends Component {
             <Aux>
                 <SectionHeader 
                     title='Search Image'
+                    icon='search'
                 />
                 <ImageSearchForm 
                 />
                 <SectionHeader 
                     title='Image Management'
+                    icon='list'
                 />
                 <ImageList
                     list={list.toJS()}
