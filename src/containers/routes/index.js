@@ -5,6 +5,7 @@ import { withAuth } from 'components/hoc';
 import LoginPage from './LoginPage';
 import SignupPage from './SignupPage';
 import AdminPage from './AdminPage';
+import LogoutPage from './LogoutPage';
 
 
 class Routes extends Component {
@@ -16,6 +17,7 @@ class Routes extends Component {
                 <Route exact path='/' render={ () => <Redirect to='/admin' />} />
                 <Route path='/admin' component={withAuth(AdminPage)} />
                 <Route exact path='/login' component={LoginPage} />
+                <Route exact path='/logout' component={LogoutPage} />
                 <Route exact path='/signup' component={SignupPage} />
                 <Route component={PageNotFound}/>
             </Switch>
