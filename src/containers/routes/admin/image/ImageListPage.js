@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Segment, Header, Icon, Form} from 'semantic-ui-react';
 import { SectionHeader } from 'components/base/ui';
 import { Aux } from 'components/hoc';
 import { withRouter } from 'react-router-dom';

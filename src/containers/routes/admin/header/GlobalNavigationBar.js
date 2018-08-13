@@ -40,7 +40,6 @@ const UserProfile = styled.div`
 
 class GlobalNavigationBar extends Component {
 
-
     render() {
         const { 
             menus,
@@ -94,9 +93,14 @@ class GlobalNavigationBar extends Component {
                         </Header>
                     </MenuItem>
                     <MenuItem>
-                        <Header as='h5' color='grey' style={{cursor:'pointer'}}>
-                            <Icon name='sign out alternate' />
-                        </Header> 
+                        <Link to='/logout'>
+                            <Header 
+                                as='h5' 
+                                color='grey' 
+                            >
+                                <Icon name='sign out alternate' />
+                            </Header> 
+                        </Link>
                     </MenuItem>
                 </Menu>
             </MenuWrapper>
@@ -112,7 +116,6 @@ export default compose(
             menus: state.common.get('menus') 
         }),
         dispatch => ({
-
         })
     )     
 )(GlobalNavigationBar);
