@@ -7,6 +7,7 @@ import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { Aux } from 'components/hoc';
 import * as image from 'store/modules/image';
+import * as common from 'store/modules/common';
 
 
 class ImageDetailPage extends Component {
@@ -22,7 +23,15 @@ class ImageDetailPage extends Component {
     }
 
     render() {
-        const { inspectData } = this.props;
+        const { inspectData, CommonAction, match } = this.props;
+
+        CommonAction.updateMenuTitle({
+            index: 1,
+            menu: {
+                title: inspectData.getIn(['info','tag']) 
+            }
+        })
+
         return (
             <Aux>
                 <SectionHeader 
@@ -58,7 +67,8 @@ export default compose(
             history: state.image.get('history')
         }),
         dispatch => ({
-            ImageAction: bindActionCreators(image, dispatch)
+            ImageAction: bindActionCreators(image, dispatch),
+            CommonAction: bindActionCreators(common, dispatch)
         })
     )
 )(ImageDetailPage);

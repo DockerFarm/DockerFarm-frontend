@@ -6,7 +6,7 @@ const SectionHeader = ({
     title,
     ...rest
 }) => (
-    <Header as='h3' {...rest} color='teal'>
+    <Header as='h5' {...rest} color='grey'>
         {
             icon ?
             <Icon name={icon}/> :

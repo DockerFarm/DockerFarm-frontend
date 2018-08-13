@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import { initialize} from 'redux-form/immutable';
 import { compose } from 'recompose';
 import * as endPoint from 'store/modules/endpoint';
+import * as common from 'store/modules/common';
 import { bindActionCreators } from 'redux';
 import { EndpointForm, EndpointList } from 'components/admin/setting';
+import { Aux } from 'components/hoc';
+import { SectionHeader } from 'components/base/ui';
 import { 
     Segment, 
     Header,
@@ -17,8 +20,14 @@ class SettingPage extends Component {
 
 
     async componentWillMount() {
-        const { EndpointAction } = this.props;
+        const { EndpointAction, CommonAction } = this.props;
         try{
+            CommonAction.setMenuTitle([
+                {
+                    title: 'Setting',
+                    url: '/admin/settings'
+                }
+            ]) 
             await EndpointAction.selectAllEndpoint(); 
         }catch(e){
 
@@ -79,31 +88,29 @@ class SettingPage extends Component {
         const list = this.props.list.toJS();
 
         return (
-            <Segment.Group>
+            <Aux>
+                <SectionHeader 
+                    title='Connect to Docker Endpoint'
+                    icon='plug'
+                />
+                <EndpointList 
+                    list={list}
+                    selectRow={selectRow}
+                    onRowSelect={this.selectRow}
+                    onAdd={this.onAdd}
+                />
+                <SectionHeader 
+                    title={ mode === endPoint.REGISTER_MODE ? 'Endpoint Register' : 'Endpoint Modify'}
+                    icon='file'
+                />
                 <Segment>
-                    <Header as='h5'>
-                        <Icon name='plug'/>
-                        Connect to Docker EndPoint
-                    </Header>
-                </Segment>
-                <Segment>
-                    <EndpointList 
-                        list={list}
-                        selectRow={selectRow}
-                        onRowSelect={this.selectRow}
-                        onAdd={this.onAdd}
-                    />
-                    <Header as='h4'>
-                        <Icon name='file' />
-                        { mode === endPoint.REGISTER_MODE ? 'Endpoint Register' : 'Endpoint Modify'}
-                    </Header>
                     <EndpointForm
                         onSubmit={this.submit}
                         onDelete={this.onDelete}
                         serverError={error}
                     />
                 </Segment>
-            </Segment.Group>
+            </Aux>
         )
     }
     
@@ -120,6 +127,7 @@ export default compose(
         }),
         dispatch => ({
             EndpointAction: bindActionCreators(endPoint, dispatch),
+            CommonAction: bindActionCreators(common, dispatch),
             setForm: data => {
                 dispatch(initialize('endpoint', data));
             }

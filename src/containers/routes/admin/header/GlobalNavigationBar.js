@@ -6,6 +6,7 @@ import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { Aux } from 'components/hoc';
+import { LinkTitle } from 'components/base/ui';
 
 const MenuWrapper = styled.div`
     height:60px;
@@ -93,11 +94,9 @@ class GlobalNavigationBar extends Component {
                         </Header>
                     </MenuItem>
                     <MenuItem>
-                        <Link to='/logout' >
-                            <Header as='h5' color='grey'>
-                                    <Icon name='sign out alternate' />
-                            </Header> 
-                        </Link>
+                        <Header as='h5' color='grey' style={{cursor:'pointer'}}>
+                            <Icon name='sign out alternate' />
+                        </Header> 
                     </MenuItem>
                 </Menu>
             </MenuWrapper>
