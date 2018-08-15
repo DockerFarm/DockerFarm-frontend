@@ -5,7 +5,8 @@ import { Route, Redirect, Switch, NavLink, Link} from 'react-router-dom';
 import {
     ContainerPage,
     ImagePage,
-    SettingPage
+    SettingPage,
+    NetworkPage
 } from './admin';
 import { Logo } from 'components/base/ui';
 import { GlobalNavigationBar } from 'containers/routes/admin/header';
@@ -69,6 +70,10 @@ class MainPage extends Component {
                         <Icon name='clone'/>
                         Images
                     </MenuItem>
+                    <MenuItem as={NavLink} to='/admin/networks'>
+                        <Icon name='sitemap'/>
+                        Networks
+                    </MenuItem>
                     <MenuItem as={NavLink} to='/admin/settings'>
                         <Icon name='settings'/>
                         Setting
@@ -76,10 +81,11 @@ class MainPage extends Component {
                 </SideDrawer>
 
                 <Pusher>
-                    <GlobalNavigationBar name='Admin' />
+                    <GlobalNavigationBar />
                     <ContentWrapper>
                         <Route path='/admin/containers' component={ContainerPage}/>
                         <Route path='/admin/images' component={ImagePage}/>
+                        <Route path='/admin/networks' component={NetworkPage}/>
                         <Route path='/admin/settings' component={SettingPage}/>
                     </ContentWrapper>
                 </Pusher>
