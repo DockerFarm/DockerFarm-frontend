@@ -7,6 +7,7 @@ import endPoint from './endpoint';
 import container from './container';
 import image from './image';
 import common from './common';
+import network from './network';
 
 export default combineReducers({
     auth,
@@ -14,6 +15,7 @@ export default combineReducers({
     endPoint,
     container,
     image,
+    network,
     common,
     form: formReducer,
     pender: penderReducer
