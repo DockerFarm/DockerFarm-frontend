@@ -5,8 +5,7 @@ WORKDIR /usr/src/app
 
 COPY . ./
 
-RUN npm install -g yarn \ 
- && yarn global add serve
+RUN yarn global add serve
     
 RUN yarn 
 
