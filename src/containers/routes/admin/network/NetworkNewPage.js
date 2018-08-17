@@ -219,7 +219,6 @@ class NetworkNewPage extends Component {
     submit = async form => {
         const { NetworkAction, history } = this.props;
         try {
-            debugger;
             await NetworkAction.createNetwork(form.toJS());
             toast.success('Network create success!');
             history.push('/admin/networks');
