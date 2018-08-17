@@ -2,7 +2,8 @@ import React from 'react';
 import { Table, Button, Icon } from 'semantic-ui-react';
 
 const NetworkContainers = ({
-    containers
+    containers,
+    onLeave
 }) => (
     <Table>
         <Table.Header>
@@ -21,7 +22,11 @@ const NetworkContainers = ({
                         <Table.Cell>{v.ipv6}</Table.Cell>
                         <Table.Cell>{v.mac}</Table.Cell>
                         <Table.Cell>
-                            <Button color='red' size='tiny'>
+                            <Button 
+                                color='red' 
+                                size='tiny'
+                                onClick={ () => onLeave(v.id)}
+                            >
                                 <Icon name='trash' />
                                 Leave Network
                             </Button>
