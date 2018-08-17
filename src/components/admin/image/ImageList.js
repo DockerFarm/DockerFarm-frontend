@@ -35,7 +35,7 @@ const ImageList = ({
             <Table.Row>
                 <Table.HeaderCell colSpan={4}>
                 Items for Pages
-                <Select options={[
+                {/* <Select options={[
                     { key : 5, value : 5, text:5},
                     { key : 5, value : 5, text:5},
                     { key : 5, value : 5, text:5},
@@ -43,7 +43,7 @@ const ImageList = ({
                     { key : 5, value : 5, text:5},
                     { key : 5, value : 5, text:5},
                     { key : 5, value : 5, text:5}
-                ]}></Select>
+                ]}></Select> */}
                 </Table.HeaderCell>
             </Table.Row>
         </Table.Footer>

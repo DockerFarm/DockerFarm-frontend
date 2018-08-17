@@ -19,11 +19,11 @@ const withErrorHandler = (WrappedComponent) => {
             this.responseInterceptor = http.interceptors.response.use(res => res, error => {
                 if( error.response ) {
                     const status = get(error, 'response.status' );
-                    if( status == 401 ) {
+                    if( status === 401 ) {
                         toast.error('UnAuthorized');
                         history.push('/login');
                     } else {
-                        toast.error(error.response.data.message);
+                        toast.error(error.response.data);
                     }
                 } else {
                     toast.error('Internal Server Error');
