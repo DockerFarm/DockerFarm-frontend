@@ -6,7 +6,8 @@ import {
     ContainerPage,
     ImagePage,
     SettingPage,
-    NetworkPage
+    NetworkPage,
+    VolumePage
 } from './admin';
 import { Logo } from 'components/base/ui';
 import { GlobalNavigationBar } from 'containers/routes/admin/header';
@@ -74,6 +75,10 @@ class MainPage extends Component {
                         <Icon name='sitemap'/>
                         Networks
                     </MenuItem>
+                    <MenuItem as={NavLink} to='/admin/volumes'>
+                        <Icon name='hdd'/>
+                        Volumes
+                    </MenuItem>
                     <MenuItem as={NavLink} to='/admin/settings'>
                         <Icon name='settings'/>
                         Setting
@@ -86,6 +91,7 @@ class MainPage extends Component {
                         <Route path='/admin/containers' component={ContainerPage}/>
                         <Route path='/admin/images' component={ImagePage}/>
                         <Route path='/admin/networks' component={NetworkPage}/>
+                        <Route path='/admin/volumes' component={VolumePage}/>
                         <Route path='/admin/settings' component={SettingPage}/>
                     </ContentWrapper>
                 </Pusher>
