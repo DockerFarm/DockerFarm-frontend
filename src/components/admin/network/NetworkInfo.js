@@ -16,7 +16,13 @@ const NetworkInfo = ({
                 <Table.Cell>Name</Table.Cell>
                 <Table.Cell>
                     {name}
-                    <Button color='red' size='tiny' style={{marginLeft:'10px'}}>
+                    <Button 
+                        color='red' 
+                        size='tiny' 
+                        type='button'
+                        style={{marginLeft:'10px'}}
+                        onClick={ () => onDelete()}
+                    >
                         <Icon name='trash' />
                         Delete Network
                     </Button>
