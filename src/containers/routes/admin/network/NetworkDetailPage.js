@@ -5,6 +5,7 @@ import { NetworkInfo, NetworkOptions, NetworkContainers } from 'components/admin
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { toast } from 'react-toastify';
 import * as network from 'store/modules/network';
 import * as common from 'store/modules/common';
 
@@ -19,15 +20,38 @@ class NetworkDetailPage extends Component {
         }
     }
 
+    handleDelete = async _ => {
+        const { NetworkAction, match, history } = this.props;
+        try { 
+            await NetworkAction.deleteNetwork(match.params.id);
+
+            toast.success('Network delete success!');
+            history.push('/admin/networks');
+        } catch(e) {
+            alert(e.message);
+        }
+    }
+
+    handleLeave = async id => {
+        const { NetworkAction, match } = this.props;
+        try { 
+            await NetworkAction.leaveNetwork(match.params.id, { id });
+            toast.success('Network leave success!');
+            await NetworkAction.getNetworkInfo(match.params.id);
+        } catch(e) {
+
+        }
+    }
+    
     render() {
         const { inspectData, CommonAction } = this.props;
 
-        CommonAction.updateMenuTitle({
-            index: 1,
-            menu: {
-                title: inspectData.getIn(['network','name']) 
-            }
-        })
+        // CommonAction.updateMenuTitle({
+        //     index: 1,
+        //     menu: {
+        //         title: inspectData.getIn(['network','name']) 
+        //     }
+        // })
 
         return (
             <Aux>
@@ -36,6 +60,7 @@ class NetworkDetailPage extends Component {
                     icon='sitemap'
                 />
                 <NetworkInfo 
+                    onDelete={this.handleDelete}
                     {...inspectData.get('network').toJS()}
                 />
                 <SectionHeader
@@ -51,6 +76,7 @@ class NetworkDetailPage extends Component {
                 /> 
                 <NetworkContainers 
                     containers={inspectData.get('container').toJS()}
+                    onLeave={this.handleLeave}
                 />
             </Aux>
         )
