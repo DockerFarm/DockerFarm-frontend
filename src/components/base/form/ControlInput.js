@@ -5,6 +5,7 @@ import ErrorMessage from './ErrorMessage';
 
 const ControlInput = ({
     label, 
+    inputLabel,
     type,
     placeholder,
     meta,
@@ -16,6 +17,7 @@ const ControlInput = ({
             <label>{label}</label>
             <Input 
                 {...input}
+                label={inputLabel}
                 type={type}
                 placeholder={placeholder}
                 {...custom}
