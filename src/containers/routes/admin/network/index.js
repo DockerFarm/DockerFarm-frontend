@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import NetworkListPage from './NetworkListPage';
 import NetworkDetailPage from './NetworkDetailPage';
+import NetworkNewPage from './NetworkNewPage';
 import * as common from 'store/modules/common';
 
 class NetworkPage extends Component {
@@ -23,6 +24,7 @@ class NetworkPage extends Component {
         return (
             <Switch>
                 <Route exact path='/admin/networks' component={NetworkListPage} />
+                <Route exact path='/admin/networks/new' component={NetworkNewPage} />
                 <Route exact path='/admin/networks/:id' component={NetworkDetailPage} />
             </Switch>
         )

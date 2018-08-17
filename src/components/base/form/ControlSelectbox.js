@@ -1,25 +1,27 @@
 import React from 'react';
-import { Input } from 'semantic-ui-react';
+import { Select } from 'semantic-ui-react';
 import ErrorMessage from './ErrorMessage';
 
 
-const ControlInput = ({
+const ControlSelectbox = ({
     label, 
-    inputLabel,
     type,
     placeholder,
     meta,
+    required,
     input,
+    options,
     ...custom
 }) => {
     return (
         <React.Fragment>
             <label>{label}</label>
-            <Input 
-                {...input}
-                label={inputLabel}
-                type={type}
-                placeholder={placeholder}
+            <Select
+                search
+                value={input.value}
+                required={required}
+                options={options}
+                onChange={(event, data) => input.onChange(data.value)}
                 {...custom}
             />
             <ErrorMessage
@@ -29,4 +31,4 @@ const ControlInput = ({
     )
 }
 
-export default ControlInput;
+export default ControlSelectbox;

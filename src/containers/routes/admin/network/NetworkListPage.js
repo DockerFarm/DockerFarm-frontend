@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { NetworkList } from 'components/admin/network';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { SectionHeader } from 'components/base/ui';
 import { bindActionCreators } from 'redux';
+import { Button, Icon } from 'semantic-ui-react';
 import { Aux } from 'components/hoc';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
@@ -29,6 +30,17 @@ class NetworkListPage extends Component {
                     title='Network List'
                     icon='sitemap'
                 />
+                <div>
+                    <Button
+                        as={Link}
+                        to='/admin/networks/new'
+                        color='blue'
+                        size='tiny'
+                    >
+                        <Icon name='plus' />
+                        Add Network
+                    </Button>
+                </div>
                 <NetworkList
                     list={list.toJS()}
                 />
