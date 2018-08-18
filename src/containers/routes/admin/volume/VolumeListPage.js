@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { Link, withRouter } from 'react-router-dom';
 import { Aux } from 'components/hoc';
-import { SectionHeader } from 'components/base/ui';
+import { SectionHeader } from 'components/base/ui/header';
 import { Button, Icon } from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
 import * as volume from 'store/modules/volume';
