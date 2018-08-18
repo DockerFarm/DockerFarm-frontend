@@ -68,6 +68,7 @@ class LoginPage extends Component {
                         <CenterLogo
                             width='100%'
                             height='80px'
+                            invert
                         />
                     </div>
                     <LoginForm
