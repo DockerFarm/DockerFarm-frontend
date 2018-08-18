@@ -15,6 +15,11 @@ const MenuWrapper = styled.div`
     justify-content:space-between;
     padding-left:15px;
     padding-right:15px;
+    position: fixed;
+    right: 0;
+    left: 250px;
+    z-index: 9999;
+    top: 0;
 `
 
 const Menu = styled.ul`

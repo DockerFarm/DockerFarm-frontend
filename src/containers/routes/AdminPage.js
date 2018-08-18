@@ -32,6 +32,7 @@ const Pusher = styled(Sidebar.Pusher)`
     margin-left:250px !important;
     height:100% !important;
     overflow-y: scroll !important;
+    padding-top:65px !important;
 `
 
 const MenuItem = styled(Menu.Item)`
