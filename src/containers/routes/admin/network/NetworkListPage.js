@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NetworkList } from 'components/admin/network';
 import { withRouter, Link } from 'react-router-dom';
-import { SectionHeader } from 'components/base/ui';
+import { SectionHeader } from 'components/base/ui/header';
 import { bindActionCreators } from 'redux';
 import { Button, Icon } from 'semantic-ui-react';
 import { Aux } from 'components/hoc';

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Aux } from 'components/hoc';
-import { SectionHeader } from 'components/base/ui';
+import { SectionHeader } from 'components/base/ui/header';
 import { NetworkInfo, NetworkOptions, NetworkContainers } from 'components/admin/network';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
