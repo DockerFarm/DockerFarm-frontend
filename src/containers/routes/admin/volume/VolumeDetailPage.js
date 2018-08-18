@@ -4,8 +4,9 @@ import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { Aux } from 'components/hoc';
-import { SectionHeader } from 'components/base/ui';
-import { VolumeInfo } from 'components/admin/volume';
+import { SectionHeader } from 'components/base/ui/header';
+import { VolumeInfo, VolumeContainers } from 'components/admin/volume';
+import { toast } from 'react-toastify';
 import * as volume from 'store/modules/volume';
 
 class VolumeDetailPage extends Component {
@@ -19,6 +20,18 @@ class VolumeDetailPage extends Component {
         }
     }
 
+    handleDelete = async id => {
+        const { VolumeAction, match, history } = this.props;
+
+        try {
+            await VolumeAction.deleteVolume(match.params.id);
+            toast.success('Volume delete success!');
+            history.push('/admin/volumes');
+        } catch(e) {
+
+        }
+    }
+
     render() {
         const { inspectData } = this.props;
         return (
@@ -27,7 +40,17 @@ class VolumeDetailPage extends Component {
                         title='Volume Infomation'
                         icon='hdd'
                 /> 
-                <VolumeInfo {...inspectData.get('volume').toJS()} />
+                <VolumeInfo 
+                    {...inspectData.getIn(['data','volume']).toJS()}
+                    onDelete={this.handleDelete}
+                />
+                <SectionHeader 
+                        title='Containers Using Volume'
+                        icon='list'
+                /> 
+                <VolumeContainers 
+                    list={inspectData.get('container').toJS()}
+                />
             </Aux>
         )
     }

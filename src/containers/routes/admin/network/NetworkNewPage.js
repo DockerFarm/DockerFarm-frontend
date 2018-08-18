@@ -3,9 +3,9 @@ import { Segment, Header, Button, Icon, List} from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 import { Field, FieldArray, reduxForm } from 'redux-form/immutable';
 import { fromJS } from 'immutable';
-import { ControlInput, ControlSelectbox, ControlCheckbox } from 'components/base/form';
+import { ControlInput, ControlSelectbox, ControlCheckbox, ControlOptions } from 'components/base/form';
 import { required } from 'lib/validation';
-import { SectionHeader } from 'components/base/ui';
+import { SectionHeader } from 'components/base/ui/header';
 import { Form } from 'semantic-ui-react';
 import { Aux } from 'components/hoc';
 import { compose } from 'recompose';
@@ -156,7 +156,7 @@ let NetworkForm = ({
                 <label>Driver options</label>
             </Form.Field>
         </Form.Group>
-        <FieldArray name='options' component={renderOptions} type='driver'/>
+        <FieldArray name='options' component={ControlOptions} buttonLabel='add driver options'/>
         <Form.Group>
             <Form.Field width={16}>
                 <Header as='h5' textAlign='center'>
@@ -169,7 +169,7 @@ let NetworkForm = ({
                 <label>Label options</label>
             </Form.Field>
         </Form.Group>
-        <FieldArray name='labels' component={renderOptions} type='label'/>
+        <FieldArray name='labels' component={ControlOptions} buttonLabel='add label options'/>
         <Form.Group>
             <Form.Field>
                 <Field

@@ -1,16 +1,29 @@
 import React from 'react';
-import { Table } from 'semantic-ui-react';
+import { Table, Button, Icon} from 'semantic-ui-react';
 
 const VolumeInfo = ({
     name,
     driver,
-    mountpath
+    mountpath,
+    onDelete
 }) => (
     <Table>
         <Table.Body>
             <Table.Row>
                 <Table.Cell>Name</Table.Cell>
-                <Table.Cell>{name}</Table.Cell>
+                <Table.Cell>
+                    {name}
+                    <Button 
+                        color='red' 
+                        size='tiny' 
+                        type='button'
+                        style={{marginLeft:'10px'}}
+                        onClick={ onDelete}
+                    >
+                        <Icon name='trash' />
+                        Delete Volume
+                    </Button>
+                </Table.Cell>
             </Table.Row>
             <Table.Row>
                 <Table.Cell>Driver</Table.Cell>

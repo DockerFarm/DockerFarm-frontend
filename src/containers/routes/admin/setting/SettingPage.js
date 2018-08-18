@@ -6,7 +6,7 @@ import * as common from 'store/modules/common';
 import { bindActionCreators } from 'redux';
 import { EndpointForm, EndpointList } from 'components/admin/setting';
 import { Aux } from 'components/hoc';
-import { SectionHeader } from 'components/base/ui';
+import { SectionHeader } from 'components/base/ui/header';
 import { 
     Segment, 
     Header,

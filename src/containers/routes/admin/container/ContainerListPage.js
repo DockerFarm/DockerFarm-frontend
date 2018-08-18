@@ -5,7 +5,7 @@ import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
 import { ContainerList, ContainerInspectModal } from 'components/admin/container';
 import { Aux } from 'components/hoc';
-import { SectionHeader } from 'components/base/ui';
+import { SectionHeader } from 'components/base/ui/header';
 import * as container from 'store/modules/container';
 
 class ContainerPage extends Component {

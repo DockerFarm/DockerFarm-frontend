@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SectionHeader } from 'components/base/ui';
+import { SectionHeader } from 'components/base/ui/header';
 import { Aux } from 'components/hoc';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';

@@ -9,7 +9,7 @@ import * as common from 'store/modules/common';
 import { ContainerInfo, ContainerDetail, ContainerVolume } from 'components/admin/container';
 import { toast } from 'react-toastify';
 import { Aux } from 'components/hoc';
-import { SectionHeader } from 'components/base/ui';
+import { SectionHeader } from 'components/base/ui/header';
 
 
 

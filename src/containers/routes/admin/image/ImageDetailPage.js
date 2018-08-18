@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SectionHeader } from 'components/base/ui';
+import { SectionHeader } from 'components/base/ui/header';
 import { ImageInfo, ImageDetail, ImageHistory } from 'components/admin/image';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
