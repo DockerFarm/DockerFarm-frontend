@@ -4,6 +4,7 @@ import ContainerPage from './container';
 import NetworkPage from './network';
 import VolumePage from './volume';
 import LibraryPage from './library';
+import DashBoardPage from './dashboard';
 
 export {
     SettingPage,
@@ -11,5 +12,6 @@ export {
     ImagePage,
     NetworkPage,
     VolumePage,
-    LibraryPage
+    LibraryPage,
+    DashBoardPage
 };

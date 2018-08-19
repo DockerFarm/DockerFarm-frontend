@@ -3,36 +3,32 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import VolumeListPage from './VolumeListPage';
-import VolumeDetailPage from './VolumeDetailPage';
-import VolumeNewPage from './VolumeNewPage';
+import DashBoardInfoPage from './DashBoardInfoPage';
 import * as common from 'store/modules/common';
 
-class VolumePage extends Component {
+
+class DashBoardPage extends Component {
 
     componentWillMount() {
         const { CommonAction } = this.props; 
         CommonAction.setMenuTitle([
             {
-                title: 'Volumes',
-                url: '/admin/volumes'
+                title: 'DashBoard',
+                url: '/admin/dashboard'
             }
         ]);
-    } 
+    }
 
+    
     render() {
         const { match } = this.props;
         return (
             <Switch>
-                <Route exact path={`${match.props}`} component={VolumeListPage} />
-                <Route exact path={`${match.props}/new`} component={VolumeNewPage} />
-                <Route exact path={`${match.props}/:id`} component={VolumeDetailPage} />
+                <Route exact path={`${match.path}`} component={DashBoardInfoPage} />
             </Switch>
         )
     }
-
 }
-
 
 export default compose(
     withRouter,
@@ -43,5 +39,5 @@ export default compose(
         dispatch => ({
             CommonAction: bindActionCreators(common, dispatch)
         })
-    ) 
-)(VolumePage);
+    )
+)(DashBoardPage);

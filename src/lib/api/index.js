@@ -5,6 +5,7 @@ import * as ImageApi from './image';
 import * as NetworkApi from './network';
 import * as VolumeApi from './volume';
 import * as LibraryApi from './library';
+import * as DashBoardApi from './dashboard';
 
 export {
     AuthApi,
@@ -13,5 +14,6 @@ export {
     ImageApi,
     NetworkApi,
     VolumeApi,
-    LibraryApi
+    LibraryApi,
+    DashBoardApi
 };

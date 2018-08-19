@@ -21,11 +21,12 @@ class NetworkPage extends Component {
     } 
 
     render() {
+        const { match } = this.props;
         return (
             <Switch>
-                <Route exact path='/admin/networks' component={NetworkListPage} />
-                <Route exact path='/admin/networks/new' component={NetworkNewPage} />
-                <Route exact path='/admin/networks/:id' component={NetworkDetailPage} />
+                <Route exact path={`${match.props}`} component={NetworkListPage} />
+                <Route exact path={`${match.props}/new`} component={NetworkNewPage} />
+                <Route exact path={`${match.props}/:id`} component={NetworkDetailPage} />
             </Switch>
         )
     }

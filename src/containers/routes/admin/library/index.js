@@ -21,9 +21,10 @@ class LibraryPage extends Component {
 
     
     render() {
+        const { match } = this.props;
         return (
             <Switch>
-                <Route exact path='/admin/library' component={LibraryListPage} />
+                <Route exact path={`${match.path}`} component={LibraryListPage} />
             </Switch>
         )
     }
