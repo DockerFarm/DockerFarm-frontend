@@ -21,11 +21,12 @@ class VolumePage extends Component {
     } 
 
     render() {
+        const { match } = this.props;
         return (
             <Switch>
-                <Route exact path='/admin/volumes' component={VolumeListPage} />
-                <Route exact path='/admin/volumes/new' component={VolumeNewPage} />
-                <Route exact path='/admin/volumes/:id' component={VolumeDetailPage} />
+                <Route exact path={`${match.props}`} component={VolumeListPage} />
+                <Route exact path={`${match.props}/new`} component={VolumeNewPage} />
+                <Route exact path={`${match.props}/:id`} component={VolumeDetailPage} />
             </Switch>
         )
     }

@@ -22,10 +22,11 @@ class ImagePage extends Component {
 
     
     render() {
+        const { match } = this.props;
         return (
             <Switch>
-                <Route exact path='/admin/images' component={ImageListPage} />
-                <Route exact path='/admin/images/:id' component={ImageDetailPage} />
+                <Route exact path={`${match.path}`} component={ImageListPage} />
+                <Route exact path={`${match.path}/:id`} component={ImageDetailPage} />
             </Switch>
         )
     }

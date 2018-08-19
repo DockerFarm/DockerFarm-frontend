@@ -21,10 +21,11 @@ class ContainerPage extends Component {
     }
 
     render() {
+        const { match } = this.props;
         return (
             <Switch>
-                <Route exact path='/admin/containers' component={ContainerListPage}/>
-                <Route path='/admin/containers/:id' component={ContainerDetailPage}/>
+                <Route exact path={`${match.path}`} component={ContainerListPage}/>
+                <Route path={`${match.path}/:id`} component={ContainerDetailPage}/>
             </Switch>
         )
     }
