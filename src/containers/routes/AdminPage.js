@@ -7,7 +7,8 @@ import {
     ImagePage,
     SettingPage,
     NetworkPage,
-    VolumePage
+    VolumePage,
+    LibraryPage
 } from './admin';
 import { Logo } from 'components/base/ui';
 import { GlobalNavigationBar } from 'containers/routes/admin/header';
@@ -80,6 +81,10 @@ class MainPage extends Component {
                         <Icon name='hdd'/>
                         Volumes
                     </MenuItem>
+                    <MenuItem as={NavLink} to='/admin/library'>
+                        <Icon name='chart area'/>
+                        Library
+                    </MenuItem>
                     <MenuItem as={NavLink} to='/admin/settings'>
                         <Icon name='settings'/>
                         Setting
@@ -89,11 +94,14 @@ class MainPage extends Component {
                 <Pusher>
                     <GlobalNavigationBar />
                     <ContentWrapper>
-                        <Route path='/admin/containers' component={ContainerPage}/>
-                        <Route path='/admin/images' component={ImagePage}/>
-                        <Route path='/admin/networks' component={NetworkPage}/>
-                        <Route path='/admin/volumes' component={VolumePage}/>
-                        <Route path='/admin/settings' component={SettingPage}/>
+                        <Switch>
+                            <Route path='/admin/containers' component={ContainerPage}/>
+                            <Route path='/admin/images' component={ImagePage}/>
+                            <Route path='/admin/networks' component={NetworkPage}/>
+                            <Route path='/admin/volumes' component={VolumePage}/>
+                            <Route path='/admin/library' component={LibraryPage}/>
+                            <Route path='/admin/settings' component={SettingPage}/>
+                        </Switch>
                     </ContentWrapper>
                 </Pusher>
                 </Sidebar.Pushable>
