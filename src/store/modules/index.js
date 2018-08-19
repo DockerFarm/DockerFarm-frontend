@@ -9,6 +9,7 @@ import image from './image';
 import common from './common';
 import network from './network';
 import volume from './volume';
+import library from './library';
 
 export default combineReducers({
     auth,
@@ -19,6 +20,7 @@ export default combineReducers({
     network,
     common,
     volume,
+    library,
     form: formReducer,
     pender: penderReducer
 });
