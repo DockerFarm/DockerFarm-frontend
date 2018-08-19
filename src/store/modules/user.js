@@ -11,7 +11,9 @@ export const selectMyInfo = createAction(MY_INFO, UserApi.selectMyInfo);
 export const setUserInfo = createAction(SET_USER_INFO);
 
 const initialState = Map({
-    user: Map({}),
+    user: Map({
+        endpoint: Map({})
+    }),
     processed: false
 });
 
