@@ -24,9 +24,9 @@ class NetworkPage extends Component {
         const { match } = this.props;
         return (
             <Switch>
-                <Route exact path={`${match.props}`} component={NetworkListPage} />
-                <Route exact path={`${match.props}/new`} component={NetworkNewPage} />
-                <Route exact path={`${match.props}/:id`} component={NetworkDetailPage} />
+                <Route exact path={`${match.path}`} component={NetworkListPage} />
+                <Route exact path={`${match.path}/new`} component={NetworkNewPage} />
+                <Route exact path={`${match.path}/:id`} component={NetworkDetailPage} />
             </Switch>
         )
     }
