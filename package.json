@@ -41,6 +41,7 @@
     "react-dev-utils": "^5.0.1",
     "react-dom": "^16.4.0",
     "react-json-view": "^1.19.1",
+    "react-masonry-component": "^6.2.1",
     "react-redux": "^5.0.7",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
