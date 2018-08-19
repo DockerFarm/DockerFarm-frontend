@@ -14,7 +14,7 @@ class Routes extends Component {
 
         return (
             <Switch>
-                <Route exact path='/' render={ () => <Redirect to='/admin' />} />
+                <Route exact path='/' render={ () => <Redirect to='/admin/dashboard' />} />
                 <Route path='/admin' component={withAuth(AdminPage)} />
                 <Route exact path='/login' component={LoginPage} />
                 <Route exact path='/logout' component={LogoutPage} />

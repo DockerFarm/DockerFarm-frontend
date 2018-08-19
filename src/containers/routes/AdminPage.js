@@ -8,7 +8,8 @@ import {
     SettingPage,
     NetworkPage,
     VolumePage,
-    LibraryPage
+    LibraryPage,
+    DashBoardPage
 } from './admin';
 import { Logo } from 'components/base/ui';
 import { GlobalNavigationBar } from 'containers/routes/admin/header';
@@ -57,13 +58,17 @@ class MainPage extends Component {
                 >
                     <MenuItem 
                         as={Link} 
-                        to='/admin' 
+                        to='/admin/dashboard' 
                         style={{height:'60px'}}
                     >
                         <Logo
                             width='100%'
                             height='48px'
                         />
+                    </MenuItem>
+                    <MenuItem as={NavLink} to='/admin/dashboard' >
+                        <Icon name='dashboard' />
+                        Dashboard
                     </MenuItem>
                     <MenuItem as={NavLink} to='/admin/containers' >
                         <Icon name='th list' />
@@ -95,6 +100,7 @@ class MainPage extends Component {
                     <GlobalNavigationBar />
                     <ContentWrapper>
                         <Switch>
+                            <Route path='/admin/dashboard' component={DashBoardPage} />
                             <Route path='/admin/containers' component={ContainerPage}/>
                             <Route path='/admin/images' component={ImagePage}/>
                             <Route path='/admin/networks' component={NetworkPage}/>
