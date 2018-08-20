@@ -6,6 +6,7 @@ import * as NetworkApi from './network';
 import * as VolumeApi from './volume';
 import * as LibraryApi from './library';
 import * as DashBoardApi from './dashboard';
+import * as RegistryApi from './registry';
 
 export {
     AuthApi,
@@ -15,5 +16,6 @@ export {
     NetworkApi,
     VolumeApi,
     LibraryApi,
-    DashBoardApi
+    DashBoardApi,
+    RegistryApi
 };
