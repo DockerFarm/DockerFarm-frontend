@@ -11,6 +11,7 @@ import network from './network';
 import volume from './volume';
 import library from './library';
 import dashboard from './dashboard';
+import registry from './registry';
 
 export default combineReducers({
     auth,
@@ -23,6 +24,7 @@ export default combineReducers({
     volume,
     library,
     dashboard,
+    registry,
     form: formReducer,
     pender: penderReducer
 });
