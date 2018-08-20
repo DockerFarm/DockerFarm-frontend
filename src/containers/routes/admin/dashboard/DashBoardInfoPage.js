@@ -47,7 +47,7 @@ const DescriptionList = styled(List)`
 `
 
 class DashBoardInfoPage extends Component {
-    async componentWillMount() {
+    async componentDidMount() {
         const { DashboardAction } = this.props;
         try {
             await DashboardAction.getDashBoardInfo();

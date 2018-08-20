@@ -10,7 +10,7 @@ import * as container from 'store/modules/container';
 
 class ContainerPage extends Component {
 
-    async componentWillMount() {
+    async componentDidMount() {
         const { ContainerAction } = this.props;
     
         try {

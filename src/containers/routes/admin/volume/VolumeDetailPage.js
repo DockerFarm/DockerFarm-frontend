@@ -11,7 +11,7 @@ import * as volume from 'store/modules/volume';
 
 class VolumeDetailPage extends Component {
 
-    async componentWillMount() {
+    async componentDidMount() {
         const { VolumeAction, match } = this.props;
         try {
             await VolumeAction.getVolumeInfo(match.params.id);

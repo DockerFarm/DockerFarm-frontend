@@ -9,7 +9,7 @@ import * as common from 'store/modules/common';
 
 class DashBoardPage extends Component {
 
-    componentWillMount() {
+    componentDidMount() {
         const { CommonAction } = this.props; 
         CommonAction.setMenuTitle([
             {

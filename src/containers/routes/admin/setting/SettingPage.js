@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { initialize} from 'redux-form/immutable';
 import { compose } from 'recompose';
 import * as endPoint from 'store/modules/endpoint';
+import * as user from 'store/modules/user';
 import * as common from 'store/modules/common';
 import { bindActionCreators } from 'redux';
 import { EndpointForm, EndpointList } from 'components/admin/setting';
@@ -19,7 +20,7 @@ import { connect } from 'react-redux';
 class SettingPage extends Component {
 
 
-    async componentWillMount() {
+    async componentDidMount() {
         const { EndpointAction, CommonAction } = this.props;
         try{
             CommonAction.setMenuTitle([
@@ -35,7 +36,7 @@ class SettingPage extends Component {
     }
 
     submit = async values => {
-        const { EndpointAction, selectRow, setForm } = this.props;
+        const { EndpointAction, UserAction, selectRow, setForm } = this.props;
         try {
             if( selectRow && selectRow.get('_id') ){
                 await EndpointAction.updateEndpoint(selectRow.get('_id'), values.toJS());
@@ -46,6 +47,7 @@ class SettingPage extends Component {
                 setForm(null);
             }
             await EndpointAction.selectAllEndpoint();
+            await UserAction.selectMyInfo();
         } catch(e) {
         
         }
@@ -128,6 +130,7 @@ export default compose(
         dispatch => ({
             EndpointAction: bindActionCreators(endPoint, dispatch),
             CommonAction: bindActionCreators(common, dispatch),
+            UserAction: bindActionCreators(user, dispatch),
             setForm: data => {
                 dispatch(initialize('endpoint', data));
             }

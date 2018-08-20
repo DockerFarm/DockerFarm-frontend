@@ -12,7 +12,7 @@ import * as common from 'store/modules/common';
 
 class ImageDetailPage extends Component {
 
-    async componentWillMount() {
+    async componentDidMount() {
         const { ImageAction, match } = this.props;
 
         try {

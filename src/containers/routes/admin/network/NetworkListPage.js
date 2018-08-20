@@ -12,7 +12,7 @@ import * as network from 'store/modules/network';
 
 class NetworkListPage extends Component {
 
-    async componentWillMount() {
+    async componentDidMount() {
         const { NetworkAction } = this.props;
 
         try {

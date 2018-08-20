@@ -10,7 +10,7 @@ import * as image from 'store/modules/image';
 
 class ImageListPage extends Component {
 
-    async componentWillMount() {
+    async componentDidMount() {
         const { ImageAction } = this.props;
         
         try {

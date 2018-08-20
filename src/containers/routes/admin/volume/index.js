@@ -10,7 +10,7 @@ import * as common from 'store/modules/common';
 
 class VolumePage extends Component {
 
-    componentWillMount() {
+    componentDidMount() {
         const { CommonAction } = this.props; 
         CommonAction.setMenuTitle([
             {

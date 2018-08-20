@@ -11,10 +11,16 @@ import * as common from 'store/modules/common';
 
 class NetworkDetailPage extends Component {
 
-    async componentWillMount() {
-        const { NetworkAction, match } = this.props;
+    async componentDidMount() {
+        const { NetworkAction, CommonAction, match } = this.props;
         try {
             await NetworkAction.getNetworkInfo(match.params.id);
+            CommonAction.updateMenuTitle({
+                index: 1,
+                menu: {
+                    title: this.props.inspectData.getIn(['network','name']) 
+                }
+            })
         } catch(e) {
 
         }
@@ -46,12 +52,6 @@ class NetworkDetailPage extends Component {
     render() {
         const { inspectData, CommonAction } = this.props;
 
-        // CommonAction.updateMenuTitle({
-        //     index: 1,
-        //     menu: {
-        //         title: inspectData.getIn(['network','name']) 
-        //     }
-        // })
 
         return (
             <Aux>

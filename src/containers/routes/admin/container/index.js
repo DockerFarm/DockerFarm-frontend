@@ -10,7 +10,7 @@ import { bindActionCreators } from 'redux';
 
 class ContainerPage extends Component {
     
-    componentWillMount() {
+    componentDidMount() {
         const { CommonAction } = this.props; 
         CommonAction.setMenuTitle([
             {
