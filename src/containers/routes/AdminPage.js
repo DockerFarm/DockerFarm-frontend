@@ -11,7 +11,8 @@ import {
     NetworkPage,
     VolumePage,
     LibraryPage,
-    DashBoardPage
+    DashBoardPage,
+    RegistryPage
 } from './admin';
 import { Logo } from 'components/base/ui';
 import { GlobalNavigationBar } from 'containers/routes/admin/header';
@@ -107,6 +108,10 @@ class MainPage extends Component {
                         <Icon name='settings'/>
                         Setting
                     </MenuItem>
+                    <MenuItem as={NavLink} to='/admin/registries'>
+                        <Icon name='database'/>
+                        Registries
+                    </MenuItem>
                 </SideDrawer>
 
                 <Pusher>
@@ -120,6 +125,7 @@ class MainPage extends Component {
                             <Route path='/admin/volumes' component={VolumePage}/>
                             <Route path='/admin/library' component={LibraryPage}/>
                             <Route path='/admin/settings' component={SettingPage}/>
+                            <Route path='/admin/registries' component={RegistryPage}/>
                         </Switch>
                     </ContentWrapper>
                 </Pusher>
