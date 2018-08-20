@@ -10,7 +10,7 @@ import ImageDetailPage from './ImageDetailPage';
 
 class ImagePage extends Component {
 
-    componentWillMount() {
+    componentDidMount() {
         const { CommonAction } = this.props; 
         CommonAction.setMenuTitle([
             {

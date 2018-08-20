@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Sidebar, Menu, Segment, Icon, Header, Image } from 'semantic-ui-react';
 import { Route, Redirect, Switch, NavLink, Link} from 'react-router-dom';
+import { compose } from 'recompose';
+import { connect } from 'react-redux';
 import {
     ContainerPage,
     ImagePage,
@@ -41,9 +43,15 @@ const MenuItem = styled(Menu.Item)`
     text-align:left !important;
 `
 
+const EndpointHeader = styled(Header)`
+    margin-left: -5px !important;
+    color:white !important;
+`
+
 class MainPage extends Component {
 
     render() {
+        const { user } = this.props;
         return (
             <Wrapper>
                 <Sidebar.Pushable as='div'>
@@ -65,6 +73,11 @@ class MainPage extends Component {
                             width='100%'
                             height='48px'
                         />
+                    </MenuItem>
+                    <MenuItem>
+                        <EndpointHeader as='h3'>
+                            {user.getIn(['endpoint', 'name'])} 
+                        </EndpointHeader>
                     </MenuItem>
                     <MenuItem as={NavLink} to='/admin/dashboard' >
                         <Icon name='dashboard' />
@@ -116,4 +129,14 @@ class MainPage extends Component {
     }
 }
 
-export default withRouter(MainPage);
+export default compose(
+    withRouter,
+    connect(
+        state => ({
+            user: state.user.get('user')
+        }),
+        dispatch => ({
+
+        })
+    )
+)(MainPage);

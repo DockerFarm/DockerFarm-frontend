@@ -10,7 +10,7 @@ import { bindActionCreators } from 'redux';
 import * as volume from 'store/modules/volume';
 
 class VolumeListPage extends Component {
-    async componentWillMount() {
+    async componentDidMount() {
         const { VolumeAction } = this.props;
         try {
             await VolumeAction.getVolumeList();

@@ -10,7 +10,7 @@ const withErrorHandler = (WrappedComponent) => {
         state = {
             isAuth: true
         }
-        componentWillMount() {
+        componentDidMount() {
             const { history } = this.props;
             this.requsetInterceptor = http.interceptors.request.use(req => {
                 return req;

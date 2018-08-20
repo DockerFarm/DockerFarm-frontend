@@ -15,7 +15,7 @@ import { SectionHeader } from 'components/base/ui/header';
 
 class ContainerDetailPage extends Component {
 
-    async componentWillMount() {
+    async componentDidMount() {
         const { ContainerAction, match } = this.props
         try {
             await ContainerAction.getContainerInfo(match.params.id)

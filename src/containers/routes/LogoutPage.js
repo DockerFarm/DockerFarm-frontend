@@ -10,7 +10,7 @@ import * as auth from 'store/modules/auth';
 
 class LogoutPage extends Component {
 
-    async componentWillMount() {
+    async componentDidMount() {
         const { UserAction, AuthAction, history } = this.props;
         
         try {

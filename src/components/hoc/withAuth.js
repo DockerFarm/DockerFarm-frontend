@@ -10,7 +10,7 @@ export default function withAuth(SecretComponent) {
     class AuthComponent extends Component {
 
         //UserInfo load
-        async componentWillMount() {
+        async componentDidMount() {
             const { UserAction } = this.props;
             try{ 
                 await UserAction.selectMyInfo();

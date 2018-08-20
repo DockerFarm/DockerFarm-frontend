@@ -98,7 +98,7 @@ VolumeForm = reduxForm({
 })(VolumeForm);
 class VolumeNewPage extends Component {
 
-    async componentWillMount() {
+    async componentDidMount() {
         const { VolumeAction } = this.props;
 
         try{ 

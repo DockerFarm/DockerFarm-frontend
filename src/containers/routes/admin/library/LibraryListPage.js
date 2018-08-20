@@ -36,7 +36,7 @@ const imagesLoadedOptions = {
 
 class LibraryListPage extends Component {
     
-    async componentWillMount() {
+    async componentDidMount() {
         const { LibraryAction } = this.props;
 
         try {

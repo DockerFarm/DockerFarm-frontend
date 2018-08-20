@@ -10,7 +10,7 @@ import * as common from 'store/modules/common';
 
 class NetworkPage extends Component {
 
-    componentWillMount() {
+    componentDidMount() {
         const { CommonAction } = this.props; 
         CommonAction.setMenuTitle([
             {

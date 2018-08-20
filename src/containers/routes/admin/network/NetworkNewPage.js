@@ -5,7 +5,7 @@ import { Field, FieldArray, reduxForm } from 'redux-form/immutable';
 import { fromJS } from 'immutable';
 import { ControlInput, ControlSelectbox, ControlCheckbox, ControlOptions } from 'components/base/form';
 import { required } from 'lib/validation';
-import { SectionHeader } from 'components/base/ui/header';
+import { SectionHeader, FormHeader } from 'components/base/ui/header';
 import { Form } from 'semantic-ui-react';
 import { Aux } from 'components/hoc';
 import { compose } from 'recompose';
@@ -97,9 +97,11 @@ let NetworkForm = ({
         </Form.Group>
         <Form.Group>
             <Form.Field width={16}>
-                <Header as='h5' textAlign='center'>
-                    Network Configuration
-                </Header>     
+                <FormHeader 
+                    title='Network Configuration'
+                    icon='settings' 
+                    textAlign='center'
+                />
             </Form.Field>
         </Form.Group>
         <Form.Group>
@@ -126,9 +128,11 @@ let NetworkForm = ({
         </Form.Group>
         <Form.Group>
             <Form.Field width={16}>
-                <Header as='h5' textAlign='center'>
-                    Driver Configuration
-                </Header>     
+                <FormHeader 
+                    title='Driver Configuration'
+                    icon='settings' 
+                    textAlign='center'
+                />
             </Form.Field>
         </Form.Group>
         <Form.Group>
@@ -159,9 +163,11 @@ let NetworkForm = ({
         <FieldArray name='options' component={ControlOptions} buttonLabel='add driver options'/>
         <Form.Group>
             <Form.Field width={16}>
-                <Header as='h5' textAlign='center'>
-                    Advanced Configuration
-                </Header>     
+                <FormHeader 
+                    title='Advanced Configuration'
+                    icon='settings' 
+                    textAlign='center'
+                />
             </Form.Field>
         </Form.Group>
         <Form.Group>
