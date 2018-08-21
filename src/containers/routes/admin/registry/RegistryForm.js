@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Form, Button, Icon } from 'semantic-ui-react';
-import {  FormHeader } from 'components/base/ui/header';
+import { FormHeader } from 'components/base/ui/header';
 import { ControlInput, ControlCheckbox } from 'components/base/form';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { Field, reduxForm, formValueSelector } from 'redux-form/immutable';
+import { required, maxLength, minLength } from 'lib/validation';
 import { Aux } from 'components/hoc';
 
+const max100 = maxLength(100);
 const RegistryForm = ({
     handleSubmit,
     isAuth
@@ -19,6 +21,7 @@ const RegistryForm = ({
                     type='text'
                     label='Name'
                     component={ControlInput}
+                    validate={[required, max100 ]}
                     placeholder='ex) docker-registry'
                 />
             </Form.Field>
@@ -30,6 +33,7 @@ const RegistryForm = ({
                     type='text'
                     label='URL'
                     component={ControlInput}
+                    validate={[required, max100 ]}
                     placeholder='ex) http://localhost:5000'
                 />
             </Form.Field>
@@ -54,6 +58,7 @@ const RegistryForm = ({
                             type='text'
                             label='username'
                             component={ControlInput}
+                            validate={[required, max100 ]}
                             placeholder='input registry username'
                         />
                     </Form.Field>
@@ -65,6 +70,7 @@ const RegistryForm = ({
                             type='password'
                             label='password'
                             component={ControlInput}
+                            validate={[required, max100 ]}
                             placeholder='input registry password'
                         />
                     </Form.Field>
@@ -72,31 +78,6 @@ const RegistryForm = ({
             </Aux>:
             null
         }
-        <Form.Group>
-            <Form.Field width={16}>
-                <Button.Group floated='right'>
-                    <Button
-                        size='tiny'
-                    >
-                        <Icon name='list' />
-                        List
-                    </Button>
-                    <Button
-                        size='tiny'
-                    >
-                        <Icon name='sync' />
-                        Reset
-                    </Button>
-                    <Button
-                        size='tiny'
-                        color='teal'
-                    >
-                        <Icon name='checkmark' />
-                        Save
-                    </Button>
-                </Button.Group>
-            </Form.Field>
-        </Form.Group>
     </Form>
 )
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { SectionHeader } from 'components/base/ui/header';
+import { LinkTitle } from 'components/base/ui';
 import { Table, Button, Icon, Segment, Form } from 'semantic-ui-react';
 import { ControlCheckbox, ControlInput } from 'components/base/form';
 import { Aux } from 'components/hoc';
@@ -89,7 +90,7 @@ class RegistryListPage extends Component {
                 <div>
                     <Button
                         as={Link}
-                        to={`${match.path}/form`}
+                        to={`${match.path}/new`}
                         color='blue'
                         size='tiny'
                     >
@@ -110,7 +111,12 @@ class RegistryListPage extends Component {
                         {
                             list.toJS().map( (v,i) => (
                                 <Table.Row key={i}>
-                                    <Table.Cell>{v.name}</Table.Cell>
+                                    <Table.Cell>
+                                        <LinkTitle 
+                                            to={`${match.path}/${v._id}`}
+                                            label={v.name}
+                                        />
+                                    </Table.Cell>
                                     <Table.Cell>{v.url}</Table.Cell>
                                     <Table.Cell>{moment(v.createdAt).format('YYYY.MM.DD')}</Table.Cell>
                                     <Table.Cell>{moment(v.updatedAt).format('YYYY.MM.DD')}</Table.Cell>
