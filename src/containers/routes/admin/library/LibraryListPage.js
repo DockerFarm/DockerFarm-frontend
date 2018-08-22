@@ -6,7 +6,8 @@ import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { SectionHeader } from 'components/base/ui/header';
-import { ImageLoader } from 'components/base/ui';
+import { ImageLoader, LinkTitle } from 'components/base/ui';
+import ImagePullModal from 'containers/common/ImagePullModal';
 import Masonry from 'react-masonry-component';
 import styled from 'styled-components';
 import * as library from 'store/modules/library';
@@ -30,10 +31,6 @@ const masonryOptions = {
     gutter: 30
 };
 
-const imagesLoadedOptions = {
-    background: '.test'
-}
-
 class LibraryListPage extends Component {
     
     async componentDidMount() {
@@ -49,8 +46,23 @@ class LibraryListPage extends Component {
         }
     }
 
+    openImageModal = image => {
+        const { LibraryAction } = this.props;
+        LibraryAction.setModalState({
+            show: true,
+            image
+        });
+    }
+
+    onClose = () => {
+        const { LibraryAction } = this.props;
+        LibraryAction.setModalState({
+            show: false,
+            image: {} 
+        });
+    }
     render() {
-        const { list } = this.props;
+        const { list, modalState } = this.props;
         return (
             <Aux>
                 <SectionHeader
@@ -58,7 +70,6 @@ class LibraryListPage extends Component {
                 />
                 <Masonry
                     options={masonryOptions}
-                    imagesLoadedOptions={imagesLoadedOptions}
                 >
 
                     {
@@ -78,7 +89,10 @@ class LibraryListPage extends Component {
                                                 textAlign='center'
                                                 color='grey'
                                             >
-                                            {v.name} 
+                                                <LinkTitle 
+                                                    label={v.name}
+                                                    onClick={ _ => this.openImageModal(v)}
+                                                />
                                             </ImageHeader>
                                         </HeaderWrapper>
                                     </Card.Header>
@@ -93,22 +107,17 @@ class LibraryListPage extends Component {
                                             <List.Item>
                                                 <Icon name='arrow down'/> {v.pullCount}
                                             </List.Item>
-                                            <List.Item>
-                                                <Button 
-                                                    color='blue'
-                                                    type='button'
-                                                    size='tiny'
-                                                    floated='right'
-                                                >
-                                                    <Icon name='arrow down'/> Pull
-                                                </Button>
-                                            </List.Item>
                                         </List>
                                     </Card.Content>
                                 </StyledCard>
                         ))
                     }
                 </Masonry>
+                <ImagePullModal 
+                    show={modalState.get('show')}
+                    image={modalState.get('image')}
+                    onClose={this.onClose}
+                />
             </Aux>
         )
     }
@@ -118,6 +127,7 @@ export default compose(
     withRouter,
     connect(
         state => ({
+            modalState: state.library.get('modalState'),
             list: state.library.get('list')
         }),
         dispatch => ({
