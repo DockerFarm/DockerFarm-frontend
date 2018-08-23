@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { Button, Icon } from 'semantic-ui-react';
 import { SectionHeader } from 'components/base/ui/header';
 import { Aux } from 'components/hoc';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
@@ -21,7 +22,7 @@ class ImageListPage extends Component {
     }
 
     render() {
-        const { list } = this.props;
+        const { list, match } = this.props;
         return (
             <Aux>
                 <SectionHeader 
@@ -34,6 +35,17 @@ class ImageListPage extends Component {
                     title='Image Management'
                     icon='list'
                 />
+                <div>
+                    <Button
+                        as={Link}
+                        color='blue'
+                        size='tiny'
+                        to={`${match.path}/build`}
+                    >
+                        <Icon name='plus'/>
+                        Build a New Image
+                    </Button>
+                </div>
                 <ImageList
                     list={list.toJS()}
                 />

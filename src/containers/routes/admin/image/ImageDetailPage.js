@@ -6,6 +6,7 @@ import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { Aux } from 'components/hoc';
+import { toast } from 'react-toastify';
 import * as image from 'store/modules/image';
 import * as common from 'store/modules/common';
 
@@ -13,24 +14,35 @@ import * as common from 'store/modules/common';
 class ImageDetailPage extends Component {
 
     async componentDidMount() {
-        const { ImageAction, match } = this.props;
-
+        const { ImageAction, CommonAction, match, history } = this.props;
         try {
             await ImageAction.getImageInfo(match.params.id);
+            CommonAction.updateMenuTitle({
+                index: 1,
+                menu: {
+                    title: match.params.id 
+                }
+            })
         } catch(e) {
+            alert(e.message);
+        }
+    }
 
+    handleDelete = async id => {
+        const { ImageAction, history, match } = this.props;
+
+        try {
+            await ImageAction.deleteImage(match.params.id);
+            toast.success('Image delete success!');
+            history.push('/admin/images');
+        } catch(e) {
+            alert(e.message);
         }
     }
 
     render() {
         const { inspectData, CommonAction, match } = this.props;
 
-        CommonAction.updateMenuTitle({
-            index: 1,
-            menu: {
-                title: inspectData.getIn(['info','tag']) 
-            }
-        })
 
         return (
             <Aux>
@@ -39,6 +51,7 @@ class ImageDetailPage extends Component {
                 />
                 <ImageInfo 
                     {...inspectData.get('info').toJS()} 
+                    onDelete={this.handleDelete}
                 />
 
                 <SectionHeader 
@@ -60,11 +73,9 @@ class ImageDetailPage extends Component {
 }
 
 export default compose(
-    withRouter,
     connect(
         state => ({
-            inspectData: state.image.get('inspectData'),
-            history: state.image.get('history')
+            inspectData: state.image.get('inspectData')
         }),
         dispatch => ({
             ImageAction: bindActionCreators(image, dispatch),
