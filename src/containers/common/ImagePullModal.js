@@ -1,63 +1,37 @@
 import React, { Component } from 'react';
+import { withSocketProgress } from 'components/hoc';
 import { Modal, Icon, List, Button, Loader } from 'semantic-ui-react';
 import { LogOutput } from 'components/base/ui';
 import { Map, List as IList, fromJS } from 'immutable';
 import { toast } from 'react-toastify';
-import io from 'socket.io-client';
-import config from 'config';
 
 class ImagePullModal extends Component {
 
-    state = {
-        data: Map({
-            loading: false,
-            pullStatus: IList([])
+    componentDidMount() {
+        const { setDone } = this.props;
+        setDone( _ => {
+            toast.success(`${this.props.image.get('name')} pull success!`);
         })
     }
 
-    componentDidMount() {
-        this.socket = io(config.backendUrl);
-        this.socket.on('pullProgress', resp => {
-            const { data } = this.state;
-            this.setState({
-                data: data.update('pullStatus', arr => arr.push(fromJS(JSON.parse(resp))))
-            });
-        });
-        this.socket.on('pullEnd', _ => {
-            const { image } = this.props;
-            const { data } = this.state;
-            this.setState({
-                data: data.set('loading', false)
-            });
-            toast.success(`${image.get('name')} pull success!`);
-        });
-    }
-
-    componentWillUnmount() {
-        this.socket.off('pullProgress');
-        this.socket.off('pullEnd');
-        this.socket.disconnect();
-    }
 
     componentWillUpdate(nextProps, nextState) {
+        const { setStatus } = this.props;
         if( this.props.image !== nextProps.image ) {
-            this.setState({
-                data: Map({
-                    loading:false,
-                    pullStatus: IList([])
-                })
+            setStatus({
+                loading: false,
+                status: []
             })
         }
     }
 
     handlePull = () => {
-        const { image } = this.props;
-        const { data } = this.state;
-        this.setState({
-            data: data.set('loading', true)
-                      .set('pullStatus', fromJS([{ status: 'Please Waiting...'}]))
+        const { setStatus, socket, image } = this.props;
+        setStatus({
+            loading: true,
+            status: []
         })
-        this.socket.emit('pull', JSON.stringify({ fromImage: image.get('name'), tag: 'latest' }));
+        socket.emit('pull', JSON.stringify({ fromImage: image.get('name'), tag: 'latest' }));
     }
 
 
@@ -65,11 +39,12 @@ class ImagePullModal extends Component {
         const {
             show,
             image,
-            onClose
+            onClose,
+            loading,
+            status
         } = this.props;
 
         const { name, description } = image.toJS();
-        const { data } = this.state;
         return (
             <Modal 
                 open={show}
@@ -88,7 +63,7 @@ class ImagePullModal extends Component {
                                 size='tiny'
                                 type='button'
                                 onClick={this.handlePull}
-                                loading={data.get('loading')}
+                                loading={loading}
                              >
                                 <Icon name='download' /> 
                                 Pull Image
@@ -98,7 +73,7 @@ class ImagePullModal extends Component {
                         <List.Item>
                             <LogOutput height='400px'>
                                 {
-                                    data.get('pullStatus').toJS().map( v => (
+                                    status.map( v => (
                                         <div>
                                             {v.status} {v.progress}
                                         </div>
@@ -113,4 +88,4 @@ class ImagePullModal extends Component {
     }
 }
 
-export default ImagePullModal;
+export default withSocketProgress(ImagePullModal);
