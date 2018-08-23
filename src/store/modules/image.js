@@ -5,9 +5,11 @@ import { ImageApi } from 'lib/api';
 
 const LIST = 'image/LIST';
 const INSPECT = 'image/INSPECT';
+const DELETE = 'image/DELETE';
 
 export const getImageList = createAction(LIST, ImageApi.getImageList);
 export const getImageInfo = createAction(INSPECT, ImageApi.getImageInfo);
+export const deleteImage = createAction(DELETE, ImageApi.deleteImage);
 
 const initialState = Map({
     list: List([]),

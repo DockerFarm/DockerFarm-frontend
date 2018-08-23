@@ -16,7 +16,11 @@ const ImageInfo = ({
                 <Table.Cell>Id</Table.Cell>
                 <Table.Cell>
                     <Label style={{marginRight:'10px'}}>{id}</Label>
-                    <Button color='red' onClick={onDelete}>
+                    <Button 
+                        color='red' 
+                        size='tiny'
+                        onClick={ _ => onDelete(id)}
+                    >
                         <Icon name='trash'/> 
                         Delete this Image
                     </Button>

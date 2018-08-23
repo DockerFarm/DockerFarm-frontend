@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import * as common from 'store/modules/common';
 import ImageListPage from './ImageListPage';
 import ImageDetailPage from './ImageDetailPage';
+import ImageBuildPage from './ImageBuildPage';
 
 
 class ImagePage extends Component {
@@ -26,6 +27,7 @@ class ImagePage extends Component {
         return (
             <Switch>
                 <Route exact path={`${match.path}`} component={ImageListPage} />
+                <Route exact path={`${match.path}/build`} component={ImageBuildPage} />
                 <Route exact path={`${match.path}/:id`} component={ImageDetailPage} />
             </Switch>
         )
