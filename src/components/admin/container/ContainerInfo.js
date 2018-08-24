@@ -105,7 +105,7 @@ const ContainerInfo = ({
         }),
         createBtn({ 
             color: 'red', 
-            onClick: createCommand('trash'), 
+            onClick: createCommand('remove'), 
             icon: 'remove', 
             label: 'Remove', 
             disableStatus: ['removing']
