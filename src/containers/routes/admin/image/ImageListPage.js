@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Segment, Icon, List } from 'semantic-ui-react';
+import { Button, Label, Segment, Icon, List } from 'semantic-ui-react';
 import ImagePullModal from 'containers/common/ImagePullModal';
 import { LinkTitle } from 'components/base/ui';
 import { SectionHeader } from 'components/base/ui/header';
@@ -8,7 +8,8 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
-import { ImageList, ImageSearchForm } from 'components/admin/image';
+import { ImageSearchForm } from 'components/admin/image';
+import DataTable from 'containers/ui/DataTable';
 import * as image from 'store/modules/image';
 
 class ImageListPage extends Component {
@@ -126,8 +127,44 @@ class ImageListPage extends Component {
                         Build a New Image
                     </Button>
                 </div>
-                <ImageList
-                    list={list.toJS()}
+                <DataTable 
+                    data={list.toJS()}
+                    paging
+                    checkable
+                    columns={[
+                        {
+                            header: 'Id',
+                            id: 'id',
+                            width: '100px',
+                            cellAlign: 'center',
+                            template: ({id}) => (
+                                <LinkTitle 
+                                    to={`/admin/images/${id}`}
+                                    label={id} 
+                                />
+                            )
+                        },
+                        {
+                            header: 'Tag',
+                            id: 'tag',
+                            width: '300px',
+                            template: ({tag}) => (
+                                <Label color='blue'>{tag}</Label>
+                            )
+                        },
+                        {
+                            header: 'Size',
+                            id: 'size',
+                            width: '100px',
+                            cellAlign: 'center'
+                        },
+                        {
+                            header: 'Created',
+                            id: 'created',
+                            width: '100px',
+                            cellAlign: 'center'
+                        }
+                    ]}
                 />
                 <ImagePullModal 
                     show={modalState.get('show')}                    
