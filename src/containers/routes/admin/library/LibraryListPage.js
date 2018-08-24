@@ -11,6 +11,7 @@ import ImagePullModal from 'containers/common/ImagePullModal';
 import Masonry from 'react-masonry-component';
 import styled from 'styled-components';
 import * as library from 'store/modules/library';
+import * as image from 'store/modules/image';
 
 const HeaderWrapper = styled.div`
     padding-top:10px;
@@ -47,16 +48,16 @@ class LibraryListPage extends Component {
     }
 
     openImageModal = image => {
-        const { LibraryAction } = this.props;
-        LibraryAction.setModalState({
+        const { ImageAction } = this.props;
+        ImageAction.setModalState({
             show: true,
             image
         });
     }
 
     onClose = () => {
-        const { LibraryAction } = this.props;
-        LibraryAction.setModalState({
+        const { ImageAction } = this.props;
+        ImageAction.setModalState({
             show: false,
             image: {} 
         });
@@ -127,10 +128,11 @@ export default compose(
     withRouter,
     connect(
         state => ({
-            modalState: state.library.get('modalState'),
+            modalState: state.image.get('modalState'),
             list: state.library.get('list')
         }),
         dispatch => ({
+            ImageAction: bindActionCreators(image, dispatch),
             LibraryAction: bindActionCreators(library, dispatch)            
         })
     )    
