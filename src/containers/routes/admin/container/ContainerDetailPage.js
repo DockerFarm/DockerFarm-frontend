@@ -16,9 +16,15 @@ import { SectionHeader } from 'components/base/ui/header';
 class ContainerDetailPage extends Component {
 
     async componentDidMount() {
-        const { ContainerAction, match } = this.props
+        const { ContainerAction, CommonAction, match } = this.props
         try {
             await ContainerAction.getContainerInfo(match.params.id)
+            CommonAction.updateMenuTitle({
+                index: 1,
+                menu: {
+                    title: this.props.inspectData.getIn(['info','name'])
+                }
+            })
         } catch(e) {
 
         }
@@ -43,12 +49,6 @@ class ContainerDetailPage extends Component {
     render() {
         const { inspectData, CommonAction } = this.props;
 
-        CommonAction.updateMenuTitle({
-            index: 1,
-            menu: {
-                title: inspectData.getIn(['info','name'])
-            }
-        })
 
         return (
             <Aux>
