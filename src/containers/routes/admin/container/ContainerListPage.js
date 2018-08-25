@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Header, Icon, Label } from 'semantic-ui-react';
+import { Button, Header, Icon, Label } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
@@ -56,6 +56,24 @@ class ContainerPage extends Component {
                     title='Container List'
                     icon='list'
                 />
+                <div>
+                    <Button
+                        color='red'
+                        size='tiny'                     
+                        type='button'
+                    >
+                        <Icon name='trash' />
+                        Remove
+                    </Button>
+                    <Button
+                        color='red'
+                        size='tiny'                     
+                        type='button'
+                    >
+                        <Icon name='trash' />
+                        Remove Unused Container
+                    </Button>
+                </div>
                 <DataTable 
                     data={list.toJS()}
                     checkable
