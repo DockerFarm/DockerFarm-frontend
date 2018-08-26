@@ -12,3 +12,4 @@
 @absoluteBorderRadius: 2px; 
 
 @defaultBorderRadius: @absoluteBorderRadius;
+@blue             : #2BB7C4;

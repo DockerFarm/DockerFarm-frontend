@@ -11,7 +11,7 @@ import styled from 'styled-components';
 import { teal, yellow } from 'styles/color';
 
 const Box = styled.div`
-    background: ${props => props.color || teal};
+    background: ${props => props.color || '#2BB7C4'};
     padding:10px;
     height:${props => props.height};
 ` 
@@ -95,7 +95,7 @@ class DashBoardInfoPage extends Component {
                                             </BoxTitle>
                                         </Link>
                                     </div>
-                                    <CircleIcon color='teal' name='list' size='big' />
+                                    <CircleIcon color='blue' name='list' size='big' />
                                 </BoxHeader>
                                 <DescriptionList>
                                     <List.Item>
@@ -122,7 +122,7 @@ class DashBoardInfoPage extends Component {
                                             </BoxTitle>
                                         </Link>
                                     </div>
-                                    <CircleIcon color='teal' name='clone' size='big' />
+                                    <CircleIcon color='blue' name='clone' size='big' />
                                 </BoxHeader>
                                 <DescriptionList>
                                     <List.Item>
@@ -144,7 +144,7 @@ class DashBoardInfoPage extends Component {
                                             </BoxTitle>
                                         </Link>
                                     </div>
-                                    <CircleIcon color='teal' name='sitemap' size='big' />
+                                    <CircleIcon color='blue' name='sitemap' size='big' />
                                 </BoxHeader>
                             </Box>
                         </Grid.Column>
@@ -161,7 +161,7 @@ class DashBoardInfoPage extends Component {
                                             </BoxTitle>
                                         </Link>
                                     </div>
-                                    <CircleIcon color='teal' name='hdd' size='big' />
+                                    <CircleIcon color='blue' name='hdd' size='big' />
                                 </BoxHeader>
                             </Box>
                         </Grid.Column>
