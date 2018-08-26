@@ -6,8 +6,7 @@ import { Loader } from 'components/base/common';
 import { toast, ToastContainer } from 'react-toastify';
 import { withErrorHandler } from 'components/hoc';
 import 'react-toastify/dist/ReactToastify.css';
-// import 'semantic-ui-css/semantic.min.css';
-
+import 'semantic-ui-less/semantic.less';
 class App extends Component {
     
 

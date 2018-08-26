@@ -1,0 +1,15 @@
+/*******************************
+     User Global Variables
+*******************************/
+@fontName          : 'Roboto';
+/* This is the single variable that controls them all */
+@emSize   : 13px;
+
+/* The size of page text  */
+@fontSize : 13px;
+
+@relativeBorderRadius: 2px;
+@absoluteBorderRadius: 2px; 
+
+@defaultBorderRadius: @absoluteBorderRadius;
+@blue             : #2BB7C4;

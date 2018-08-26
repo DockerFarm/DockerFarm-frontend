@@ -30,6 +30,8 @@
     "html-webpack-plugin": "2.29.0",
     "immutable": "^3.8.2",
     "jest": "20.0.4",
+    "less": "^2.7.3",
+    "less-loader": "^4.1.0",
     "lodash": "^4.17.10",
     "moment": "^2.22.2",
     "object-assign": "4.1.1",
@@ -118,5 +120,8 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "devDependencies": {
+    "semantic-ui-less": "^2.3.3"
   }
 }

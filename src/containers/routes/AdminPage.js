@@ -61,7 +61,7 @@ class MainPage extends Component {
                     animation='overlay'
                     onHide={this.handleSidebarHide}
                     inverted
-                    color='teal'
+                    color='blue'
                     vertical
                     visible
                 >

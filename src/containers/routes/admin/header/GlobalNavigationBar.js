@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Icon, Header, Breadcrumb } from 'semantic-ui-react';
+import { Icon, Header, Breadcrumb, Button } from 'semantic-ui-react';
 import { center } from 'styles/style-utils';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
@@ -34,7 +34,7 @@ const Menu = styled.ul`
 `
 
 const MenuItem = styled.li`
-    padding-right:10px;
+    padding-right:20px;
 `
 
 const UserProfile = styled.div`
@@ -93,18 +93,20 @@ class GlobalNavigationBar extends Component {
                 <Menu>
                     <MenuItem>
                         <Header as='h5' color='grey'>
-                            <Icon name='user circle' />
+                            <Icon name='user circle' style={{ paddingTop: '3px' }}/>
                             {username}
                         </Header>
                     </MenuItem>
                     <MenuItem>
                         <Link to='/logout'>
-                            <Header 
-                                as='h5' 
-                                color='grey' 
+                            <Button
+                                color='grey'
+                                size='tiny' 
+                                type='button'
                             >
                                 <Icon name='sign out alternate' />
-                            </Header> 
+                                Logout
+                            </Button>
                         </Link>
                     </MenuItem>
                 </Menu>
