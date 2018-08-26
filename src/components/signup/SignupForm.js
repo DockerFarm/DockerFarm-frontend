@@ -84,7 +84,7 @@ const signupForm = ({
         <Form.Field>
             <Button 
                 fluid 
-                color='teal' 
+                color='blue' 
                 type='submit'>
                 <Icon name='signup'/>
                 Signup

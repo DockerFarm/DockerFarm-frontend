@@ -52,7 +52,7 @@ const loginForm = ({
         <Form.Field>
             <Button 
                 fluid 
-                color='teal' 
+                color='blue' 
                 type='submit'>
                 <Icon name='sign in alternate'/>
                 Login
