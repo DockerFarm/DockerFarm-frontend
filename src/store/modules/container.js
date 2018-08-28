@@ -8,12 +8,14 @@ const INSPECT_RAW = 'CONTAINER/INSPECT_RAW';
 const INSPECT = 'CONTAINER/INSPECT';
 const SET_MODAL_STATE = 'CONTAINER/SET_MODAL_STATE';
 const COMMAND = 'CONTAINER/COMMAND';
+const PRUNE = 'CONTAINER/PRUNE';
 
 
 export const getContainerList = createAction(LIST, ContainerApi.getContainerList);
 export const getContainerInfo = createAction(INSPECT, ContainerApi.getContainerInfo);
 export const getContainerInspectRaw = createAction(INSPECT_RAW, ContainerApi.getContainerInspectRaw);
 export const commandToContainer = createAction(COMMAND, ContainerApi.commandToContainer);
+export const pruneContainer = createAction(PRUNE, ContainerApi.pruneContainer);
 
 
 export const setModalState = createAction(SET_MODAL_STATE);
