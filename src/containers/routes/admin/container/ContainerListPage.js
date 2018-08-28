@@ -7,6 +7,7 @@ import { ContainerInspectModal } from 'components/admin/container';
 import { Aux } from 'components/hoc';
 import { SectionHeader } from 'components/base/ui/header';
 import { LinkTitle } from 'components/base/ui';
+import { toast } from 'react-toastify';
 import DataTable from 'containers/ui/DataTable';
 import * as container from 'store/modules/container';
 
@@ -22,9 +23,20 @@ class ContainerPage extends Component {
         }
     }
 
+    handlePrune = async _ => {
+        const { ContainerAction } = this.props;
+
+        try {
+            await ContainerAction.pruneContainer();
+            await ContainerAction.getContainerList();
+            toast.success('Garbege Collection Success!');
+        } catch(e) {
+
+        }
+    }
+
     onInspect = async (id,name) => {
         const { ContainerAction } = this.props;
-        debugger;
         
         try {
             await ContainerAction.getContainerInspectRaw(id);
@@ -69,9 +81,10 @@ class ContainerPage extends Component {
                         color='red'
                         size='tiny'                     
                         type='button'
+                        onClick={this.handlePrune}
                     >
                         <Icon name='trash' />
-                        Remove Unused Container
+                        Garbege Collection
                     </Button>
                 </div>
                 <DataTable 

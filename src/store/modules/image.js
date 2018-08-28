@@ -9,6 +9,7 @@ const DELETE = 'image/DELETE';
 const SEARCH = 'image/SEARCH';
 const SET_MODAL_STATE = 'image/SET_MODAL_STATE';
 const SET_SEARCH_RESULT = 'image/SET_SEARCH_RESULT';
+const PRUNE = 'image/PRUNE';
 
 export const setModalState = createAction(SET_MODAL_STATE); 
 export const setSearchResult = createAction(SET_SEARCH_RESULT);
@@ -16,6 +17,7 @@ export const getImageList = createAction(LIST, ImageApi.getImageList);
 export const getImageInfo = createAction(INSPECT, ImageApi.getImageInfo);
 export const searchImage = createAction(SEARCH, ImageApi.searchImage);
 export const deleteImage = createAction(DELETE, ImageApi.deleteImage);
+export const pruneImage = createAction(PRUNE, ImageApi.pruneImage);
 
 const initialState = Map({
     list: List([]),

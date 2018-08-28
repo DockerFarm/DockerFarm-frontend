@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
 import { ImageSearchForm } from 'components/admin/image';
+import { toast } from 'react-toastify';
 import DataTable from 'containers/ui/DataTable';
 import * as image from 'store/modules/image';
 
@@ -30,6 +31,18 @@ class ImageListPage extends Component {
         const { query } = form.toJS();
         try { 
             await ImageAction.searchImage(query);
+        } catch(e) {
+
+        }
+    }
+
+    handlePrune = async _ => {
+        const { ImageAction } = this.props;
+        
+        try {
+            await ImageAction.pruneImage();
+            await ImageAction.getImageList();
+            toast.success('Garbege Collection Success!');
         } catch(e) {
 
         }
@@ -125,6 +138,15 @@ class ImageListPage extends Component {
                     >
                         <Icon name='plus'/>
                         Build a New Image
+                    </Button>
+                    <Button
+                        color='red'
+                        size='tiny'
+                        type='button'
+                        onClick={this.handlePrune}
+                    >
+                        <Icon name='trash' />
+                        Garbege Collection
                     </Button>
                 </div>
                 <DataTable 
