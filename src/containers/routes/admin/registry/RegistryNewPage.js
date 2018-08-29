@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { injectIntl } from 'react-intl';
 import { Segment, Button, Icon } from 'semantic-ui-react';
 import { SectionHeader } from 'components/base/ui/header';
 import { submit, reset } from 'redux-form/immutable';
@@ -45,10 +46,11 @@ class RegistryFormPage extends Component {
     }
 
     render() {
+        const { intl } = this.props;
         return (
             <Aux>
                 <SectionHeader 
-                    title='Create Registry'
+                    title={intl.formatMessage({id: 'REG_CREATE_HEADER'})}
                     icon='database'
                 />
                 <Segment>
@@ -63,7 +65,7 @@ class RegistryFormPage extends Component {
                                 to='/admin/registries'
                             >
                                 <Icon name='list' />
-                                List
+                                {intl.formatMessage({id: 'BTN_LIST'})}
                             </Button>
                             <Button
                                 size='tiny'
@@ -71,7 +73,7 @@ class RegistryFormPage extends Component {
                                 onClick={this.clearForm}
                             >
                                 <Icon name='sync' />
-                                Reset
+                                {intl.formatMessage({id: 'BTN_RESET'})}
                             </Button>
                             <Button
                                 size='tiny'
@@ -80,7 +82,7 @@ class RegistryFormPage extends Component {
                                 onClick={this.triggerSubmit}
                             >
                                 <Icon name='checkmark' />
-                                Save
+                                {intl.formatMessage({id: 'BTN_SAVE'})}
                             </Button>
                         </Button.Group>
                     </ButtonWrapper>
@@ -92,6 +94,7 @@ class RegistryFormPage extends Component {
 
 export default compose(
     withRouter,
+    injectIntl,
     connect(
         state => ({
 

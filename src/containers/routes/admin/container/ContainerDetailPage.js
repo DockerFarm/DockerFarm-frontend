@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { injectIntl } from 'react-intl';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
@@ -47,13 +48,13 @@ class ContainerDetailPage extends Component {
     }
 
     render() {
-        const { inspectData, CommonAction } = this.props;
+        const { inspectData, CommonAction, intl } = this.props;
 
 
         return (
             <Aux>
                 <SectionHeader
-                    title='Container Information'
+                    title={intl.formatMessage({id: 'CON_INFO_HEADER'})}
                     icon='list'
                 />
                 <ContainerInfo 
@@ -61,14 +62,14 @@ class ContainerDetailPage extends Component {
                     onCommand={this.handleCommand}
                 />
                 <SectionHeader
-                    title='Container Details'
+                    title={intl.formatMessage({id: 'CON_DETAIL_HEADER'})}
                     icon='list'
                 />
                 <ContainerDetail 
                     {...inspectData.get('detail').toJS()}
                 />
                 <SectionHeader
-                    title='Container Volume'
+                    title={intl.formatMessage({id: 'CON_VOLUME_HEADER'})}
                     icon='hdd'
                 />
                 <ContainerVolume 
@@ -82,6 +83,7 @@ class ContainerDetailPage extends Component {
 
 export default compose(
     withRouter,
+    injectIntl,
     connect(
         state => ({
             inspectData: state.container.get('inspectData')

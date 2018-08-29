@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { injectIntl } from 'react-intl';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
@@ -11,10 +12,10 @@ import * as common from 'store/modules/common';
 class RegistryPage extends Component {
 
     componentDidMount() {
-        const { CommonAction, match } = this.props; 
+        const { CommonAction, intl, match } = this.props; 
         CommonAction.setMenuTitle([
             {
-                title: 'Registries',
+                title: intl.formatMessage({ id: 'MENU_REGISTRY'}),
                 url: match.path 
             }
         ]);
@@ -36,6 +37,7 @@ class RegistryPage extends Component {
 
 export default compose(
     withRouter,
+    injectIntl,
     connect(
         state => ({
 

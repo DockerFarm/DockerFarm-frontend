@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { injectIntl } from 'react-intl';
 import { Button, Card, Image, Header, List, Icon } from 'semantic-ui-react';
 import { Aux } from 'components/hoc';
 import { withRouter } from 'react-router-dom';
@@ -63,11 +64,12 @@ class LibraryListPage extends Component {
         });
     }
     render() {
-        const { list, modalState } = this.props;
+        const { list, modalState, intl } = this.props;
         return (
             <Aux>
                 <SectionHeader
-                    title='You can look around the Offial Image and get a Pull'
+                    // title='You can look around the Offial Image and get a Pull'
+                    title={intl.formatMessage({id: 'LIB_DESCRIPTION_HEADER'})}
                 />
                 <Masonry
                     options={masonryOptions}
@@ -126,6 +128,7 @@ class LibraryListPage extends Component {
 
 export default compose(
     withRouter,
+    injectIntl,
     connect(
         state => ({
             modalState: state.image.get('modalState'),

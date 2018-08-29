@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { injectIntl } from 'react-intl';
 import { Table, Pagination, Select, Checkbox } from 'semantic-ui-react';
 import styled from 'styled-components';
 import { Aux, If } from 'components/hoc';
@@ -101,7 +102,8 @@ class DataTable extends Component {
             data, 
             columns, 
             checkable, 
-            paging
+            paging,
+            intl
         } = this.props;
 
         const {
@@ -209,7 +211,7 @@ class DataTable extends Component {
 
                             <Table.Row>
                                 <Table.Cell colSpan={columns.length + (checkable ? 1 : 0)}>
-                                    No Data Found
+                                    {intl.formatMessage({id: 'TABLE_NO_DATA'})}
                                 </Table.Cell>
                             </Table.Row>
                         }
@@ -226,7 +228,7 @@ class DataTable extends Component {
                                     <PagingWrapper>
                                             <div>
                                                 <label style={{marginRight: '6px'}}>
-                                                    Number Of Pages
+                                                {intl.formatMessage({id: 'TABLE_NUMBER_OF_PAGES'})}
                                                 </label>
                                                 <Select 
                                                     value={pageSize}
@@ -254,4 +256,4 @@ class DataTable extends Component {
 
 }
 
-export default DataTable;
+export default injectIntl(DataTable);

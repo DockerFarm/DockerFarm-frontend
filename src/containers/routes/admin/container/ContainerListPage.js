@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { injectIntl } from 'react-intl';
 import { Button, Header, Icon, Label } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
@@ -60,12 +61,13 @@ class ContainerPage extends Component {
         const { 
             list,
             rawData,
-            state
+            state,
+            intl
         } = this.props;
         return (
             <Aux>
                 <SectionHeader 
-                    title='Container List'
+                    title={intl.formatMessage({id: 'CON_LIST_HEADER'})}
                     icon='list'
                 />
                 <div>
@@ -75,7 +77,7 @@ class ContainerPage extends Component {
                         type='button'
                     >
                         <Icon name='trash' />
-                        Remove
+                        {intl.formatMessage({id: 'BTN_REMOVE'})}
                     </Button>
                     <Button
                         color='red'
@@ -84,7 +86,7 @@ class ContainerPage extends Component {
                         onClick={this.handlePrune}
                     >
                         <Icon name='trash' />
-                        Garbege Collection
+                        {intl.formatMessage({id: 'BTN_GARBEGE_COLLECTION'})}
                     </Button>
                 </div>
                 <DataTable 
@@ -183,6 +185,7 @@ class ContainerPage extends Component {
 }
 
 export default compose(
+    injectIntl,
     connect(
         state => ({
             list: state.container.get('list'),

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { injectIntl } from 'react-intl';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
@@ -12,10 +13,10 @@ import ImageBuildPage from './ImageBuildPage';
 class ImagePage extends Component {
 
     componentDidMount() {
-        const { CommonAction } = this.props; 
+        const { CommonAction, intl } = this.props; 
         CommonAction.setMenuTitle([
             {
-                title: 'Images',
+                title: intl.formatMessage({id: 'MENU_IMAGE'}),
                 url: '/admin/images'
             }
         ]);
@@ -36,6 +37,7 @@ class ImagePage extends Component {
 
 export default compose(
     withRouter,
+    injectIntl,
     connect(
         state => ({
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { injectIntl } from 'react-intl';
 import { SectionHeader } from 'components/base/ui/header';
 import { LinkTitle } from 'components/base/ui';
 import { Table, Button, Icon, Segment, Form } from 'semantic-ui-react';
@@ -25,7 +26,7 @@ class RegistryListPage extends Component {
     }
 
     render() {
-        const { list, isAuth, match } = this.props;
+        const { list, isAuth, match, intl } = this.props;
         return (
             <Aux>
                 <SectionHeader 
@@ -84,7 +85,7 @@ class RegistryListPage extends Component {
                     </Form>
                 </Segment>
                 <SectionHeader 
-                    title='Registry List'
+                    title={intl.formatMessage({id: 'REG_LIST_HEADER'})}
                     icon='database'
                 />
                 <div>
@@ -95,7 +96,7 @@ class RegistryListPage extends Component {
                         size='tiny'
                     >
                         <Icon name='plus' />
-                        Add Registry
+                        {intl.formatMessage({id: 'REG_BTN_ADD'})}
                     </Button>
                 </div>
                 <Table>
@@ -134,6 +135,7 @@ const selector = formValueSelector('dockerhub');
 
 export default compose(
     withRouter,
+    injectIntl,
     reduxForm({
         form: 'dockerhub'
     }),
