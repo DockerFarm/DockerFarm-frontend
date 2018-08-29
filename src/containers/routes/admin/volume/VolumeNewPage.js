@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { injectIntl } from 'react-intl';
 import { Aux } from 'components/hoc';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
@@ -12,90 +13,6 @@ import * as volume from 'store/modules/volume';
 import { bindActionCreators } from 'redux';
 import { toast } from 'react-toastify';
 
-
-let VolumeForm = ({
-   reset,
-   back,
-   handleSubmit,
-   drivers
-}) => (
-
-    <Form as='form' onSubmit={handleSubmit}>
-        <Form.Group>
-            <Form.Field width={16}>
-                <Field
-                    name='name' 
-                    type='text'
-                    label='Name'
-                    placeholder='ex) docker-volume'
-                    component={ControlInput} 
-                />
-            </Form.Field> 
-        </Form.Group>
-        <Form.Group>
-            <Form.Field width={16}>
-                <FormHeader 
-                    icon='setting' 
-                    title='Driver Configuration' 
-                    textAlign='center'
-                />
-            </Form.Field>
-        </Form.Group>
-        <Form.Group>
-            <Form.Field width={16}>
-                <Field
-                    name='driver'
-                    label='Driver'
-                    placeholder='volume driver ex) local, local-persist' 
-                    component={ControlSelectbox}
-                    options={
-                        drivers.map((v,i) => ({
-                            key: i,
-                            text: v,
-                            value: v 
-                        }))
-                    }
-                />
-            </Form.Field>
-        </Form.Group>
-        <FieldArray
-            name='options'
-            buttonLabel='add driver options'
-            component={ControlOptions}  
-        />
-        <Form.Group>
-            <Form.Field width={16}>
-                <Button.Group floated='right'>
-                    <Button 
-                        type='button'
-                        onClick={back}
-                    >
-                        <Icon name='bars'/>
-                        List
-                    </Button>
-                    <Button 
-                        type='button'
-                        onClick={reset}
-                    >
-                        <Icon name='sync'/>
-                        Reset
-                    </Button>
-                    <Button 
-                        color='teal'
-                        type='submit'
-                    >
-                        <Icon name='checkmark'/>
-                        Create
-                    </Button>
-                </Button.Group>
-            </Form.Field>
-        </Form.Group>
-    </Form>
-)
-
-VolumeForm = reduxForm({
-    form: 'volume'
-})(VolumeForm);
 class VolumeNewPage extends Component {
 
     async componentDidMount() {
@@ -121,17 +38,84 @@ class VolumeNewPage extends Component {
     }
 
     render() {
-        const { driverList } = this.props;
+        const { driverList, handleSubmit, reset, intl } = this.props;
         return (
             <Aux>
                 <SectionHeader 
-                    title='Create Volume'
+                    title={intl.formatMessage({ id: 'VOL_CREATE_HEADER'})}
                 />
                 <Segment>
-                    <VolumeForm 
-                        drivers={driverList.toJS()}
-                        onSubmit={this.submit}
+                <Form as='form' onSubmit={handleSubmit(data => this.submit(data))}>
+                    <Form.Group>
+                        <Form.Field width={16}>
+                            <Field
+                                name='name' 
+                                type='text'
+                                label='Name'
+                                placeholder='ex) docker-volume'
+                                component={ControlInput} 
+                            />
+                        </Form.Field> 
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Field width={16}>
+                            <FormHeader 
+                                icon='setting' 
+                                title='Driver Configuration' 
+                                textAlign='center'
+                            />
+                        </Form.Field>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Field width={16}>
+                            <Field
+                                name='driver'
+                                label='Driver'
+                                placeholder='volume driver ex) local, local-persist' 
+                                component={ControlSelectbox}
+                                options={
+                                    driverList.toJS().map((v,i) => ({
+                                        key: i,
+                                        text: v,
+                                        value: v 
+                                    }))
+                                }
+                            />
+                        </Form.Field>
+                    </Form.Group>
+                    <FieldArray
+                        name='options'
+                        buttonLabel='add driver options'
+                        component={ControlOptions}  
                     />
+                    <Form.Group>
+                        <Form.Field width={16}>
+                            <Button.Group floated='right'>
+                                <Button 
+                                    type='button'
+                                    onClick={this.back}
+                                >
+                                    <Icon name='bars'/>
+                                    {intl.formatMessage({id: 'BTN_LIST'})}
+                                </Button>
+                                <Button 
+                                    type='button'
+                                    onClick={reset}
+                                >
+                                    <Icon name='sync'/>
+                                    {intl.formatMessage({id: 'BTN_RESET'})}
+                                </Button>
+                                <Button 
+                                    color='teal'
+                                    type='submit'
+                                >
+                                    <Icon name='checkmark'/>
+                                    {intl.formatMessage({id: 'BTN_SAVE'})}
+                                </Button>
+                            </Button.Group>
+                        </Form.Field>
+                    </Form.Group>
+                </Form>
                 </Segment>
             </Aux>
         )
@@ -140,6 +124,10 @@ class VolumeNewPage extends Component {
 
 export default compose(
    withRouter,
+   injectIntl,
+   reduxForm({
+       form: 'volume'
+   }),
    connect(
         state => ({
             driverList: state.volume.get('driverList')

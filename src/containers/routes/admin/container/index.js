@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { injectIntl } from 'react-intl';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
@@ -11,10 +12,10 @@ import { bindActionCreators } from 'redux';
 class ContainerPage extends Component {
     
     componentDidMount() {
-        const { CommonAction } = this.props; 
+        const { CommonAction, intl } = this.props; 
         CommonAction.setMenuTitle([
             {
-                title: 'Containers',
+                title: intl.formatMessage({id: 'MENU_CONTAINER'}),
                 url: '/admin/containers'
             }
         ]);
@@ -33,6 +34,7 @@ class ContainerPage extends Component {
 
 export default compose(
     withRouter,
+    injectIntl,
     connect(
         state => ({
             

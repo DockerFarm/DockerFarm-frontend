@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { injectIntl } from 'react-intl';
 import { LinkTitle } from 'components/base/ui';
 import { withRouter, Link } from 'react-router-dom';
 import { SectionHeader } from 'components/base/ui/header';
@@ -24,11 +25,11 @@ class NetworkListPage extends Component {
     }
 
     render() {
-        const { list } = this.props;
+        const { list, intl } = this.props;
         return (
             <Aux>
                 <SectionHeader 
-                    title='Network List'
+                    title={intl.formatMessage({id: 'NET_LIST_HEADER'})}
                     icon='sitemap'
                 />
                 <div>
@@ -39,7 +40,7 @@ class NetworkListPage extends Component {
                         size='tiny'
                     >
                         <Icon name='plus' />
-                        Add Network
+                        {intl.formatMessage({id: 'NET_BTN_ADD'})}
                     </Button>
                 </div>
                 <DataTable 
@@ -100,6 +101,7 @@ class NetworkListPage extends Component {
 
 export default compose(
     withRouter,
+    injectIntl,
     connect(
         state => ({
             list: state.network.get('list')

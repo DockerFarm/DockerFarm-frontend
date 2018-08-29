@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { updateIntl } from 'react-intl-redux';
 import { withRouter } from 'react-router-dom';
-import { Sidebar, Menu, Segment, Icon, Header, Image } from 'semantic-ui-react';
+import { injectIntl } from 'react-intl';
+import { Sidebar, Menu, List, Select, Icon, Header, Image } from 'semantic-ui-react';
 import { Route, Redirect, Switch, NavLink, Link} from 'react-router-dom';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
@@ -14,6 +16,7 @@ import {
     DashBoardPage,
     RegistryPage
 } from './admin';
+import locale from 'locale';
 import { Logo } from 'components/base/ui';
 import { GlobalNavigationBar } from 'containers/routes/admin/header';
 import styled from 'styled-components';
@@ -33,6 +36,12 @@ const SideDrawer = styled(Sidebar)`
     }
 `
 
+const SideFooter = styled.div`
+    position: absolute;
+    width:100%;
+    bottom:0;
+    padding: 15px 12px;
+`
 const Pusher = styled(Sidebar.Pusher)`
     margin-left:250px !important;
     height:100% !important;
@@ -52,7 +61,7 @@ const EndpointHeader = styled(Header)`
 class MainPage extends Component {
 
     render() {
-        const { user } = this.props;
+        const { user, intl, lang, changeLocale} = this.props;
         return (
             <Wrapper>
                 <Sidebar.Pushable as='div'>
@@ -82,36 +91,65 @@ class MainPage extends Component {
                     </MenuItem>
                     <MenuItem as={NavLink} to='/admin/dashboard' >
                         <Icon name='dashboard' />
-                        Dashboard
+                        {intl.formatMessage({ id : 'MENU_DASHBOARD'})}
                     </MenuItem>
                     <MenuItem as={NavLink} to='/admin/containers' >
                         <Icon name='th list' />
-                        Containers
+                        {intl.formatMessage({ id : 'MENU_CONTAINER'})}
                     </MenuItem>
                     <MenuItem as={NavLink} to='/admin/images'>
                         <Icon name='clone'/>
-                        Images
+                        {intl.formatMessage({ id : 'MENU_IMAGE'})}
                     </MenuItem>
                     <MenuItem as={NavLink} to='/admin/networks'>
                         <Icon name='sitemap'/>
-                        Networks
+                        {intl.formatMessage({ id : 'MENU_NETWORK'})}
                     </MenuItem>
                     <MenuItem as={NavLink} to='/admin/volumes'>
                         <Icon name='hdd'/>
-                        Volumes
+                        {intl.formatMessage({ id : 'MENU_VOLUME'})}
                     </MenuItem>
                     <MenuItem as={NavLink} to='/admin/library'>
                         <Icon name='chart area'/>
-                        Library
+                        {intl.formatMessage({ id : 'MENU_LIBRARY'})}
                     </MenuItem>
                     <MenuItem as={NavLink} to='/admin/settings'>
                         <Icon name='settings'/>
-                        Setting
+                        {intl.formatMessage({ id : 'MENU_SETTING'})}
                     </MenuItem>
                     <MenuItem as={NavLink} to='/admin/registries'>
                         <Icon name='database'/>
-                        Registries
+                        {intl.formatMessage({ id : 'MENU_REGISTRY'})}
                     </MenuItem>
+                    <SideFooter>
+                        <List>
+                            <List.Item>
+                                <Select
+                                    value={lang}
+                                    options={[
+                                        { key: 'en', value: 'en', text: 'English'},
+                                        { key: 'ko', value: 'ko', text: '한국어' }
+                                    ]} 
+                                    onChange={(e,props) => changeLocale(props.value)}
+                                />
+                            </List.Item>
+                            <List.Item>
+                                <div>
+                                    <a 
+                                        href='https://github.com/DockerFarm'
+                                        target='_blank' 
+                                        style={{ color: 'white', textDecoration:'none'}
+                                     }>
+                                        <Icon 
+                                            name='github' 
+                                            color='white' 
+                                            size='big'
+                                        />
+                                    </a>
+                                </div>
+                            </List.Item>
+                        </List>
+                    </SideFooter>
                 </SideDrawer>
 
                 <Pusher>
@@ -137,12 +175,19 @@ class MainPage extends Component {
 
 export default compose(
     withRouter,
+    injectIntl,
     connect(
         state => ({
+            lang: state.intl.locale,
             user: state.user.get('user')
         }),
         dispatch => ({
-
+            changeLocale: lang => {
+                dispatch(updateIntl({
+                    locale: lang,
+                    messages: locale(lang) 
+                }))
+            }
         })
     )
 )(MainPage);

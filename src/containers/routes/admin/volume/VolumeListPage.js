@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { Link, withRouter } from 'react-router-dom';
@@ -21,12 +22,12 @@ class VolumeListPage extends Component {
     }
 
     render() {
-        const { list } = this.props;
+        const { list, intl} = this.props;
         return (
             <Aux>
                 <SectionHeader 
                     icon='hdd'
-                    title='Volume List'
+                    title={intl.formatMessage({id: 'VOL_LIST_HEADER'})}
                 />
                 <div>
                     <Button 
@@ -36,7 +37,7 @@ class VolumeListPage extends Component {
                         to='/admin/volumes/new'
                     >
                         <Icon name='plus' />
-                        add volume
+                        {intl.formatMessage({id: 'VOL_BTN_ADD'})}
                     </Button>
                 </div>
                 <DataTable
@@ -77,6 +78,7 @@ class VolumeListPage extends Component {
 
 export default compose(
     withRouter,
+    injectIntl,
     connect(
         state => ({
             list: state.volume.get('list')

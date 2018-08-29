@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
@@ -33,11 +34,11 @@ class VolumeDetailPage extends Component {
     }
 
     render() {
-        const { inspectData } = this.props;
+        const { inspectData, intl } = this.props;
         return (
             <Aux>
                 <SectionHeader 
-                        title='Volume Infomation'
+                        title={intl.formatMessage({id: 'VOL_INFO_HEADER'})}
                         icon='hdd'
                 /> 
                 <VolumeInfo 
@@ -45,7 +46,7 @@ class VolumeDetailPage extends Component {
                     onDelete={this.handleDelete}
                 />
                 <SectionHeader 
-                        title='Containers Using Volume'
+                        title={intl.formatMessage({id: 'VOL_CONTAINER_HEADER'})}
                         icon='list'
                 /> 
                 <VolumeContainers 
@@ -58,6 +59,7 @@ class VolumeDetailPage extends Component {
 
 export default compose(
    withRouter,
+   injectIntl,
    connect(
        state => ({
             inspectData: state.volume.get('inspectData')

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { injectIntl } from 'react-intl';
 import RegistryForm from './RegistryForm';
 import { Segment, Button, Icon } from 'semantic-ui-react';
 import { Aux } from 'components/hoc';
@@ -65,10 +66,11 @@ class RegistryEditPage extends Component {
     
 
     render() {
+        const { intl } = this.props;
         return (
             <Aux>
                 <SectionHeader 
-                    title='Edit Registry info'
+                    title={intl.formatMessage({id: 'REG_INFO_HEADER'})}
                     icon='database'
                 />
                 <Segment>
@@ -84,7 +86,7 @@ class RegistryEditPage extends Component {
                                 to='/admin/registries'
                             >
                                 <Icon name='list' />
-                                List
+                                {intl.formatMessage({id: 'BTN_LIST'})}
                             </Button>
                             <Button
                                 size='tiny'
@@ -92,7 +94,7 @@ class RegistryEditPage extends Component {
                                 onClick={this.clearForm}
                             >
                                 <Icon name='sync' />
-                                Reset
+                                {intl.formatMessage({id: 'BTN_RESET'})}
                             </Button>
                             <Button
                                 size='tiny'
@@ -101,7 +103,7 @@ class RegistryEditPage extends Component {
                                 onClick={this.delete}
                             >
                                 <Icon name='trash'/>
-                                Delete
+                                {intl.formatMessage({id: 'BTN_DELETE'})}
                             </Button>
                             <Button
                                 size='tiny'
@@ -110,7 +112,7 @@ class RegistryEditPage extends Component {
                                 onClick={this.triggerSubmit}
                             >
                                 <Icon name='checkmark' />
-                                Save
+                                {intl.formatMessage({id: 'BTN_SAVE'})}
                             </Button>
                         </Button.Group>
                     </ButtonWrapper>
@@ -123,6 +125,7 @@ class RegistryEditPage extends Component {
 
 export default compose(
     withRouter,
+    injectIntl,
     connect(
         state => ({
             inspectData: state.registry.get('inspectData')

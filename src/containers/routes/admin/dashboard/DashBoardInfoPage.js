@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { injectIntl } from 'react-intl';
 import { compose } from 'recompose';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -57,7 +58,7 @@ class DashBoardInfoPage extends Component {
     }
 
     render() {
-        const { data, user } = this.props;
+        const { data, user, intl } = this.props;
         
         const { 
             name,
@@ -91,7 +92,7 @@ class DashBoardInfoPage extends Component {
                                                 {container.total}                                        
                                             </BoxTitle>
                                             <BoxTitle size='30px'>
-                                                Containers
+                                                {intl.formatMessage({id: 'DB_CONTAINER_TITLE'})}
                                             </BoxTitle>
                                         </Link>
                                     </div>
@@ -100,11 +101,11 @@ class DashBoardInfoPage extends Component {
                                 <DescriptionList>
                                     <List.Item>
                                         <Icon name='heart'/>
-                                        {container.running} running
+                                        {container.running} {intl.formatMessage({id: 'DB_CONTAINER_RUNNING'})}
                                     </List.Item>
                                     <List.Item>
                                         <Icon name='heartbeat'/>
-                                        {container.stop} stopped
+                                        {container.stop} {intl.formatMessage({id: 'DB_CONTAINER_STOPPED'})}
                                     </List.Item>
                                 </DescriptionList>
                             </Box>
@@ -118,7 +119,7 @@ class DashBoardInfoPage extends Component {
                                                 {image.count}                                        
                                             </BoxTitle>
                                             <BoxTitle size='30px'>
-                                                Images
+                                                {intl.formatMessage({id: 'DB_IMAGE_TITLE'})}
                                             </BoxTitle>
                                         </Link>
                                     </div>
@@ -126,7 +127,7 @@ class DashBoardInfoPage extends Component {
                                 </BoxHeader>
                                 <DescriptionList>
                                     <List.Item>
-                                        Total : {image.totalsize} 
+                                        {intl.formatMessage({id: 'DB_IMAGE_TOTAL'})} : {image.totalsize} 
                                     </List.Item>
                                 </DescriptionList>
                             </Box>
@@ -140,7 +141,7 @@ class DashBoardInfoPage extends Component {
                                                 {network.count}                                        
                                             </BoxTitle>
                                             <BoxTitle size='30px'>
-                                                Networks
+                                                {intl.formatMessage({id: 'DB_NETWORK_TITLE'})}
                                             </BoxTitle>
                                         </Link>
                                     </div>
@@ -157,7 +158,7 @@ class DashBoardInfoPage extends Component {
                                                 {volume.count}                                        
                                             </BoxTitle>
                                             <BoxTitle size='30px'>
-                                                Volumes
+                                                {intl.formatMessage({id: 'DB_VOLUME_TITLE'})}
                                             </BoxTitle>
                                         </Link>
                                     </div>
@@ -168,25 +169,25 @@ class DashBoardInfoPage extends Component {
                     </Grid.Row>
                 </Grid>
                 <SectionHeader 
-                    title='Node Info' 
+                    title={intl.formatMessage({id: 'DB_NODE_HEADER'})} 
                     icon='dashboard'
                 />
                 <Table>
                     <Table.Body>
                         <Table.Row>
-                            <Table.Cell>Name</Table.Cell>
+                            <Table.Cell>{intl.formatMessage({id: 'DB_NODE_NAME'})}</Table.Cell>
                             <Table.Cell>{name}</Table.Cell>
                         </Table.Row>
                         <Table.Row>
-                            <Table.Cell>Docker Version</Table.Cell>
+                            <Table.Cell>{intl.formatMessage({id: 'DB_NODE_VERSION'})}</Table.Cell>
                             <Table.Cell>{dockerversion}</Table.Cell>
                         </Table.Row>
                         <Table.Row>
-                            <Table.Cell>Node CPU</Table.Cell>
+                            <Table.Cell>{intl.formatMessage({id: 'DB_NODE_CPU'})}</Table.Cell>
                             <Table.Cell>{cpu}</Table.Cell>
                         </Table.Row>
                         <Table.Row>
-                            <Table.Cell>Node Memory</Table.Cell>
+                            <Table.Cell>{intl.formatMessage({id: 'DB_NODE_MEMORY'})}</Table.Cell>
                             <Table.Cell>{memory}</Table.Cell>
                         </Table.Row>
                     </Table.Body>
@@ -198,6 +199,7 @@ class DashBoardInfoPage extends Component {
 
 export default compose(
     withRouter,
+    injectIntl,
     connect(
         state => ({
             data: state.dashboard.get('data'),

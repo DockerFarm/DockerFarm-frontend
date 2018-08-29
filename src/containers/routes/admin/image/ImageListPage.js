@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { injectIntl } from 'react-intl';
 import { Button, Label, Segment, Icon, List } from 'semantic-ui-react';
 import ImagePullModal from 'containers/common/ImagePullModal';
 import { LinkTitle } from 'components/base/ui';
@@ -76,11 +77,11 @@ class ImageListPage extends Component {
     }
 
     render() {
-        const { list, searchResult, modalState, match } = this.props;
+        const { list, searchResult, modalState, match, intl } = this.props;
         return (
             <Aux>
                 <SectionHeader 
-                    title='Search Image'
+                    title={intl.formatMessage({id: 'IMG_SEARCH_HEADER'})}
                     icon='search'
                 />
                 <Segment>
@@ -126,7 +127,7 @@ class ImageListPage extends Component {
                     }
                 </Segment>
                 <SectionHeader 
-                    title='Image Management'
+                    title={intl.formatMessage({id: 'IMG_LIST_HEADER'})}
                     icon='list'
                 />
                 <div>
@@ -137,7 +138,7 @@ class ImageListPage extends Component {
                         to={`${match.path}/build`}
                     >
                         <Icon name='plus'/>
-                        Build a New Image
+                        {intl.formatMessage({id: 'IMG_BTN_BUILD'})}
                     </Button>
                     <Button
                         color='red'
@@ -146,7 +147,7 @@ class ImageListPage extends Component {
                         onClick={this.handlePrune}
                     >
                         <Icon name='trash' />
-                        Garbege Collection
+                        {intl.formatMessage({id: 'BTN_GARBEGE_COLLECTION'})}
                     </Button>
                 </div>
                 <DataTable 
@@ -201,6 +202,7 @@ class ImageListPage extends Component {
 
 export default compose(
     withRouter, 
+    injectIntl,
     connect(
         state => ({
             list: state.image.get('list'),

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { injectIntl } from 'react-intl';
 import styled from 'styled-components';
 import { Icon, Header, Breadcrumb, Button } from 'semantic-ui-react';
 import { center } from 'styles/style-utils';
@@ -48,7 +49,8 @@ class GlobalNavigationBar extends Component {
     render() {
         const { 
             menus,
-            user
+            user,
+            intl
         } = this.props;
 
         const { 
@@ -105,7 +107,7 @@ class GlobalNavigationBar extends Component {
                                 type='button'
                             >
                                 <Icon name='sign out alternate' />
-                                Logout
+                                {intl.formatMessage({id: 'GNB_LOGOUT'})}
                             </Button>
                         </Link>
                     </MenuItem>
@@ -117,6 +119,7 @@ class GlobalNavigationBar extends Component {
 
 export default compose(
     withRouter,
+    injectIntl,
     connect(
         state => ({
             user: state.user.get('user'),

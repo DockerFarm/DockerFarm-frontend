@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { injectIntl } from 'react-intl';
 import { Aux } from 'components/hoc';
 import { SectionHeader } from 'components/base/ui/header';
 import { NetworkInfo, NetworkOptions, NetworkContainers } from 'components/admin/network';
@@ -50,13 +51,13 @@ class NetworkDetailPage extends Component {
     }
     
     render() {
-        const { inspectData, CommonAction } = this.props;
+        const { inspectData, CommonAction, intl } = this.props;
 
 
         return (
             <Aux>
                 <SectionHeader 
-                    title='Network Information'
+                    title={intl.formatMessage({id: 'NET_INFO_HEADER'})}
                     icon='sitemap'
                 />
                 <NetworkInfo 
@@ -64,14 +65,14 @@ class NetworkDetailPage extends Component {
                     {...inspectData.get('network').toJS()}
                 />
                 <SectionHeader
-                    title='Network Options'
+                    title={intl.formatMessage({id: 'NET_OPTION_HEADER'})}
                     icon='settings'
                 />
                 <NetworkOptions
                     options={inspectData.get('options').toJS()}
                 />
                 <SectionHeader
-                    title='Containers in Network'
+                    title={intl.formatMessage({id: 'NET_CONTAINER_HEADER'})}
                     icon='list'
                 /> 
                 <NetworkContainers 
@@ -84,6 +85,7 @@ class NetworkDetailPage extends Component {
 }
 
 export default compose(
+    injectIntl,
     connect(
         state => ({
             inspectData: state.network.get('inspectData')

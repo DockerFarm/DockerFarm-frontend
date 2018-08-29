@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { injectIntl } from 'react-intl';
 import { Aux, withSocketProgress } from 'components/hoc';
 import { LogOutput } from 'components/base/ui';
 import { SectionHeader, FormHeader } from 'components/base/ui/header';
@@ -102,11 +103,11 @@ class ImageBuildPage extends Component {
     }
 
     render() {
-        const { handleSubmit, status, loading } = this.props;
+        const { handleSubmit, status, loading, intl } = this.props;
         return (
             <Aux>
                 <SectionHeader 
-                    title='Build New Image'
+                    title={intl.formatMessage({id: 'IMG_BUILD_HEADER'})}
                     icon='wrench'
                 />
                 <Form as='form' onSubmit={handleSubmit(data => this.submit(data))}>
@@ -159,7 +160,7 @@ class ImageBuildPage extends Component {
                                     type='button'
                                 >
                                     <Icon name='sync' />
-                                    Reset
+                                    {intl.formatMessage({id: 'BTN_RESET'})}
                                 </Button>
                                 <Button
                                     type='submit'
@@ -167,7 +168,7 @@ class ImageBuildPage extends Component {
                                     loading={loading}
                                 >
                                     <Icon name='wrench' />
-                                    Build
+                                    {intl.formatMessage({id: 'IMG_BTN_BUILD_SAVE'})}
                                 </Button>
                             </Button.Group>
                         </Form.Field>
@@ -181,6 +182,7 @@ class ImageBuildPage extends Component {
 
 export default compose(
     withRouter,
+    injectIntl,
     withSocketProgress,
     reduxForm({
         form: 'image'

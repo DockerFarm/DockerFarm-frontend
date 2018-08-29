@@ -43,6 +43,8 @@
     "react": "^16.4.0",
     "react-dev-utils": "^5.0.1",
     "react-dom": "^16.4.0",
+    "react-intl": "^2.4.0",
+    "react-intl-redux": "^2.0.2",
     "react-json-view": "^1.19.1",
     "react-masonry-component": "^6.2.1",
     "react-monaco-editor": "^0.18.0",

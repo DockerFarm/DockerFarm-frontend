@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { injectIntl } from 'react-intl';
 import { SectionHeader } from 'components/base/ui/header';
 import { ImageInfo, ImageDetail, ImageHistory } from 'components/admin/image';
 import { connect } from 'react-redux';
@@ -41,13 +42,13 @@ class ImageDetailPage extends Component {
     }
 
     render() {
-        const { inspectData, CommonAction, match } = this.props;
+        const { inspectData, CommonAction, match, intl } = this.props;
 
 
         return (
             <Aux>
                 <SectionHeader 
-                    title='Image Info'
+                    title={intl.formatMessage({id: 'IMG_INFO_HEADER'})}
                 />
                 <ImageInfo 
                     {...inspectData.get('info').toJS()} 
@@ -55,14 +56,14 @@ class ImageDetailPage extends Component {
                 />
 
                 <SectionHeader 
-                    title='Image Details'
+                    title={intl.formatMessage({id: 'IMG_DETAIL_HEADER'})}
                 />
                 <ImageDetail
                     {...inspectData.get('detail').toJS()}
                 />
 
                 <SectionHeader 
-                    title='Image History'
+                    title={intl.formatMessage({id: 'IMG_HISTORY_HEADER'})}
                 />
                 <ImageHistory
                     history={inspectData.get('history').toJS()}     
@@ -73,6 +74,7 @@ class ImageDetailPage extends Component {
 }
 
 export default compose(
+    injectIntl,
     connect(
         state => ({
             inspectData: state.image.get('inspectData')

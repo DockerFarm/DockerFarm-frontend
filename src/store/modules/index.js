@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { penderReducer } from 'redux-pender';
+import { intlReducer } from 'react-intl-redux';
 import { reducer as formReducer } from 'redux-form/immutable';
 import auth from './auth';
 import user from './user';
@@ -25,6 +26,7 @@ export default combineReducers({
     library,
     dashboard,
     registry,
+    intl: intlReducer,
     form: formReducer,
     pender: penderReducer
 });
