@@ -4,7 +4,7 @@ import { Table, Pagination, Select, Checkbox } from 'semantic-ui-react';
 import styled from 'styled-components';
 import { Aux, If } from 'components/hoc';
 import { Map, List, fromJS} from 'immutable';
-import { difference, union } from 'lodash';
+import { difference, union, get } from 'lodash';
 
 
 
@@ -30,7 +30,7 @@ class DataTable extends Component {
         data: Map({
             allCheck: false,
             currentPage: 1,
-            pageSize: this.props.paging.pageSize || 10,
+            pageSize: get(this.props.paging, 'pageSize', 10),
             checkedList: List([])
         })
     }
