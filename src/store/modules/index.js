@@ -4,7 +4,7 @@ import { intlReducer } from 'react-intl-redux';
 import { reducer as formReducer } from 'redux-form/immutable';
 import auth from './auth';
 import user from './user';
-import endPoint from './endpoint';
+import endpoint from './endpoint';
 import container from './container';
 import image from './image';
 import common from './common';
@@ -17,7 +17,7 @@ import registry from './registry';
 export default combineReducers({
     auth,
     user,
-    endPoint,
+    endpoint,
     container,
     image,
     network,
