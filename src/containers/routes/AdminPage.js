@@ -6,6 +6,7 @@ import { Sidebar, Menu, List, Select, Icon, Header, Image } from 'semantic-ui-re
 import { Route, Redirect, Switch, NavLink, Link} from 'react-router-dom';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
+import { MessageContainer } from 'containers/common';
 import {
     ContainerPage,
     ImagePage,
@@ -14,6 +15,7 @@ import {
     VolumePage,
     LibraryPage,
     DashBoardPage,
+    EndpointPage,
     RegistryPage
 } from './admin';
 import locale from 'locale';
@@ -113,9 +115,13 @@ class MainPage extends Component {
                         <Icon name='chart area'/>
                         {intl.formatMessage({ id : 'MENU_LIBRARY'})}
                     </MenuItem>
-                    <MenuItem as={NavLink} to='/admin/settings'>
+                    {/* <MenuItem as={NavLink} to='/admin/settings'>
                         <Icon name='settings'/>
                         {intl.formatMessage({ id : 'MENU_SETTING'})}
+                    </MenuItem> */}
+                    <MenuItem as={NavLink} to='/admin/endpoints'>
+                        <Icon name='plug'/>
+                        {intl.formatMessage({ id : 'MENU_ENDPOINT'})}
                     </MenuItem>
                     <MenuItem as={NavLink} to='/admin/registries'>
                         <Icon name='database'/>
@@ -163,9 +169,11 @@ class MainPage extends Component {
                             <Route path='/admin/volumes' component={VolumePage}/>
                             <Route path='/admin/library' component={LibraryPage}/>
                             <Route path='/admin/settings' component={SettingPage}/>
+                            <Route path='/admin/endpoints' component={EndpointPage}/>
                             <Route path='/admin/registries' component={RegistryPage}/>
                         </Switch>
                     </ContentWrapper>
+                    <MessageContainer/>
                 </Pusher>
                 </Sidebar.Pushable>
             </Wrapper>
@@ -183,6 +191,7 @@ export default compose(
         }),
         dispatch => ({
             changeLocale: lang => {
+                localStorage.setItem('lang', lang);
                 dispatch(updateIntl({
                     locale: lang,
                     messages: locale(lang) 
