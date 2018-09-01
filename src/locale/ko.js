@@ -8,6 +8,7 @@ export default {
     'MENU_VOLUME': '볼륨관리',
     'MENU_LIBRARY': '라이브러리',
     'MENU_SETTING': '설정',
+    'MENU_ENDPOINT': '엔드포인트',
     'MENU_REGISTRY': '레지스트리',
 
     //GNB 
@@ -72,6 +73,11 @@ export default {
     'REG_INFO_HEADER': '레지스트리 정보',
     'REG_BTN_ADD': '레지스트리 생성',
 
+    //EndPoint
+    'EP_LIST_HEADER': '엔드포인트 목록',
+    'EP_BTN_ADD': '엔드포인트 생성',
+    'EP_CONFIRM_ACTIVE': '엔드포인트를 활성화 하시겠습니까?',
+
     //Common
     'BTN_REMOVE': '삭제',
     'BTN_SAVE': '저장',
@@ -79,5 +85,12 @@ export default {
     'BTN_RESET': '되돌리기',
     'BTN_GARBEGE_COLLECTION': '리소스 정리',
 
-    'TABLE_NUMBER_OF_PAGES': '페이지 당'
+    'TABLE_NUMBER_OF_PAGES': '페이지 당',
+
+    'CONFIRM_BTN_OK': '확인',
+    'CONFIRM_BTN_CANCEL': '취소',
+    'CONFIRM_DEFAULT_HEADER': '확인',
+    'CONFIRM_INFO_HEADER': '알림',
+    'CONFIRM_WARN_HEADER': '경고'
+
 }

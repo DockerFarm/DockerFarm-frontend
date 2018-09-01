@@ -8,6 +8,7 @@ export default {
     'MENU_VOLUME': 'Volumes',
     'MENU_LIBRARY': 'Library',
     'MENU_SETTING': 'Settings',
+    'MENU_ENDPOINT': 'Endpoints',
     'MENU_REGISTRY': 'Registries',
 
     //GNB 
@@ -72,6 +73,11 @@ export default {
     'REG_INFO_HEADER': 'Registry Info',
     'REG_BTN_ADD': 'Add Registry',
 
+    //EndPoint
+    'EP_LIST_HEADER': 'Endpoint List',
+    'EP_BTN_ADD': 'Add Endpoint',
+    'EP_CONFIRM_ACTIVE': '엔드포인트를 활성화 하시겠습니까?',
+
     //Common
     'BTN_REMOVE': 'Delete',
     'BTN_SAVE': 'Save',
@@ -79,5 +85,11 @@ export default {
     'BTN_RESET': 'Reset',
     'BTN_GARBEGE_COLLECTION': 'Grabege Collection',
 
-    'TABLE_NUMBER_OF_PAGES': 'Number of Pages'
+    'TABLE_NUMBER_OF_PAGES': 'Number of Pages',
+
+    'CONFIRM_BTN_OK': 'Ok',
+    'CONFIRM_BTN_CANCEL': 'Cancel',
+    'CONFIRM_DEFAULT_HEADER': 'Confirm',
+    'CONFIRM_INFO_HEADER': 'Info',
+    'CONFIRM_WARN_HEADER': 'Warning'
 }
