@@ -7,6 +7,7 @@ const LIST_ENDPOINT = 'endpoint/LIST';
 const ADD_ENDPOINT = 'endpoint/ADD';
 const REMOVE_ENDPOINT = 'endpoint/REMOVE';
 const UPDATE_ENDPOINT = 'endpoint/UPDATE';
+const ACTIVE_ENDPOINT = 'endpoint/ACTIVE';
 const SELECT_ROW = 'endpoint/SELECT_ROW';
 
 
@@ -18,6 +19,7 @@ export const selectAllEndpoint = createAction(LIST_ENDPOINT, EndpointApi.selectA
 export const addEndpoint = createAction(ADD_ENDPOINT, EndpointApi.addEndpoint);
 export const removeEndpoint = createAction(REMOVE_ENDPOINT, EndpointApi.removeEndpoint);
 export const updateEndpoint = createAction(UPDATE_ENDPOINT, EndpointApi.updateEndpoint);
+export const activeEndpoint = createAction(ACTIVE_ENDPOINT, EndpointApi.activeEndpoint);
 export const selectRow = createAction(SELECT_ROW);
 
 const initialState = Map({

@@ -75,8 +75,14 @@ export default {
 
     //EndPoint
     'EP_LIST_HEADER': '엔드포인트 목록',
+    'EP_NEW_HEADER': '엔드포인트 생성',
     'EP_BTN_ADD': '엔드포인트 생성',
     'EP_CONFIRM_ACTIVE': '엔드포인트를 활성화 하시겠습니까?',
+    'EP_MSG_ACTIVE_SUCCESS': '엔드포인트가 활성화 되었습니다.',
+    'EP_MSG_ACTIVE_CONFIRM': '엔드포인트를 활성화 하시겠습니까?',
+    'EP_MSG_REGISTER': '엔드포인트가 등록 되었습니다.',
+    'EP_MSG_UPDATE': '엔드포인트가 수정 되었습니다.',
+    'EP_MSG_DELETE': '엔드포인트가 삭제 되었습니다.',
 
     //Common
     'BTN_REMOVE': '삭제',

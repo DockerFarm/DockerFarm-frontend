@@ -4,7 +4,7 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import EndpointListPage from './EndpointListPage';
-// import EndpointNewPage from './EndpointNewPage';
+import EndpointNewPage from './EndpointNewPage';
 // import EndpointEditPage from './EndpointEditPage';
 import * as common from 'store/modules/common';
 import { bindActionCreators } from 'redux';
@@ -27,8 +27,8 @@ class EndpointPage extends Component {
         return (
             <Switch>
                 <Route exact path={`${match.path}`} component={EndpointListPage}/>
-                {/* <Route exact path={`${match.path}/new`} component={EndpointNewPage}/>
-                <Route path={`${match.path}/:id`} component={EndpointEditPage}/> */}
+                <Route exact path={`${match.path}/new`} component={EndpointNewPage}/>
+                {/* <Route path={`${match.path}/:id`} component={EndpointEditPage}/> */}
             </Switch>
         )
     }

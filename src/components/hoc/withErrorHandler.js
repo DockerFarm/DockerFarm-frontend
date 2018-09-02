@@ -23,7 +23,8 @@ const withErrorHandler = (WrappedComponent) => {
                         toast.error('UnAuthorized');
                         history.push('/login');
                     } else {
-                        toast.error(error.response.data);
+                        const message = get(error, 'response.data.message', error.response.data);
+                        toast.error(message);
                     }
                 } else {
                     toast.error('Internal Server Error');

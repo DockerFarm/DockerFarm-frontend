@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Icon, Button, Label } from 'semantic-ui-react';
+import { initialize } from 'redux-form/immutable';
 import { Aux, If} from 'components/hoc';
 import { SectionHeader } from 'components/base/ui/header';
 import { LinkTitle } from 'components/base/ui';
@@ -10,8 +11,10 @@ import { injectIntl } from 'react-intl';
 import moment from 'moment';
 import { withRouter, Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
+import { toast } from 'react-toastify';
 import * as endpoint from 'store/modules/endpoint';
 import * as common from 'store/modules/common';
+import * as user from 'store/modules/user';
 
 class EndpointListPage extends Component {
 
@@ -24,17 +27,23 @@ class EndpointListPage extends Component {
         }
     }
 
-    activeEndpoint = async () => {
-        const { CommonAction } = this.props;        
+    activeEndpoint = async (id, name) => {
+        const { 
+            EndpointAction, 
+            CommonAction, 
+            UserAction, 
+            intl 
+        } = this.props;        
         try {
-            const confirm = await CommonAction.confirm('엔드포인트를 활성화 하시겠습니까?');
+            const confirm = await CommonAction.confirm(`${name} ${intl.formatMessage({id: 'EP_MSG_ACTIVE_CONFIRM'})}`);
             if( confirm ) {
-
-            } else {
-
-            }
+                await EndpointAction.activeEndpoint(id);
+                await EndpointAction.selectAllEndpoint();
+                await UserAction.selectMyInfo();
+                toast.success(`${name} ${intl.formatMessage({id: 'EP_MSG_ACTIVE_SUCCESS'})}`);
+            }     
         } catch(e) {
-
+            alert(e.message);
         }
     }
     
@@ -152,7 +161,11 @@ export default compose(
         }),
         dispatch => ({
             EndpointAction: bindActionCreators(endpoint, dispatch),
-            CommonAction: bindActionCreators(common, dispatch) 
+            UserAction: bindActionCreators(user, dispatch),
+            CommonAction: bindActionCreators(common, dispatch) ,
+            setForm: data => {
+                dispatch(initialize('endpoint'), data);
+            },
         })
     ), 
 )(EndpointListPage);
