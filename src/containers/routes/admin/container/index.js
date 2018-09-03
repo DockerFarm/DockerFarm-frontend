@@ -5,6 +5,7 @@ import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import ContainerListPage from './ContainerListPage';
 import ContainerDetailPage from './ContainerDetailPage';
+import ContainerNewPage from 'containers/routes/admin/container/ContainerNewPage';
 import * as common from 'store/modules/common';
 import { bindActionCreators } from 'redux';
 
@@ -26,6 +27,7 @@ class ContainerPage extends Component {
         return (
             <Switch>
                 <Route exact path={`${match.path}`} component={ContainerListPage}/>
+                <Route path={`${match.path}/new`} component={ContainerNewPage}/>
                 <Route path={`${match.path}/:id`} component={ContainerDetailPage}/>
             </Switch>
         )
