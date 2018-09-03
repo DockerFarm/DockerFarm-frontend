@@ -9,7 +9,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
-import { ImageSearchForm } from 'components/admin/image';
+import { ImageSearchForm, ImageSearchResult } from 'components/admin/image';
 import { toast } from 'react-toastify';
 import DataTable from 'containers/ui/DataTable';
 import * as image from 'store/modules/image';
@@ -88,43 +88,11 @@ class ImageListPage extends Component {
                     <ImageSearchForm 
                         onSubmit={this.handleSearch}
                     />
-                    {
-                        searchResult.toJS().length > 0 ?
-                        <List divided>
-                            {
-                                searchResult.toJS().map( v => (
-                                    <List.Item key={v.name}>
-                                        <List.Icon name='clone' size='large' verticalAlign='middle'/>
-                                        <List.Content>
-                                            <List.Header as='h4'>
-                                                <LinkTitle
-                                                    onClick={ _ => this.openImageModal({
-                                                        name: v.name,
-                                                        description: v.description
-                                                    })}
-                                                    label={v.name}
-                                                />
-                                            </List.Header>
-                                            <List.Description>
-                                                {v.description}
-                                            </List.Description>
-                                        </List.Content>
-                                    </List.Item>
-                                ))
-                            }
-                            <List.Item>
-                                <Button
-                                    size='tiny'
-                                    type='button'
-                                    onClick={this.handleClear}
-                                >
-                                    <Icon name='sync'/>
-                                    Clear
-                                </Button>
-                            </List.Item>
-                        </List>
-                        : null
-                    }
+                    <ImageSearchResult 
+                        list={searchResult.toJS()}
+                        onItemClick={this.openImageModal}
+                        onClear={this.handleClear}
+                    />
                 </Segment>
                 <SectionHeader 
                     title={intl.formatMessage({id: 'IMG_LIST_HEADER'})}
