@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { injectIntl } from 'react-intl';
-import { submit, reset, initialize } from 'redux-form/immutable';
+import { submit, reset } from 'redux-form/immutable';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { Aux } from 'components/hoc';
@@ -21,16 +21,40 @@ const ButtonWrapper = styled.div`
 
 class EndpointEditPage extends Component {
 
-
     submit = async form => {
-        const { EndpointAction, UserAction, history, intl } = this.props;
+        const { 
+            EndpointAction, 
+            UserAction, 
+            history, 
+            match, 
+            intl 
+        } = this.props;
         try {
-            await EndpointAction.addEndpoint(form.toJS());
-            toast.success(intl.formatMessage({id: 'EP_MSG_REGISTER'}));
+            await EndpointAction.updateEndpoint(match.params.id, form.toJS());
+            toast.success(intl.formatMessage({id: 'EP_MSG_UPDATE'}));
             await UserAction.selectMyInfo();
             history.push('/admin/endpoints');
         } catch(e) {
         
+        }
+    }
+
+    deleteEndpoint = async id => {
+        const { 
+            EndpointAction, 
+            UserAction,
+            history,
+            match, 
+            intl 
+        } = this.props;
+
+        try {
+            await EndpointAction.deleteEndpoint(match.params.id);
+            toast.success(intl.formatMessage({id: 'EP_MSG_DELETE'}));
+            await UserAction.selectMyInfo();
+            history.push('/admin/endpoints');
+        } catch(e) {
+
         }
     }
 
@@ -81,6 +105,15 @@ class EndpointEditPage extends Component {
                             </Button>
                             <Button
                                 size='tiny'
+                                type='button'
+                                color='red'
+                                onClick={this.deleteEndpoint}
+                            >
+                                <Icon name='trash' />
+                                {intl.formatMessage({id: 'BTN_DELETE'})}
+                            </Button>
+                            <Button
+                                size='tiny'
                                 color='teal'
                                 type='button'
                                 onClick={this.triggerSubmit}
@@ -96,19 +129,17 @@ class EndpointEditPage extends Component {
     }
 }
 
+
 export default compose(
     withRouter,
     injectIntl,
     connect(
         state => ({
-
+            
         }),
         dispatch => ({
             EndpointAction: bindActionCreators(endpoint, dispatch),
             UserAction: bindActionCreators(user, dispatch),
-            setForm: data => {
-                dispatch(initialize('endpoint'), data);
-            },
             reset: _ => {
                 dispatch(reset('endpoint'))
             },

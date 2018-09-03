@@ -27,6 +27,13 @@ class EndpointListPage extends Component {
         }
     }
 
+    editEndpoint = ep => {
+        const { setForm, history } = this.props;
+
+        setForm(ep);
+        history.push(`/admin/endpoints/${ep._id}`);
+    }
+
     activeEndpoint = async (id, name) => {
         const { 
             EndpointAction, 
@@ -114,9 +121,10 @@ class EndpointListPage extends Component {
                                 id: 'name',
                                 width: '100px',
                                 cellAlign: 'center',
-                                template: ({name}) => (
+                                template: ep => (
                                     <LinkTitle 
-                                        label={name}
+                                        label={ep.name}
+                                        onClick={_ => this.editEndpoint(ep)}
                                     />
                                 )
                             },
@@ -164,7 +172,7 @@ export default compose(
             UserAction: bindActionCreators(user, dispatch),
             CommonAction: bindActionCreators(common, dispatch) ,
             setForm: data => {
-                dispatch(initialize('endpoint'), data);
+                dispatch(initialize('endpoint', data));
             },
         })
     ), 

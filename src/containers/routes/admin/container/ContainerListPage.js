@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter, Link } from 'react-router-dom';
 import { injectIntl } from 'react-intl';
 import { Button, Header, Icon, Label } from 'semantic-ui-react';
 import { connect } from 'react-redux';
@@ -62,8 +63,10 @@ class ContainerPage extends Component {
             list,
             rawData,
             state,
-            intl
+            intl,
+            match
         } = this.props;
+
         return (
             <Aux>
                 <SectionHeader 
@@ -71,6 +74,15 @@ class ContainerPage extends Component {
                     icon='list'
                 />
                 <div>
+                    <Button
+                        as={Link}
+                        to={`${match.path}/new/step1`}
+                        color='blue'
+                        size='tiny'                     
+                    >
+                        <Icon name='plus' />
+                        {intl.formatMessage({id: 'CON_BTN_ADD'})}
+                    </Button>
                     <Button
                         color='red'
                         size='tiny'                     
@@ -185,6 +197,7 @@ class ContainerPage extends Component {
 }
 
 export default compose(
+    withRouter,
     injectIntl,
     connect(
         state => ({

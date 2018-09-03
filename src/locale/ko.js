@@ -33,7 +33,16 @@ export default {
     'CON_INFO_HEADER': '컨테이너 기본 정보',
     'CON_DETAIL_HEADER': '컨테이너 상세 정보',
     'CON_VOLUME_HEADER': '사용중인 볼륨 목록',
-
+    'CON_STEP1_IMAGE_HEADER': '로컬에 이미지가 없을경우 아래 Docker Hub를 통해서 이미지를 Pull 받을 수 있습니다.',
+    'CON_STEP1_HUB_HEADER': 'Docker Hub에서 Image 검색',
+    'CON_BTN_ADD': '컨테이너 생성',
+    'CON_STEP1_TITLE': '배포할 이미지 선택',
+    'CON_STEP1_DESC': '컨테이너를 만들 이미지를 먼저 설정합니다.',
+    'CON_STEP2_TITLE': '컨테이너 기본 설정',
+    'CON_STEP2_DESC': '컨테이너 필수 정보를 입력합니다.',
+    'CON_STEP3_TITLE': '컨테이너 옵션 설정',
+    'CON_STEP3_DESC': '필요한 컨테이너 옵션 정보를 입력합니다.',
+    'CON_STEP1_FIELD_IMAGE': '로컬 이미지',
 
     //Image Management
     'IMG_LIST_HEADER': '이미지 목록',
@@ -75,6 +84,7 @@ export default {
 
     //EndPoint
     'EP_LIST_HEADER': '엔드포인트 목록',
+    'EP_EDIT_HEADER': '엔드포인트 수정',
     'EP_NEW_HEADER': '엔드포인트 생성',
     'EP_BTN_ADD': '엔드포인트 생성',
     'EP_CONFIRM_ACTIVE': '엔드포인트를 활성화 하시겠습니까?',
@@ -89,6 +99,8 @@ export default {
     'BTN_SAVE': '저장',
     'BTN_LIST': '목록',
     'BTN_RESET': '되돌리기',
+    'BTN_DELETE': '삭제',
+    'BTN_NEXT': '다음',
     'BTN_GARBEGE_COLLECTION': '리소스 정리',
 
     'TABLE_NUMBER_OF_PAGES': '페이지 당',

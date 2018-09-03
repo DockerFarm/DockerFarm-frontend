@@ -8,9 +8,15 @@ import { toast } from 'react-toastify';
 class ImagePullModal extends Component {
 
     componentDidMount() {
-        const { setDone } = this.props;
+        const { 
+            setDone,
+            onDone
+        } = this.props;
         setDone( _ => {
             toast.success(`${this.props.image.get('name')} pull success!`);
+            if(onDone) {
+                onDone();
+            }
         })
     }
 

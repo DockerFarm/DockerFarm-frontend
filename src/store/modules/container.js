@@ -9,6 +9,7 @@ const INSPECT = 'CONTAINER/INSPECT';
 const SET_MODAL_STATE = 'CONTAINER/SET_MODAL_STATE';
 const COMMAND = 'CONTAINER/COMMAND';
 const PRUNE = 'CONTAINER/PRUNE';
+const SET_STEP = 'CONTAINER/SET_STEP';
 
 
 export const getContainerList = createAction(LIST, ContainerApi.getContainerList);
@@ -17,11 +18,12 @@ export const getContainerInspectRaw = createAction(INSPECT_RAW, ContainerApi.get
 export const commandToContainer = createAction(COMMAND, ContainerApi.commandToContainer);
 export const pruneContainer = createAction(PRUNE, ContainerApi.pruneContainer);
 
-
+export const setStep = createAction(SET_STEP);
 export const setModalState = createAction(SET_MODAL_STATE);
 
 const initialState = Map({
     list: List([]),
+    steps: List([]),
     inspectData: Map({
         info: Map({}),
         detail: Map({
@@ -38,6 +40,9 @@ const initialState = Map({
 });
 
 export default handleActions({
+    [SET_STEP]: (state, action) => {
+        return state.set('steps', fromJS(action.payload));
+    },
     [SET_MODAL_STATE]: (state, action) => {
         return state.setIn(['modalState','show'], action.payload.show)
                     .setIn(['modalState','name'], action.payload.name);
