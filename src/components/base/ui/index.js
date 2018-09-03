@@ -5,6 +5,7 @@ import TableColGroup from './TableColGroup';
 import LinkTitle from './LinkTitle';
 import ImageLoader from './ImageLoader';
 import LogOutput from './LogOutput';
+import ButtonWrapper from './ButtonWrapper';
 
 export {
     Logo,
@@ -13,5 +14,6 @@ export {
     TableColGroup,
     LinkTitle,
     ImageLoader,
-    LogOutput
+    LogOutput,
+    ButtonWrapper
 }
