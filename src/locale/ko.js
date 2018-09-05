@@ -27,6 +27,8 @@ export default {
     'DB_NODE_VERSION': 'Docker 버전',
     'DB_NODE_CPU': 'Node CPU',
     'DB_NODE_MEMORY': 'Node Memory',
+    'DB_ENGINE_HEADER': 'Engine 정보',
+    
 
     //Container Management
     'CON_LIST_HEADER': '컨테이너 목록',

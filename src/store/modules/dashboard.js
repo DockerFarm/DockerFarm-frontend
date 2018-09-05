@@ -15,6 +15,9 @@ const initialState = Map({
             image: Map({}),
             network: Map({}),
             volume: Map({})
+        }),
+        engine: Map({
+            version: Map({})
         })
     })
 });

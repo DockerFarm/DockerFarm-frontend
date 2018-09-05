@@ -74,6 +74,16 @@ class DashBoardInfoPage extends Component {
             volume
         } = data.get('summary').toJS();
 
+        const {
+            docker,
+            api,
+            go,
+            ostype,
+            os,
+            arch
+        } = data.getIn(['engine', 'version']).toJS();
+
+
         return (
             <Aux>
                 <SectionHeader 
@@ -189,6 +199,40 @@ class DashBoardInfoPage extends Component {
                         <Table.Row>
                             <Table.Cell>{intl.formatMessage({id: 'DB_NODE_MEMORY'})}</Table.Cell>
                             <Table.Cell>{memory}</Table.Cell>
+                        </Table.Row>
+                    </Table.Body>
+                </Table>
+
+                <SectionHeader 
+                    title={intl.formatMessage({id: 'DB_ENGINE_HEADER'})} 
+                    icon='dashboard'
+                />
+                
+                <Table>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell>Version</Table.Cell>
+                            <Table.Cell>{docker}</Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.Cell>API Version</Table.Cell>
+                            <Table.Cell>{api}</Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.Cell>Go Version</Table.Cell>
+                            <Table.Cell>{go}</Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.Cell>OS Type</Table.Cell>
+                            <Table.Cell>{ostype}</Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.Cell>OS</Table.Cell>
+                            <Table.Cell>{os}</Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.Cell>Architecture</Table.Cell>
+                            <Table.Cell>{arch}</Table.Cell>
                         </Table.Row>
                     </Table.Body>
                 </Table>
