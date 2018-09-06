@@ -1,27 +1,37 @@
 # DockerFarm-frontend
+> DockerFarm is a system that can easily manage a Docker.
 
 ![Build Status](http://jenkins.dockerfarm.cf/buildStatus/icon?job=DockerFarm-frontend/master)
-
-![image](https://user-images.githubusercontent.com/2585676/40734484-8f5f291c-6473-11e8-8e9e-58add225b45b.png)
-
-DockerFarm is a awesome docker management tool!
-
-This Project deals with the DockerFarm front-end area.
-
-## ✨ Features to be implemented
-
-* EndPoint Management
-* Registry Management
-* Container Management
-* Image Management
-* Volumne Management
-* Network Management
-* Event Log
-* DashBoard
+![image](https://user-images.githubusercontent.com/2585676/45164345-3824ac00-b22d-11e8-8582-f401e7b9dca8.png)
 
 
-## Getting Started
+## ✨ Feature
 
+- [x] DashBoard
+- [x] EndPoint Management
+- [x] Registry Management
+- [x] Container Management
+- [x] Image Management
+- [x] Volumne Management
+- [x] Network Management
+- [ ] Swarm Management
+- [ ] Event Log
+
+## Built With
+
+* react
+* redux 
+* redux-pender
+* semantic-ui-react
+* socket.io-client
+* styled-components
+* immutable.js
+* react-intl 
+
+## Versioning
+We use SemVer for versioning. For the versions available, see the tags on this repository.
+
+## Development setup 
 1. First, Install [yarn](https://yarnpkg.com/en/) global 
 
 
@@ -44,3 +54,7 @@ yarn
 yarn start 
 //launch browser and navigate to http://localhost:3000
 ```
+
+## License 
+
+This project is licensed under the MIT License
