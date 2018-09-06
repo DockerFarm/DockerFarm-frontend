@@ -1,8 +1,11 @@
 # DockerFarm-frontend
-> DockerFarm is a system that can easily manage a Docker.
 
 ![Build Status](http://jenkins.dockerfarm.cf/buildStatus/icon?job=DockerFarm-frontend/master)
+
 ![image](https://user-images.githubusercontent.com/2585676/45164345-3824ac00-b22d-11e8-8582-f401e7b9dca8.png)
+
+> DockerFarm is a system that can easily manage a Docker.
+
 
 
 ## ✨ Feature
