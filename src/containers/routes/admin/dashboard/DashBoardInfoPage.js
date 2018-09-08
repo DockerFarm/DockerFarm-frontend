@@ -10,6 +10,7 @@ import { SectionHeader } from 'components/base/ui/header';
 import * as dashboard from 'store/modules/dashboard';
 import styled from 'styled-components';
 import { teal, yellow } from 'styles/color';
+import { InfoTable } from 'components/base/ui';
 
 const Box = styled.div`
     background: ${props => props.color || '#2BB7C4'};
@@ -182,60 +183,62 @@ class DashBoardInfoPage extends Component {
                     title={intl.formatMessage({id: 'DB_NODE_HEADER'})} 
                     icon='dashboard'
                 />
-                <Table>
-                    <Table.Body>
-                        <Table.Row>
-                            <Table.Cell>{intl.formatMessage({id: 'DB_NODE_NAME'})}</Table.Cell>
-                            <Table.Cell>{name}</Table.Cell>
-                        </Table.Row>
-                        <Table.Row>
-                            <Table.Cell>{intl.formatMessage({id: 'DB_NODE_VERSION'})}</Table.Cell>
-                            <Table.Cell>{dockerversion}</Table.Cell>
-                        </Table.Row>
-                        <Table.Row>
-                            <Table.Cell>{intl.formatMessage({id: 'DB_NODE_CPU'})}</Table.Cell>
-                            <Table.Cell>{cpu}</Table.Cell>
-                        </Table.Row>
-                        <Table.Row>
-                            <Table.Cell>{intl.formatMessage({id: 'DB_NODE_MEMORY'})}</Table.Cell>
-                            <Table.Cell>{memory}</Table.Cell>
-                        </Table.Row>
-                    </Table.Body>
-                </Table>
+                <InfoTable 
+                    widths={[200, 800]}
+                    data={[
+                        {
+                            header: intl.formatMessage({id: 'DB_NODE_NAME'}),
+                            cell: name
+                        },
+                        {
+                            header: intl.formatMessage({id: 'DB_NODE_VERSION'}),
+                            cell: dockerversion
+                        },
+                        {
+                            header: intl.formatMessage({id: 'DB_NODE_CPU'}),
+                            cell: cpu
+                        },
+                        {
+                            header: intl.formatMessage({id: 'DB_NODE_MEMORY'}),
+                            cell: memory
+                        },
+                    ]}
+                />
 
                 <SectionHeader 
                     title={intl.formatMessage({id: 'DB_ENGINE_HEADER'})} 
                     icon='dashboard'
                 />
                 
-                <Table>
-                    <Table.Body>
-                        <Table.Row>
-                            <Table.Cell>Version</Table.Cell>
-                            <Table.Cell>{docker}</Table.Cell>
-                        </Table.Row>
-                        <Table.Row>
-                            <Table.Cell>API Version</Table.Cell>
-                            <Table.Cell>{api}</Table.Cell>
-                        </Table.Row>
-                        <Table.Row>
-                            <Table.Cell>Go Version</Table.Cell>
-                            <Table.Cell>{go}</Table.Cell>
-                        </Table.Row>
-                        <Table.Row>
-                            <Table.Cell>OS Type</Table.Cell>
-                            <Table.Cell>{ostype}</Table.Cell>
-                        </Table.Row>
-                        <Table.Row>
-                            <Table.Cell>OS</Table.Cell>
-                            <Table.Cell>{os}</Table.Cell>
-                        </Table.Row>
-                        <Table.Row>
-                            <Table.Cell>Architecture</Table.Cell>
-                            <Table.Cell>{arch}</Table.Cell>
-                        </Table.Row>
-                    </Table.Body>
-                </Table>
+                <InfoTable 
+                    widths={[200, 800]}
+                    data={[
+                        {
+                            header: 'Version',
+                            cell: docker
+                        },
+                        {
+                            header: 'API Version',
+                            cell: api
+                        },
+                        {
+                            header: 'Go Version',
+                            cell: go
+                        },
+                        {
+                            header: 'OS Type',
+                            cell: ostype
+                        },
+                        {
+                            header: 'OS',
+                            cell: os
+                        },
+                        {
+                            header: 'Architecture',
+                            cell: arch
+                        }
+                    ]}
+                />
             </Aux>
         )
     }
