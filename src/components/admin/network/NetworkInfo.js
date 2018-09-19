@@ -1,5 +1,7 @@
 import React from 'react';
 import { Table, Icon, Button } from 'semantic-ui-react';
+import { InfoTable } from 'components/base/ui';
+import { Aux } from 'components/hoc';
 
 const NetworkInfo = ({
     name,
@@ -10,46 +12,49 @@ const NetworkInfo = ({
     gateway,
     onDelete
 }) => (
-    <Table>
-        <Table.Body>
-            <Table.Row>
-                <Table.Cell>Name</Table.Cell>
-                <Table.Cell>
-                    {name}
-                    <Button 
-                        color='red' 
-                        size='tiny' 
-                        type='button'
-                        style={{marginLeft:'10px'}}
-                        onClick={ () => onDelete()}
-                    >
-                        <Icon name='trash' />
-                        Delete Network
-                    </Button>
-                </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-                <Table.Cell>Id</Table.Cell>
-                <Table.Cell>{id}</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-                <Table.Cell>Driver</Table.Cell>
-                <Table.Cell>{driver}</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-                <Table.Cell>Scope</Table.Cell>
-                <Table.Cell>{scope}</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-                <Table.Cell>Subnet</Table.Cell>
-                <Table.Cell>{subnet}</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-                <Table.Cell>Gateway</Table.Cell>
-                <Table.Cell>{gateway}</Table.Cell>
-            </Table.Row>
-        </Table.Body>
-    </Table>
+    <InfoTable 
+        widths={[100, 800]}
+        data={[
+            {
+                header: 'Name',
+                cell: (
+                    <Aux>
+                        {name}
+                        <Button 
+                            color='red' 
+                            size='tiny' 
+                            type='button'
+                            style={{marginLeft:'10px'}}
+                            onClick={ () => onDelete()}
+                        >
+                            <Icon name='trash' />
+                            Delete Network
+                        </Button>
+                    </Aux>
+                )
+            },
+            {
+                header: 'Id',
+                cell: id
+            },
+            {
+                header: 'Driver',
+                cell: driver 
+            },
+            {
+                header: 'Scope',
+                cell: scope
+            },
+            {
+                header: 'Subnet',
+                cell: subnet
+            },
+            {
+                header: 'Gateway',
+                cell: gateway
+            }
+        ]}
+    />
 )
 
 export default NetworkInfo;

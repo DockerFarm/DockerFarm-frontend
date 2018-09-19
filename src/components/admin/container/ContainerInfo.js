@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Table, Button, Icon, Label} from 'semantic-ui-react';
 import { forIn } from 'lodash';
+import { Aux } from 'components/hoc';
+import { InfoTable } from 'components/base/ui';
 import moment from 'moment';
 
 const GrpButton = ({
@@ -120,68 +122,67 @@ const ContainerInfo = ({
     ];
 
     return (
-            <Table>
-                <Table.Body>
-                    <Table.Row>
-                        <Table.Cell>ID</Table.Cell>
-                        <Table.Cell>{id}</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.Cell>Name</Table.Cell>
-                        <Table.Cell>{name}</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.Cell>Status</Table.Cell>
-                        <Table.Cell>{renderStatus(status)}</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.Cell>Image</Table.Cell>
-                        <Table.Cell>{image}</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.Cell>Started</Table.Cell>
-                        <Table.Cell>{moment(startedAt).format('YYYY-MM-DD HH:MM:SS')}</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.Cell>Created</Table.Cell>
-                        <Table.Cell>{moment(created).format('YYYY-MM-DD HH:MM:SS')}</Table.Cell>
-                    </Table.Row>
-                </Table.Body>
-                <Table.Footer>
-                    <Table.Row>
-                        <Table.HeaderCell colSpan='2'>
-                            <Button.Group style={{marginRight:'4px', marginBottom:'4px'}}>
-                                {
-                                    commandGroup1.map( btn => (
-                                        <GrpButton
-                                            key={btn.label}
-                                            color={btn.color} 
-                                            icon={btn.icon} 
-                                            label={btn.label} 
-                                            onClick={btn.onClick} 
-                                            disabled={btn.disableStatus.indexOf(status) != -1}
-                                        />
-                                    ))
-                                }
-                            </Button.Group>
-                            <Button.Group >
-                                {
-                                    commandGroup2.map( btn => (
-                                        <GrpButton
-                                            key={btn.label}
-                                            color={btn.color} 
-                                            icon={btn.icon} 
-                                            label={btn.label} 
-                                            onClick={btn.onClick} 
-                                            disabled={btn.disableStatus.indexOf(status) != -1}
-                                        />
-                                    ))
-                                }
-                            </Button.Group>
-                        </Table.HeaderCell>
-                    </Table.Row>
-                </Table.Footer>
-            </Table>
+        <Aux>
+            <div>
+                <Button.Group style={{marginRight:'4px', marginBottom:'4px'}}>
+                    {
+                        commandGroup1.map( btn => (
+                            <GrpButton
+                                key={btn.label}
+                                color={btn.color} 
+                                icon={btn.icon} 
+                                label={btn.label} 
+                                onClick={btn.onClick} 
+                                disabled={btn.disableStatus.indexOf(status) != -1}
+                            />
+                        ))
+                    }
+                </Button.Group>
+                <Button.Group >
+                    {
+                        commandGroup2.map( btn => (
+                            <GrpButton
+                                key={btn.label}
+                                color={btn.color} 
+                                icon={btn.icon} 
+                                label={btn.label} 
+                                onClick={btn.onClick} 
+                                disabled={btn.disableStatus.indexOf(status) != -1}
+                            />
+                        ))
+                    }
+                </Button.Group>
+            </div>
+            <InfoTable 
+                widths={[100,800]} 
+                data={[
+                    {
+                       header: 'ID',
+                       cell: id
+                    },
+                    {
+                        header: 'Name',
+                        cell: name
+                    },
+                    {
+                        header: 'Status',
+                        cell: renderStatus(status)
+                    },
+                    {
+                        header: 'Image',
+                        cell: image
+                    },
+                    {
+                        header: 'Started',
+                        cell: moment(startedAt).format('YYYY-MM-DD HH:MM:SS')
+                    },
+                    {
+                        header: 'Created',
+                        cell: moment(created).format('YYYY-MM-DD HH:MM:SS')
+                    }
+                ]}
+            />
+        </Aux>
     )
 }
 
