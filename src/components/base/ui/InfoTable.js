@@ -5,7 +5,7 @@ import { map } from 'lodash';
 import styled from 'styled-components';
 
 const HeaderCell = styled(Table.Cell)`
-    background: #ddd;
+    background: #F9FAFB;
     text-align:center !important;
 `
 const InfoTable = ({
@@ -26,12 +26,9 @@ const InfoTable = ({
                 data.map((v,i) => (
                     <Table.Row key={i}>
                         <HeaderCell>{v.header}</HeaderCell>
-                        <If
-                            condition={!v.template}
-                            then={
-                                <Table.Cell>{v.cell}</Table.Cell>
-                            }
-                        />
+                        <Table.Cell>
+                            {v.cell}
+                        </Table.Cell>
                     </Table.Row>
                 ))
             }

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Table, Button, Icon} from 'semantic-ui-react';
+import { InfoTable } from 'components/base/ui';
+import { Aux } from 'components/hoc';
 
 const VolumeInfo = ({
     name,
@@ -7,34 +9,37 @@ const VolumeInfo = ({
     mountpath,
     onDelete
 }) => (
-    <Table>
-        <Table.Body>
-            <Table.Row>
-                <Table.Cell>Name</Table.Cell>
-                <Table.Cell>
-                    {name}
-                    <Button 
-                        color='red' 
-                        size='tiny' 
-                        type='button'
-                        style={{marginLeft:'10px'}}
-                        onClick={ onDelete}
-                    >
-                        <Icon name='trash' />
-                        Delete Volume
-                    </Button>
-                </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-                <Table.Cell>Driver</Table.Cell>
-                <Table.Cell>{driver}</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-                <Table.Cell>MountPath</Table.Cell>
-                <Table.Cell>{mountpath}</Table.Cell>
-            </Table.Row>
-        </Table.Body>
-    </Table>
+    <InfoTable
+        widths={[100,800]}
+        data={[
+            {
+                header: 'Name',
+                cell:(
+                    <Aux>
+                        {name}
+                        <Button 
+                            color='red' 
+                            size='tiny' 
+                            type='button'
+                            style={{marginLeft:'10px'}}
+                            onClick={ onDelete}
+                        >
+                            <Icon name='trash' />
+                            Delete Volume
+                        </Button>
+                    </Aux>
+                )
+            },
+            {
+                header: 'Driver',
+                cell: driver
+            },
+            {
+                header: 'MountPath',
+                cell: mountpath
+            }
+        ]}
+    />
 )
 
 export default VolumeInfo;

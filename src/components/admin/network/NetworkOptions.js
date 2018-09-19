@@ -1,22 +1,19 @@
 import React from 'react';
-import { Table } from 'semantic-ui-react';
 import { keys } from 'lodash';
+import { InfoTable } from 'components/base/ui';
 
 const NetworkOptions = ({
     options
 }) => (
-    <Table>
-        <Table.Body>
-            {
-                keys(options).map( v => (
-                    <Table.Row>
-                        <Table.Cell>{v}</Table.Cell>
-                        <Table.Cell>{options[v]}</Table.Cell>
-                    </Table.Row>
-                ))     
-            }
-        </Table.Body>
-    </Table>
+    <InfoTable 
+        widths={[100,800]}
+        data={
+            keys(options).map( v => ({
+                header: v,
+                cell: options[v]
+            }))     
+        }
+    />
 );
 
 export default NetworkOptions;

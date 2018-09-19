@@ -1,5 +1,6 @@
 import React from 'react';
 import { Table, Label } from 'semantic-ui-react';
+import { InfoTable } from 'components/base/ui';
 
 const ImageDetail = ({
     cmd,
@@ -7,43 +8,37 @@ const ImageDetail = ({
     port,
     env
 }) => (
-    <Table>
-        <Table.Body>
-            <Table.Row>
-                <Table.Cell>CMD</Table.Cell>
-                <Table.Cell>
-                    <Label>{cmd}</Label>
-                </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-                <Table.Cell>ENTRYPOINT</Table.Cell>
-                <Table.Cell>
-                    <Label>{entrypoint}</Label>
-                </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-                <Table.Cell>PORT</Table.Cell>
-                <Table.Cell>{port}</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-                <Table.Cell>ENV</Table.Cell>
-                    <Table.Cell>
-                        <Table>
-                            <Table.Body>
-                                {
-                                    env.map( (v,i) => (
-                                        <Table.Row key={i}>
-                                            <Table.Cell>{v.split('=')[0]}</Table.Cell>                               
-                                            <Table.Cell>{v.split('=')[1]}</Table.Cell>                               
-                                        </Table.Row>
-                                    ))
-                                }
-                            </Table.Body>
-                        </Table>
-                    </Table.Cell>
-            </Table.Row>
-        </Table.Body>
-    </Table>
+    <InfoTable 
+        widths={[100,800]}
+        data={[
+            {
+                header: 'CMD',
+                cell: cmd
+            },
+            {
+                header: 'ENTRYPOINT',
+                cell: entrypoint
+            },
+            {
+                header: 'PORT',
+                cell: port
+            },
+            {
+                header: 'ENV',
+                cell: (
+                    <InfoTable 
+                        widths={[100,800]}
+                        data={
+                            env.map((v,i) => ({
+                                header: v.split('=')[0],
+                                cell: v.split('=')[1]
+                            }))
+                        }
+                    />
+                )
+            }
+        ]}
+    />
 )
 
 export default ImageDetail;

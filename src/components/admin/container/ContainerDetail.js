@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { InfoTable } from 'components/base/ui';
 import { Table } from 'semantic-ui-react';
 import { keys } from 'lodash';
 
@@ -11,69 +12,65 @@ const ContainerDetail = ({
    maxRetryCount
 }) => {
     return (
-        <Table>
-            <Table.Body>
-                <Table.Row> 
-                    <Table.Cell>Image</Table.Cell>
-                    <Table.Cell>{image}</Table.Cell>
-                </Table.Row>
-                <Table.Row> 
-                    <Table.Cell>Command</Table.Cell>
-                    <Table.Cell>{command}</Table.Cell>
-                </Table.Row>
-                <Table.Row> 
-                    <Table.Cell>ENV</Table.Cell>
-                    <Table.Cell>
-                        <Table>
-                            <Table.Body>
+        <InfoTable
+            widths={[100,800]}
+            data={[
+                {
+                    header: 'Images',
+                    cell: image
+                },
+                {
+                    header: 'Command',
+                    cell: command
+                },
+                {
+                    header: 'ENV',
+                    cell: (
+                        <InfoTable 
+                            widths={[100,800]}
+                            data={
+                                env.map((v,i) => ({
+                                    header: v.split('=')[0],
+                                    cell: v.split('=')[1]
+                                }))
+                            }
+                        />
+                    )
+                },
+                {
+                    header: 'Labels',
+                    cell: (
+                        <InfoTable 
+                            widths={[100,800]}
+                            data={
+                                keys(labels).map((v,i) => ({
+                                    header: v,
+                                    cell: labels[v] 
+                                }))
+                            }
+                        />
+                    )
+                },
+                {
+                    header: 'RestartPolicy',
+                    cell: (
+                        <InfoTable 
+                            widths={[100,800]}
+                            data={[
                                 {
-                                    env.map( (v,i) => (
-                                        <Table.Row key={i}>
-                                            <Table.Cell>{v.split('=')[0]}</Table.Cell>                               
-                                            <Table.Cell>{v.split('=')[1]}</Table.Cell>                               
-                                        </Table.Row>
-                                    ))
-                                }
-                            </Table.Body>
-                        </Table>
-                    </Table.Cell>
-                </Table.Row>
-                <Table.Row> 
-                    <Table.Cell>Labels</Table.Cell>
-                    <Table.Cell>
-                        <Table>
-                            <Table.Body>
+                                    header: 'Name',
+                                    cell: restartPolicy
+                                },
                                 {
-                                    keys(labels).map( k => (
-                                        <Table.Row key={k}>
-                                            <Table.Cell>{k}</Table.Cell>
-                                            <Table.Cell>{labels[k]}</Table.Cell>
-                                        </Table.Row>
-                                    ))
+                                    header: 'MaxRetryCount',
+                                    cell: maxRetryCount
                                 }
-                            </Table.Body>
-                        </Table>
-                    </Table.Cell>
-                </Table.Row>
-                <Table.Row> 
-                    <Table.Cell>RestartPolicy</Table.Cell>
-                    <Table.Cell>
-                        <Table>
-                            <Table.Body>
-                                <Table.Row>
-                                    <Table.Cell>Name</Table.Cell>
-                                    <Table.Cell>{restartPolicy}</Table.Cell>
-                                </Table.Row>
-                                <Table.Row>
-                                    <Table.Cell>maxRetryCount</Table.Cell>
-                                    <Table.Cell>{maxRetryCount}</Table.Cell>
-                                </Table.Row>
-                            </Table.Body>
-                        </Table>
-                    </Table.Cell>
-                </Table.Row>
-            </Table.Body>
-        </Table>
+                            ]}
+                        />
+                    )                    
+                }
+            ]}
+        />
     );
 }
 
