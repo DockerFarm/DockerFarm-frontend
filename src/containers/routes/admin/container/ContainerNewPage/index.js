@@ -26,10 +26,6 @@ class ContainerNewPage extends Component {
             {
                 title: intl.formatMessage({id: 'CON_STEP2_TITLE'}),
                 description: intl.formatMessage({id: 'CON_STEP2_DESC'}) 
-            },
-            {
-                title: intl.formatMessage({id: 'CON_STEP3_TITLE'}),
-                description: intl.formatMessage({id: 'CON_STEP3_DESC'}) 
             }
         ];
 
@@ -56,7 +52,6 @@ class ContainerNewPage extends Component {
                     <Switch>
                         <Route path={`${match.path}/step1`} component={Step1}/>     
                         <Route path={`${match.path}/step2`} component={Step2}/>     
-                        <Route path={`${match.path}/step3`} component={Step3}/>     
                     </Switch> 
                 </Segment>
             </Aux>

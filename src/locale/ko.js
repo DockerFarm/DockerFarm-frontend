@@ -103,6 +103,7 @@ export default {
     'BTN_RESET': '되돌리기',
     'BTN_DELETE': '삭제',
     'BTN_NEXT': '다음',
+    'BTN_PREV': '이전',
     'BTN_GARBEGE_COLLECTION': '리소스 정리',
 
     'TABLE_NUMBER_OF_PAGES': '페이지 당',
