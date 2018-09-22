@@ -1,19 +1,22 @@
 import React from 'react';
-import { Radio } from 'semantic-ui-react';
+import { RadioGroup } from 'components/base/ui';
 import ErrorMessage from './ErrorMessage';
 
 const ControlRadio = ({
     input, 
-    label, 
+    labels, 
+    values,
+    defaultValue,
     meta, 
     ...custom 
 }) => {
     return (
         <React.Fragment>
-            <Radio 
-                label={label}
-                checked={!!input.value}
-                onClick={(event, data) => input.onChange(data.checked)}
+            <RadioGroup 
+                labels={labels}  
+                values={values}
+                defaultValue={defaultValue}
+                onChange={ value => input.onChange(value)}
                 {...custom}
             />
             <ErrorMessage

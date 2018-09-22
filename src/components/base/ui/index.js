@@ -7,6 +7,7 @@ import ImageLoader from './ImageLoader';
 import LogOutput from './LogOutput';
 import ButtonWrapper from './ButtonWrapper';
 import InfoTable from './InfoTable';
+import RadioGroup from './RadioGroup';
 
 export {
     Logo,
@@ -17,5 +18,6 @@ export {
     LinkTitle,
     ImageLoader,
     LogOutput,
-    ButtonWrapper
+    ButtonWrapper,
+    RadioGroup
 }
