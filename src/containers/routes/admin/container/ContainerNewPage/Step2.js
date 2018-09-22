@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Form, Button, Icon } from 'semantic-ui-react';
+import { Form, Button, Icon  } from 'semantic-ui-react';
 import { reduxForm, Field, FieldArray } from 'redux-form/immutable';
-import { ControlInput, ControlCheckbox, ControlRadio, ControlOptions } from 'components/base/form';
+import { ControlInput, ControlCheckbox, ControlRadioGroup, ControlOptions } from 'components/base/form';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
@@ -10,15 +10,17 @@ import { Aux } from 'components/hoc';
 import { ButtonWrapper } from 'components/base/ui';
 import { SectionHeader, FormHeader } from 'components/base/ui/header';
 import { required } from 'lib/validation';
+import * as container from 'store/modules/container';
+import { bindActionCreators } from '../../../../../../../../../../Library/Caches/typescript/3.0/node_modules/redux';
 
 const optionComponent = fields => (opts, index) => (
     <Form.Group key={index}>
-        <Form.Field width={6}>
+        <Form.Field width={4}>
             <Field 
-                name={`${opts}.key`}
+                name={`${opts}.host`}
                 type='text'
+                placeholder='ex) 80'
                 component={ControlInput}
-                validate={[required]}
                 inputLabel='호스트'
             />
         </Form.Field>
@@ -27,41 +29,50 @@ const optionComponent = fields => (opts, index) => (
                 <Icon name='arrow right' style={{marginTop:'10px'}}/>
             </div> 
         </Form.Field>
-        <Form.Field width={6}>
+        <Form.Field width={4}>
             <Field
-                name={`${opts}.value`}
+                name={`${opts}.container`}
                 type='text'
+                placeholder='ex) 8080'
                 component={ControlInput}
-                validate={[required]}
                 inputLabel='컨테이너'
             />
         </Form.Field>
-        <Form.Field width={4}>
-            <Field 
-                name={`${opts}.protocol`}
-                label='TCP'
-                value='tcp'
-                type='radio'
-                component={ControlRadio}
-            />
-            <Field 
-                name={`${opts}.protocol`}
-                label='UDP'
-                value='udp'
-                type='radio'
-                component={ControlRadio}
-            />
-            <Button 
-                color='red' 
-                icon='trash'
-                size='tiny'
-                type='button'
-                onClick={() => fields.remove(index)}
-            />
+        <Form.Field width={2}>
+            <div style={{marginTop: '5px'}}>
+                <Field 
+                    name={`${opts}.protocol`}
+                    labels={['TCP', 'UDP']}
+                    values={['tcp', 'udp']}
+                    defaultValue='tcp'
+                    component={ControlRadioGroup}
+                />
+            </div>
+        </Form.Field>
+        <Form.Field width={2}>
+            <div style={{marginTop: '5px'}}>
+                <Button 
+                    color='red' 
+                    icon='trash'
+                    size='tiny'
+                    type='button'
+                    onClick={() => fields.remove(index)}
+                />
+            </div>
         </Form.Field>
     </Form.Group>
 )
 class Step2 extends Component {
+
+    handleNextStep = _ => {
+        const { 
+            ContainerAction,
+            history,
+        } = this.props;
+
+        ContainerAction.setStep([1,2]);
+        history.push('/admin/containers/new/step3');
+    }
 
     render() {
         const { intl } = this.props;
@@ -139,10 +150,10 @@ export default compose(
     }),
     connect(
         state => ({
-
+            
         }),
         dispatch => ({
-
+            ContainerAction: bindActionCreators(container, dispatch)
         })
     )
 )(Step2);
