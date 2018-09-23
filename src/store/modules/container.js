@@ -1,6 +1,7 @@
 import { createAction, handleActions } from 'redux-actions';
 import { pender } from 'redux-pender';
 import { Map, List, fromJS } from 'immutable';
+import { isArray } from 'lodash';
 import * as ContainerApi from 'lib/api/container';
 
 const LIST = 'CONTAINER/LIST';
@@ -10,6 +11,7 @@ const SET_MODAL_STATE = 'CONTAINER/SET_MODAL_STATE';
 const COMMAND = 'CONTAINER/COMMAND';
 const PRUNE = 'CONTAINER/PRUNE';
 const SET_STEP = 'CONTAINER/SET_STEP';
+const CREATE = 'CONTAINER/CREATE';
 
 
 export const getContainerList = createAction(LIST, ContainerApi.getContainerList);
@@ -17,6 +19,7 @@ export const getContainerInfo = createAction(INSPECT, ContainerApi.getContainerI
 export const getContainerInspectRaw = createAction(INSPECT_RAW, ContainerApi.getContainerInspectRaw);
 export const commandToContainer = createAction(COMMAND, ContainerApi.commandToContainer);
 export const pruneContainer = createAction(PRUNE, ContainerApi.pruneContainer);
+export const createContainer = createAction(CREATE, ContainerApi.createContainer);
 
 export const setStep = createAction(SET_STEP);
 export const setModalState = createAction(SET_MODAL_STATE);
@@ -41,7 +44,9 @@ const initialState = Map({
 
 export default handleActions({
     [SET_STEP]: (state, action) => {
-        return state.set('steps', fromJS(action.payload));
+        return state.set('steps', isArray(action.payload) 
+                                    ? fromJS(action.payload) : 
+                                      state.get('steps').update(arr => !arr.includes(action.payload) ? arr.push(action.payload) : arr));
     },
     [SET_MODAL_STATE]: (state, action) => {
         return state.setIn(['modalState','show'], action.payload.show)
