@@ -44,11 +44,12 @@ const runtimeComponent = fields => (opts, index) => (
 class RuntimeForm extends Component {
 
     render() {
+        const { intl } = this.props;
 
         return (
            <Aux>
                 <FormHeader 
-                    title='Runtime 설정'
+                    title={intl.formatMessage({id: 'CON_STEP3_RUNTIME_HEADER'})}
                     icon='redo'
                 />
                 <Form.Group>
@@ -63,7 +64,7 @@ class RuntimeForm extends Component {
                 </Form.Group>
                 <FieldArray 
                     name='devices'
-                    buttonLabel='디바이스 추가'
+                    buttonLabel={intl.formatMessage({id: 'CON_STEP3_ADDDEVICE_LB'})}
                     component={ControlOptions}
                     optionComponent={runtimeComponent}
                 />

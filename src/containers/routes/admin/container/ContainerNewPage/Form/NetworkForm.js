@@ -51,12 +51,13 @@ class Step3 extends Component {
 
     render() {
         const { 
+            intl,
             networkList
         } = this.props;
         return (
            <Aux>
                 <FormHeader 
-                    title='Network 설정'          
+                    title={intl.formatMessage({id: 'CON_STEP3_NET_HEADER'})}
                     icon='sitemap'
                 />
                 <Form.Group>

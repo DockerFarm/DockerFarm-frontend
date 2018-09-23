@@ -11,15 +11,16 @@ import { ControlInput, ControlOptions } from 'components/base/form';
 class EnvForm extends Component {
 
     render() {
+        const { intl } = this.props;
         return (
            <Aux>
                 <FormHeader 
-                    title='Env 설정'
+                    title={intl.formatMessage({id: 'CON_STEP3_ENV_HEADER'})}
                     icon='settings'
                 />
                 <FieldArray 
                     name='env'
-                    buttonLabel='환경변수추가'
+                    buttonLabel={intl.formatMessage({id: 'CON_STEP3_ADDENV_LB'})}
                     component={ControlOptions}
                 />
            </Aux> 

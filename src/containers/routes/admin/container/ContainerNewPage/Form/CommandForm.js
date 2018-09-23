@@ -12,10 +12,14 @@ import { ControlInput } from 'components/base/form';
 class CommandForm extends Component {
 
     render() {
+        const {
+            intl 
+        } = this.props;
+
         return (
            <Aux>
                 <FormHeader 
-                    title='Command 설정' 
+                    title={intl.formatMessage({id: 'CON_STEP3_CMD_HEADER'})}
                     icon='terminal'
                 />
                 <Form.Group>
