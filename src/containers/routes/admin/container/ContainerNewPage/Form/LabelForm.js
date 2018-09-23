@@ -11,15 +11,16 @@ import { ControlInput, ControlOptions } from 'components/base/form';
 class LabelForm extends Component {
 
     render() {
+        const { intl } = this.props;
         return (
            <Aux>
                 <FormHeader 
-                    title='Label 설정'
+                    title={intl.formatMessage({id: 'CON_STEP3_LB_HEADER'})}
                     icon='tag'
                 />
                 <FieldArray 
                     name='labels'
-                    buttonLabel='라벨 추가'
+                    buttonLabel={intl.formatMessage({id: 'CON_STEP3_ADDLB_LB'})}
                     component={ControlOptions}
                 />
            </Aux> 

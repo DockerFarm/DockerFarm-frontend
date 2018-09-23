@@ -21,7 +21,7 @@ const volumeComponent = volumeList => fields => (opts, index) => (
                 type='text'
                 placeholder=''
                 component={ControlInput}
-                inputLabel='컨테이너'
+                inputLabel='container'
             />
             <Field 
                 name={`${opts}.type`}
@@ -42,7 +42,7 @@ const volumeComponent = volumeList => fields => (opts, index) => (
                 placeholder=''
                 options={volumeList.map(v => ({ key: v.name, text: v.name, value: v.name}))}
                 component={ControlSelectbox}
-                inputLabel='볼륨'
+                inputLabel='volume'
             />
             <Field 
                 name={`${opts}.permission`}
@@ -80,17 +80,18 @@ class VolumeForm extends Component {
 
     render() {
         const { 
+            intl,
             volumeList
         } = this.props;
         return (
            <Aux>
                 <FormHeader 
-                    title='Volume 설정'
+                    title={intl.formatMessage({id: 'CON_STEP3_VOL_HEADER'})}
                     icon='hdd'
                 />
                 <FieldArray 
                     name='volumes'
-                    buttonLabel='볼륨 설정 추가'
+                    buttonLabel={intl.formatMessage({id: 'CON_STEP3_ADDVOL_LB'})}
                     component={ControlOptions}
                     optionComponent={volumeComponent(volumeList.toJS())}
                 />

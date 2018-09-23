@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Aux } from 'components/hoc';
-import { Field, reduxForm } from 'redux-form/immutable';
+import { Field, reduxForm, submit } from 'redux-form/immutable';
 import { SectionHeader } from 'components/base/ui/header';
 import { ButtonWrapper } from 'components/base/ui';
 import { withRouter, Link } from 'react-router-dom';
@@ -12,6 +12,7 @@ import { Form, Button, Icon} from 'semantic-ui-react';
 import { ControlSelectbox } from 'components/base/form';
 import { ImageSearchForm, ImageSearchResult }from 'components/admin/image';
 import ImagePullModal from 'containers/common/ImagePullModal';
+import { required } from 'lib/validation';
 
 import * as image from 'store/modules/image';
 import * as container from 'store/modules/container';
@@ -67,7 +68,7 @@ class Step1 extends Component {
             history,
         } = this.props;
 
-        ContainerAction.setStep([1]);
+        ContainerAction.setStep(1);
         history.push('/admin/containers/new/step2');
     }
 
@@ -77,7 +78,8 @@ class Step1 extends Component {
             imageList,
             searchResult,
             modalState,
-            intl
+            intl,
+            handleSubmit
         } = this.props;
 
         return (
@@ -92,6 +94,7 @@ class Step1 extends Component {
                                 label={intl.formatMessage({id: 'CON_STEP1_FIELD_IMAGE'})}
                                 name='image'
                                 options={imageList.toJS().map(v => ({ text: v.tag, value : v.tag, key: v._id}))}
+                                validate={[required]}
                                 component={ControlSelectbox} 
                             />
                         </Form.Field>
@@ -120,7 +123,7 @@ class Step1 extends Component {
                         <Button
                             size='tiny'
                             color='blue'
-                            onClick={this.handleNextStep}
+                            onClick={handleSubmit(this.handleNextStep)}
                         >
                             <Icon 
                                 name='arrow right'
@@ -145,7 +148,9 @@ export default compose(
     withRouter,
     injectIntl,
     reduxForm({
-        form: 'container'
+        form: 'step1',
+        destroyOnUnmount: false,        // <------ preserve form data
+        forceUnregisterOnUnmount: false,  // <------ unregister fields on unmount
     }),
     connect(
         state => ({
@@ -155,7 +160,7 @@ export default compose(
         }),
         dispatch => ({
             ImageAction: bindActionCreators(image, dispatch),
-            ContainerAction: bindActionCreators(container, dispatch)
+            ContainerAction: bindActionCreators(container, dispatch),
         })
     )
 )(Step1)

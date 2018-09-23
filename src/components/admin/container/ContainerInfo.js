@@ -65,7 +65,7 @@ const ContainerInfo = ({
             onClick: createCommand('start'), 
             icon: 'play', 
             label: 'Start', 
-            disableStatus: ['running','restarting','created']
+            disableStatus: ['running','restarting']
         }),
         createBtn({ 
             color: 'red', 

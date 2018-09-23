@@ -9,10 +9,11 @@ import { ControlRadioGroup } from 'components/base/form';
 class EnvForm extends Component {
 
     render() {
+        const { intl } = this.props;
         return (
            <Aux>
                 <FormHeader 
-                    title='Restart Policy 설정'
+                    title={intl.formatMessage({id: 'CON_STEP3_POLICY_HEADER'})}
                     icon='sync'
                 />
                 <Field 

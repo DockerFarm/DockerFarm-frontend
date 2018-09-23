@@ -11,7 +11,7 @@ import { ButtonWrapper } from 'components/base/ui';
 import { SectionHeader, FormHeader } from 'components/base/ui/header';
 import { required } from 'lib/validation';
 import * as container from 'store/modules/container';
-import { bindActionCreators } from '../../../../../../../../../../Library/Caches/typescript/3.0/node_modules/redux';
+import { bindActionCreators } from 'redux';
 
 const optionComponent = fields => (opts, index) => (
     <Form.Group key={index}>
@@ -21,7 +21,8 @@ const optionComponent = fields => (opts, index) => (
                 type='text'
                 placeholder='ex) 80'
                 component={ControlInput}
-                inputLabel='호스트'
+                inputLabel='host'
+                validate={[required]}
             />
         </Form.Field>
         <Form.Field width={1}>
@@ -35,7 +36,8 @@ const optionComponent = fields => (opts, index) => (
                 type='text'
                 placeholder='ex) 8080'
                 component={ControlInput}
-                inputLabel='컨테이너'
+                inputLabel='container'
+                validate={[required]}
             />
         </Form.Field>
         <Form.Field width={2}>
@@ -70,36 +72,37 @@ class Step2 extends Component {
             history,
         } = this.props;
 
-        ContainerAction.setStep([1,2]);
+        ContainerAction.setStep(2);
         history.push('/admin/containers/new/step3');
     }
 
     render() {
-        const { intl } = this.props;
+        const { intl, handleSubmit } = this.props;
         return (
             <Aux>
                 <SectionHeader 
-                    title='컨테이너 기본 설정' 
+                    title={intl.formatMessage({id: 'CON_STEP2_BASIC_HEADER'})} 
                 /> 
                 <Form as='form'>
                     <Form.Group>
                         <Form.Field width={16}>
                             <Field 
                                 name='name'
-                                label='이름'
-                                placeholder='컨테이너 이름을 입력하세요 ex) nginx'
+                                label={intl.formatMessage({id: 'CON_STEP2_NAME_LB'})}
+                                placeholder={intl.formatMessage({id: 'CON_STEP2_NAME_PH'})}
                                 component={ControlInput}
+                                validate={[required]}
                             /> 
                         </Form.Field>
                     </Form.Group>
                     <FormHeader
-                        title='포트 설정'
+                        title={intl.formatMessage({id: 'CON_STEP2_PORT_HEADER'})}
                     />
                     <Form.Group>
                         <Form.Field width={16}>
-                            <label>모든 포트 게시</label>
+                            <label>{intl.formatMessage({id: 'CON_STEP2_ALLPORT_LB'})}</label>
                             <Field 
-                                name='allPort'
+                                name='publishAllPorts'
                                 toggle
                                 component={ControlCheckbox}
                             />
@@ -107,7 +110,7 @@ class Step2 extends Component {
                     </Form.Group>
                     <FieldArray 
                         name='port'
-                        buttonLabel='포트설정 추가'
+                        buttonLabel={intl.formatMessage({id: 'CON_STEP2_ADDPORT_LB'})}
                         component={ControlOptions}
                         optionComponent={optionComponent}
                     />
@@ -116,7 +119,8 @@ class Step2 extends Component {
                     <Button.Group floated='right'>
                         <Button
                             size='tiny'
-                            onClick={this.handleNextStep} 
+                            as={Link}
+                            to={'/admin/containers/new/step1'}
                         >
                             <Icon 
                                 name='arrow left'
@@ -127,7 +131,7 @@ class Step2 extends Component {
                         <Button
                             size='tiny'
                             color='blue'
-                            onClick={this.handleNextStep}
+                            onClick={handleSubmit(this.handleNextStep)}
                         >
                             <Icon 
                                 name='arrow right'
@@ -146,7 +150,9 @@ export default compose(
     withRouter,
     injectIntl,
     reduxForm({
-        form: 'container'
+        form: 'step2',
+        destroyOnUnmount: false,        // <------ preserve form data
+        forceUnregisterOnUnmount: false,  // <------ unregister fields on unmount
     }),
     connect(
         state => ({

@@ -1,16 +1,27 @@
 import React, { Component } from 'react';
+import { destroy } from 'redux-form/immutable';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import { withRouter, Switch, Route, Link } from 'react-router-dom';
 import { injectIntl } from 'react-intl';
 import { Aux } from 'components/hoc';
 import { Step, Segment } from 'semantic-ui-react';
+import { bindActionCreators } from 'redux';
+import * as container from 'store/modules/container';
 
 import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
 
 class ContainerNewPage extends Component {
+
+    componentWillUnmount() {
+        const { formDestroy, ContainerAction, history } = this.props;
+        if( history.location.pathname.indexOf('/admin/containers/new') === -1 ) {
+            ContainerAction.setStep([]);
+            ['step1', 'step2', 'container'].forEach(formDestroy);
+        }
+    }
 
     render() {
         const {
@@ -41,8 +52,8 @@ class ContainerNewPage extends Component {
                     {
                         stepArr.map((v,i) => (
                             <Step 
-                                as={Link}
-                                to={`/admin/containers/new/step${i+1}`}
+                                // as={Link}
+                                // to={`/admin/containers/new/step${i+1}`}
                                 completed={steps.indexOf(i+1) !== -1}>
                                 <Step.Content>
                                     <Step.Title>{v.title}</Step.Title>
@@ -72,7 +83,8 @@ export default compose(
             steps: state.container.get('steps')
         }),
         dispatch => ({
-
+            ContainerAction: bindActionCreators(container, dispatch),
+            formDestroy: name => dispatch(destroy(name))
         })
     )
 )(ContainerNewPage)
