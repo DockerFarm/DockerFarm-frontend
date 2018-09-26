@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { injectIntl } from 'react-intl';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
-import { Segment, Header, Icon, Label, Table, Button} from 'semantic-ui-react';
+import { Segment, Header, Icon, Label, Table, Button, Menu} from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
 import * as container from 'store/modules/container';
 import * as common from 'store/modules/common';
@@ -14,7 +14,7 @@ import { SectionHeader } from 'components/base/ui/header';
 
 
 
-class ContainerDetailPage extends Component {
+class InfoPanel extends Component {
 
     async componentDidMount() {
         const { ContainerAction, CommonAction, match } = this.props
@@ -48,33 +48,36 @@ class ContainerDetailPage extends Component {
     }
 
     render() {
-        const { inspectData, CommonAction, intl } = this.props;
-
+		const { 
+			inspectData, 
+			CommonAction, 
+			intl
+		} = this.props;
 
         return (
             <Aux>
-                <SectionHeader
-                    title={intl.formatMessage({id: 'CON_INFO_HEADER'})}
-                    icon='list'
-                />
-                <ContainerInfo 
-                    {...inspectData.get('info').toJS()}
-                    onCommand={this.handleCommand}
-                />
-                <SectionHeader
-                    title={intl.formatMessage({id: 'CON_DETAIL_HEADER'})}
-                    icon='list'
-                />
-                <ContainerDetail 
-                    {...inspectData.get('detail').toJS()}
-                />
-                <SectionHeader
-                    title={intl.formatMessage({id: 'CON_VOLUME_HEADER'})}
-                    icon='hdd'
-                />
-                <ContainerVolume 
-                    volume={inspectData.get('volume').toJS()}
-                />                        
+				<SectionHeader
+					title={intl.formatMessage({id: 'CON_INFO_HEADER'})}
+					icon='list'
+				/>
+				<ContainerInfo 
+					{...inspectData.get('info').toJS()}
+					onCommand={this.handleCommand}
+				/>
+				<SectionHeader
+					title={intl.formatMessage({id: 'CON_DETAIL_HEADER'})}
+					icon='list'
+				/>
+				<ContainerDetail 
+					{...inspectData.get('detail').toJS()}
+				/>
+				<SectionHeader
+					title={intl.formatMessage({id: 'CON_VOLUME_HEADER'})}
+					icon='hdd'
+				/>
+				<ContainerVolume 
+					volume={inspectData.get('volume').toJS()}
+				/>                        
             </Aux>
         )
     }
@@ -93,4 +96,4 @@ export default compose(
             CommonAction: bindActionCreators(common, dispatch) 
         })
     )
-)(ContainerDetailPage);
+)(InfoPanel);

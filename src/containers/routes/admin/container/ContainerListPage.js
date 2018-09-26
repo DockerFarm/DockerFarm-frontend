@@ -120,7 +120,7 @@ class ContainerPage extends Component {
                                 template: ({id, name}) => (
                                     <Aux>
                                         <LinkTitle 
-                                            to={`/admin/containers/${id}`} 
+											to={`/admin/containers/${id}/info`} 
                                             label={name}
                                         />
                                         <Icon 
