@@ -6,6 +6,7 @@ export default {
     'MENU_IMAGE': '이미지 관리',
     'MENU_NETWORK': '네트워크 관리',
     'MENU_VOLUME': '볼륨관리',
+    'MENU_EVENT': '이벤트',
     'MENU_LIBRARY': '라이브러리',
     'MENU_SETTING': '설정',
     'MENU_ENDPOINT': '엔드포인트',
