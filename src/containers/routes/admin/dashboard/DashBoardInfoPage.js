@@ -50,16 +50,21 @@ const DescriptionList = styled(List)`
 
 class DashBoardInfoPage extends Component {
     async componentDidMount() {
-        const { DashboardAction } = this.props;
+		const { 
+			DashboardAction
+		} = this.props;
         try {
             await DashboardAction.getDashBoardInfo();
         } catch (e) {
-
         }
     }
 
     render() {
-        const { data, user, intl } = this.props;
+		const { 
+			data, 
+			user, 
+			intl
+		} = this.props;
         
         const { 
             name,
@@ -83,6 +88,7 @@ class DashBoardInfoPage extends Component {
             os,
             arch
         } = data.getIn(['engine', 'version']).toJS();
+
 
 
         return (
@@ -250,10 +256,10 @@ export default compose(
     connect(
         state => ({
             data: state.dashboard.get('data'),
-            user: state.user.get('user')
+			user: state.user.get('user')
         }),
         dispatch => ({
-            DashboardAction: bindActionCreators(dashboard, dispatch)
+			DashboardAction: bindActionCreators(dashboard, dispatch),
         })
     )
 

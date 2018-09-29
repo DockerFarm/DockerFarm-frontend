@@ -16,7 +16,8 @@ import {
     LibraryPage,
     DashBoardPage,
     EndpointPage,
-    RegistryPage
+	RegistryPage,
+	EventPage
 } from './admin';
 import locale from 'locale';
 import { Logo } from 'components/base/ui';
@@ -111,6 +112,10 @@ class MainPage extends Component {
                         <Icon name='hdd'/>
                         {intl.formatMessage({ id : 'MENU_VOLUME'})}
                     </MenuItem>
+                    <MenuItem as={NavLink} to='/admin/events'>
+                        <Icon name='bell'/>
+                        {intl.formatMessage({ id : 'MENU_EVENT'})}
+                    </MenuItem>
                     <MenuItem as={NavLink} to='/admin/library'>
                         <Icon name='chart area'/>
                         {intl.formatMessage({ id : 'MENU_LIBRARY'})}
@@ -167,6 +172,7 @@ class MainPage extends Component {
                             <Route path='/admin/images' component={ImagePage}/>
                             <Route path='/admin/networks' component={NetworkPage}/>
                             <Route path='/admin/volumes' component={VolumePage}/>
+                            <Route path='/admin/events' component={EventPage}/>
                             <Route path='/admin/library' component={LibraryPage}/>
                             <Route path='/admin/settings' component={SettingPage}/>
                             <Route path='/admin/endpoints' component={EndpointPage}/>

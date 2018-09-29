@@ -7,6 +7,7 @@ import LibraryPage from './library';
 import DashBoardPage from './dashboard';
 import EndpointPage from './endpoint';
 import RegistryPage from './registry';
+import EventPage from './event';
 
 export {
     SettingPage,
@@ -17,5 +18,6 @@ export {
     LibraryPage,
     DashBoardPage,
     EndpointPage,
-    RegistryPage
+	RegistryPage,
+	EventPage
 };

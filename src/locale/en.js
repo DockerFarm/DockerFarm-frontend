@@ -6,6 +6,7 @@ export default {
     'MENU_IMAGE': 'Images',
     'MENU_NETWORK': 'Networks',
     'MENU_VOLUME': 'Volumes',
+    'MENU_EVENT': 'Events',
     'MENU_LIBRARY': 'Library',
     'MENU_SETTING': 'Settings',
     'MENU_ENDPOINT': 'Endpoints',

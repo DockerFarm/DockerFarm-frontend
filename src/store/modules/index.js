@@ -13,6 +13,7 @@ import volume from './volume';
 import library from './library';
 import dashboard from './dashboard';
 import registry from './registry';
+import event from './event';
 
 export default combineReducers({
     auth,
@@ -26,6 +27,7 @@ export default combineReducers({
     library,
     dashboard,
     registry,
+	event,
     intl: intlReducer,
     form: formReducer,
     pender: penderReducer

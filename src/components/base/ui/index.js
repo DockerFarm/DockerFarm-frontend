@@ -8,6 +8,7 @@ import LogOutput from './LogOutput';
 import ButtonWrapper from './ButtonWrapper';
 import InfoTable from './InfoTable';
 import RadioGroup from './RadioGroup';
+import Box from './Box';
 
 export {
     Logo,
@@ -19,5 +20,6 @@ export {
     ImageLoader,
     LogOutput,
     ButtonWrapper,
-    RadioGroup
+	RadioGroup,
+	Box
 }
