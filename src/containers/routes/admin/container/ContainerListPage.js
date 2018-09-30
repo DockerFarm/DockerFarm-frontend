@@ -172,8 +172,9 @@ class ContainerPage extends Component {
                                 width: '80px',
                                 cellAlign: 'center',
                                 template: row => (
-                                    row.port.map(v => (
+                                    row.port.map((v,i) => (
                                         <Label 
+                                            key={i}
                                             color='blue' 
                                             style={{marginBottom:'5px'}}
                                         >

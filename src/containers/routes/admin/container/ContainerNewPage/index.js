@@ -52,8 +52,7 @@ class ContainerNewPage extends Component {
                     {
                         stepArr.map((v,i) => (
                             <Step 
-                                // as={Link}
-                                // to={`/admin/containers/new/step${i+1}`}
+                                key={i}
                                 completed={steps.indexOf(i+1) !== -1}>
                                 <Step.Content>
                                     <Step.Title>{v.title}</Step.Title>

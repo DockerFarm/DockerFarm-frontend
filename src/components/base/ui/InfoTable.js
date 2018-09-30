@@ -16,7 +16,7 @@ const InfoTable = ({
         <colgroup>
             {
                 widths.map((v,i) => (
-                    <col width={`${v}px`}></col>
+                    <col key={i} width={`${v}px`}></col>
                 ))
             }
         </colgroup>

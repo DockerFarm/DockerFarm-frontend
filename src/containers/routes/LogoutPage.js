@@ -18,7 +18,6 @@ class LogoutPage extends Component {
             UserAction.setUserInfo(null);
             history.push('/login');
         } catch(e) {
-            console.error(e);
         }
     }
 
