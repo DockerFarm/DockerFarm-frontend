@@ -149,6 +149,7 @@ class MainPage extends Component {
                                     <a 
                                         href='https://github.com/DockerFarm'
                                         target='_blank' 
+                                        rel="noopener noreferrer"
                                         style={{ color: 'white', textDecoration:'none'}
                                      }>
                                         <Icon 

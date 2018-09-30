@@ -12,7 +12,7 @@ export default function withAuth(SecretComponent) {
         //UserInfo load
         async componentDidMount() {
             const { UserAction } = this.props;
-            try{ 
+            try{
                 await UserAction.selectMyInfo();
             }catch(e) {
 
@@ -21,8 +21,8 @@ export default function withAuth(SecretComponent) {
 
         render() {
             const { user, processed } = this.props;
-            let renderComponent = null; 
-            
+            let renderComponent = null;
+
             if( processed ) {
                 if(!user || !user.get('email')) {
                     renderComponent = <Redirect to='/login'/>;
@@ -36,15 +36,15 @@ export default function withAuth(SecretComponent) {
     }
 
     return compose(
-        withRouter, 
+        withRouter,
         connect(
             state => ({
                 user: state.user.get('user'),
                 processed: state.user.get('processed')
             }),
-            dispatch => ({ 
+            dispatch => ({
                 UserAction: bindActionCreators(user, dispatch)
             })
         )
     )(AuthComponent);
-};
+}

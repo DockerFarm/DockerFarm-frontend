@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 class ImagePullModal extends Component {
 
     componentDidMount() {
-        const { 
+        const {
             setDone,
             onDone
         } = this.props;
@@ -21,7 +21,7 @@ class ImagePullModal extends Component {
     }
 
 
-    componentWillUpdate(nextProps, nextState) {
+    getSnapshotBeforeUpdate(nextProps, nextState) {
         const { setStatus } = this.props;
         if( this.props.image !== nextProps.image ) {
             setStatus({
@@ -52,7 +52,7 @@ class ImagePullModal extends Component {
 
         const { name, description } = image.toJS();
         return (
-            <Modal 
+            <Modal
                 open={show}
                 closeIcon
                 onClose={onClose}
@@ -64,14 +64,14 @@ class ImagePullModal extends Component {
                     <List>
                         <List.Item>{description}</List.Item>
                         <List.Item>
-                            <Button 
-                                color='blue' 
+                            <Button
+                                color='blue'
                                 size='tiny'
                                 type='button'
                                 onClick={this.handlePull}
                                 loading={loading}
                              >
-                                <Icon name='download' /> 
+                                <Icon name='download' />
                                 Pull Image
                             </Button>
                             <Loader active inline inverted/>
@@ -79,8 +79,8 @@ class ImagePullModal extends Component {
                         <List.Item>
                             <LogOutput height='400px'>
                                 {
-                                    status.map( v => (
-                                        <div>
+                                    status.map( (v,i) => (
+                                        <div key={i}>
                                             {v.status} {v.progress}
                                         </div>
                                     ))

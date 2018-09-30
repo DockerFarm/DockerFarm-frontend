@@ -3,6 +3,9 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
     border: 1px solid #ddd;
+    background: #333;
+    color:white;
+    padding:3px;
     height: ${props => props.height || 'auto'};
     overflow-y:scroll;
 `
@@ -21,11 +24,11 @@ class LogOutput extends Component {
                 current.scrollTop = current.scrollHeight
         }
     }
-    
+
     render() {
         return (
-            <Wrapper 
-                innerRef={this.wrapperRef} 
+            <Wrapper
+                innerRef={this.wrapperRef}
                 height={this.props.height}
             >
                 {this.props.children}

@@ -144,8 +144,8 @@ class ImageBuildPage extends Component {
                                 height="600px"
                             >
                                 {
-                                    status.map( v => (
-                                        <div>
+                                    status.map( (v,i) => (
+                                        <div key={i}>
                                             {v.message} {v.stream} {v.status} {v.progress}
                                         </div>
                                     ))

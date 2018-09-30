@@ -39,7 +39,7 @@ const initialState = Map({
         show: false,
         name: '',
         data: Map({})
-    })
+	}),
 });
 
 export default handleActions({
@@ -72,5 +72,5 @@ export default handleActions({
         onSuccess(state, action) {
             return state.set('inspectData', fromJS(action.payload.data.result));
         }
-    })
+	})
 }, initialState);
