@@ -16,20 +16,6 @@ import { SectionHeader } from 'components/base/ui/header';
 
 class InfoPanel extends Component {
 
-    async componentDidMount() {
-        const { ContainerAction, CommonAction, match } = this.props
-        try {
-            await ContainerAction.getContainerInfo(match.params.id)
-            CommonAction.updateMenuTitle({
-                index: 1,
-                menu: {
-                    title: this.props.inspectData.getIn(['info','name'])
-                }
-            })
-        } catch(e) {
-
-        }
-    }
     
     handleCommand = async command => {
         const { ContainerAction, history, match } = this.props;

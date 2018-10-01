@@ -3,6 +3,7 @@ export default {
     // Side bar menu
     'MENU_DASHBOARD': '대쉬보드',
     'MENU_CONTAINER': '컨테이너 관리',
+    'MENU_SWARM': '스웜 관리',
     'MENU_IMAGE': '이미지 관리',
     'MENU_NETWORK': '네트워크 관리',
     'MENU_VOLUME': '볼륨관리',
@@ -12,7 +13,7 @@ export default {
     'MENU_ENDPOINT': '엔드포인트',
     'MENU_REGISTRY': '레지스트리',
 
-    //GNB 
+    //GNB
     'GNB_LOGOUT': '로그아웃',
 
     //DashBoard Page
@@ -29,7 +30,7 @@ export default {
     'DB_NODE_CPU': 'Node CPU',
     'DB_NODE_MEMORY': 'Node Memory',
     'DB_ENGINE_HEADER': 'Engine 정보',
-    
+
 
     //Container Management
     'CON_LIST_HEADER': '컨테이너 목록',

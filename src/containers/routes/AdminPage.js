@@ -100,6 +100,10 @@ class MainPage extends Component {
                         <Icon name='th list' />
                         {intl.formatMessage({ id : 'MENU_CONTAINER'})}
                     </MenuItem>
+                    <MenuItem as={NavLink} to='/admin/swarms' >
+                        <Icon name='server' />
+                        {intl.formatMessage({ id : 'MENU_SWARM'})}
+                    </MenuItem>
                     <MenuItem as={NavLink} to='/admin/images'>
                         <Icon name='clone'/>
                         {intl.formatMessage({ id : 'MENU_IMAGE'})}
@@ -170,6 +174,7 @@ class MainPage extends Component {
                         <Switch>
                             <Route path='/admin/dashboard' component={DashBoardPage} />
                             <Route path='/admin/containers' component={ContainerPage}/>
+                            <Route path='/admin/swarms' component={ContainerPage}/>
                             <Route path='/admin/images' component={ImagePage}/>
                             <Route path='/admin/networks' component={NetworkPage}/>
                             <Route path='/admin/volumes' component={VolumePage}/>

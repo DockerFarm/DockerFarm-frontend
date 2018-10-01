@@ -3,6 +3,7 @@ export default {
     // Side bar menu
     'MENU_DASHBOARD': 'Dashboard',
     'MENU_CONTAINER': 'Containers',
+    'MENU_SWARM': 'Swarms',
     'MENU_IMAGE': 'Images',
     'MENU_NETWORK': 'Networks',
     'MENU_VOLUME': 'Volumes',
@@ -12,7 +13,7 @@ export default {
     'MENU_ENDPOINT': 'Endpoints',
     'MENU_REGISTRY': 'Registries',
 
-    //GNB 
+    //GNB
     'GNB_LOGOUT': 'Logout',
 
     //DashBoard Page
