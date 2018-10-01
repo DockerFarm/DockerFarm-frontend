@@ -12,6 +12,10 @@ const Wrapper = styled.div`
 
 class LogOutput extends Component {
 
+    static defaultProps = {
+        autoScroll: true
+    }
+
     constructor(props) {
         super(props);
         this.wrapperRef = React.createRef();
@@ -20,7 +24,7 @@ class LogOutput extends Component {
     componentDidUpdate(nextProps, nextState) {
         if( this.props.children !== nextProps.children ) {
             const { current } = this.wrapperRef;
-            if( current )
+            if( current && this.props.autoScroll )
                 current.scrollTop = current.scrollHeight
         }
     }
