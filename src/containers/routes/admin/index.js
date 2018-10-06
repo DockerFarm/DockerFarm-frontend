@@ -7,6 +7,7 @@ import LibraryPage from './library';
 import DashBoardPage from './dashboard';
 import EndpointPage from './endpoint';
 import RegistryPage from './registry';
+import SwarmPage from './swarm';
 import EventPage from './event';
 
 export {
@@ -16,6 +17,7 @@ export {
     NetworkPage,
     VolumePage,
     LibraryPage,
+    SwarmPage,
     DashBoardPage,
     EndpointPage,
 	RegistryPage,

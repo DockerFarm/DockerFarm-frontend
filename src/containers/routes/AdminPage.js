@@ -17,7 +17,8 @@ import {
     DashBoardPage,
     EndpointPage,
 	RegistryPage,
-	EventPage
+    EventPage,
+    SwarmPage
 } from './admin';
 import locale from 'locale';
 import { Logo } from 'components/base/ui';
@@ -174,7 +175,7 @@ class MainPage extends Component {
                         <Switch>
                             <Route path='/admin/dashboard' component={DashBoardPage} />
                             <Route path='/admin/containers' component={ContainerPage}/>
-                            <Route path='/admin/swarms' component={ContainerPage}/>
+                            <Route path='/admin/swarms' component={SwarmPage}/>
                             <Route path='/admin/images' component={ImagePage}/>
                             <Route path='/admin/networks' component={NetworkPage}/>
                             <Route path='/admin/volumes' component={VolumePage}/>
