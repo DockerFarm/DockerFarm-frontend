@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { injectIntl } from 'react-intl';
-import RegistryForm from './RegistryForm';
+import RegistryForm from '../RegistryForm';
 import { Segment, Button, Icon } from 'semantic-ui-react';
 import { Aux } from 'components/hoc';
 import { SectionHeader } from 'components/base/ui/header';
@@ -8,6 +8,7 @@ import { withRouter, Link } from 'react-router-dom';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import { reset, initialize, submit } from 'redux-form/immutable';
+import * as common from 'store/modules/common';
 import * as registry from 'store/modules/registry';
 import { bindActionCreators } from 'redux';
 import { toast } from 'react-toastify';
@@ -17,10 +18,10 @@ const ButtonWrapper = styled.div`
     overflow:hidden;
 `
 
-class RegistryEditPage extends Component {
+class InfoPanel extends Component {
 
     async componentDidMount() {
-        const { RegistryAction, setForm, match } = this.props;
+        const { RegistryAction, CommonAction, setForm, match } = this.props;
         
         try { 
             await RegistryAction.getRegistryInfo(match.params.id);            
@@ -132,6 +133,7 @@ export default compose(
         }),
         dispatch => ({
             RegistryAction: bindActionCreators(registry, dispatch),
+            CommonAction: bindActionCreators(common, dispatch),
             setForm: data => {
                 dispatch(initialize('registry',data));
             },
@@ -143,4 +145,4 @@ export default compose(
             }
         })
     )
-)(RegistryEditPage);
+)(InfoPanel);
