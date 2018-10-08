@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import RegistryListPage from './RegistryListPage';
 import RegistryNewPage from './RegistryNewPage';
-import RegistryEditPage from './RegistryEditPage';
+import RegistryDetailPage from './RegistryDetailPage';
 import * as common from 'store/modules/common';
 
 class RegistryPage extends Component {
@@ -27,7 +27,7 @@ class RegistryPage extends Component {
             <Switch>
                 <Route exact path={`${match.path}`} component={RegistryListPage} />
                 <Route exact path={`${match.path}/new`} component={RegistryNewPage} />
-                <Route exact path={`${match.path}/:id`} component={RegistryEditPage} />
+                <Route path={`${match.path}/:id`} component={RegistryDetailPage} />
             </Switch>
         )
     }

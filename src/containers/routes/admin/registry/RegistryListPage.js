@@ -114,7 +114,7 @@ class RegistryListPage extends Component {
                                 <Table.Row key={i}>
                                     <Table.Cell>
                                         <LinkTitle 
-                                            to={`${match.path}/${v._id}`}
+                                            to={`${match.path}/${v._id}/info`}
                                             label={v.name}
                                         />
                                     </Table.Cell>
