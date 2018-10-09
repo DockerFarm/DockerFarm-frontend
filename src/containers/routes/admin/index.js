@@ -8,6 +8,7 @@ import DashBoardPage from './dashboard';
 import EndpointPage from './endpoint';
 import RegistryPage from './registry';
 import SwarmPage from './swarm';
+import ServicePage from './service';
 import EventPage from './event';
 
 export {
@@ -21,5 +22,6 @@ export {
     DashBoardPage,
     EndpointPage,
 	RegistryPage,
-	EventPage
+    EventPage,
+    ServicePage
 };

@@ -5,14 +5,14 @@ import { compose } from 'recompose';
 import { Aux } from 'components/hoc';
 import { LogViewer } from 'containers/common';
 
-import * as ContainerApi from 'lib/api/container';
+import * as ServiceApi from 'lib/api/service';
 
 class LogPanel extends Component {
 
     handleGetLog = async _ => {
         const { match } = this.props;
         try {
-            const response = await ContainerApi.getContainerLog({
+            const response = await ServiceApi.getServiceLog({
                 id: match.params.id,
                 param: {
                     follow:0,
