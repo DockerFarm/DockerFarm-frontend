@@ -15,6 +15,7 @@ import dashboard from './dashboard';
 import registry from './registry';
 import event from './event';
 import swarm from './swarm';
+import service from './service';
 
 export default combineReducers({
     auth,
@@ -30,6 +31,7 @@ export default combineReducers({
     registry,
 	event,
     swarm,
+    service,
     intl: intlReducer,
     form: formReducer,
     pender: penderReducer

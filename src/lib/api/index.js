@@ -8,6 +8,7 @@ import * as LibraryApi from './library';
 import * as DashBoardApi from './dashboard';
 import * as RegistryApi from './registry';
 import * as SwarmApi from './swarm';
+import * as ServiceApi from './service';
 
 export {
     AuthApi,
@@ -19,5 +20,6 @@ export {
     LibraryApi,
     DashBoardApi,
     RegistryApi,
-    SwarmApi
+    SwarmApi,
+    ServiceApi
 };
