@@ -18,7 +18,8 @@ import {
     EndpointPage,
 	RegistryPage,
     EventPage,
-    SwarmPage
+    SwarmPage,
+    ServicePage
 } from './admin';
 import locale from 'locale';
 import { Logo } from 'components/base/ui';
@@ -105,6 +106,10 @@ class MainPage extends Component {
                         <Icon name='server' />
                         {intl.formatMessage({ id : 'MENU_SWARM'})}
                     </MenuItem>
+                    <MenuItem as={NavLink} to='/admin/services' >
+                        <Icon name='microchip' />
+                        {intl.formatMessage({ id : 'MENU_SERVICE'})}
+                    </MenuItem>
                     <MenuItem as={NavLink} to='/admin/images'>
                         <Icon name='clone'/>
                         {intl.formatMessage({ id : 'MENU_IMAGE'})}
@@ -176,6 +181,7 @@ class MainPage extends Component {
                             <Route path='/admin/dashboard' component={DashBoardPage} />
                             <Route path='/admin/containers' component={ContainerPage}/>
                             <Route path='/admin/swarms' component={SwarmPage}/>
+                            <Route path='/admin/services' component={ServicePage}/>
                             <Route path='/admin/images' component={ImagePage}/>
                             <Route path='/admin/networks' component={NetworkPage}/>
                             <Route path='/admin/volumes' component={VolumePage}/>
