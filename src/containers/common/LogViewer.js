@@ -28,8 +28,7 @@ class LogViewer extends Component {
                 const log = await this.props.getLog();
                 this.setState({
                     data: data
-                        .set('log', data.get('log')
-                        .concat(log))
+                        .set('log', log)
                 })
             } catch (e) {
                 /* handle error */

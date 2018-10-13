@@ -9,6 +9,7 @@ import * as DashBoardApi from './dashboard';
 import * as RegistryApi from './registry';
 import * as SwarmApi from './swarm';
 import * as ServiceApi from './service';
+import * as TaskApi from './task';
 
 export {
     AuthApi,
@@ -21,5 +22,6 @@ export {
     DashBoardApi,
     RegistryApi,
     SwarmApi,
-    ServiceApi
+    ServiceApi,
+    TaskApi
 };

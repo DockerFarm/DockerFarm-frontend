@@ -6,23 +6,33 @@ import { withRouter } from 'react-router-dom';
 import { injectIntl } from 'react-intl';
 import { SectionHeader } from 'components/base/ui/header';
 import { Aux } from 'components/hoc';
-import { InfoTable } from 'components/base/ui';
+import { InfoTable, LinkTitle } from 'components/base/ui';
+import DataTable from 'containers/ui/DataTable';
 import * as service from 'store/modules/service';
+import * as task from 'store/modules/task';
 
 class InfoPanel extends Component {
 
-    componentDidMount() {
-        const { ServiceAction, match } = this.props;
+    async componentDidMount() {
+        const { 
+            ServiceAction, 
+            TaskAction,
+            match 
+        } = this.props;
 
         try {
-            ServiceAction.getServiceInfo(match.params.id);
+            await ServiceAction.getServiceInfo(match.params.id);
+            await TaskAction.getTaskList(match.params.id);
         } catch(e) {
 
         }
     }
 
     render() {
-        const { inspectData } = this.props;
+        const { 
+            inspectData,
+            taskList
+        } = this.props;
         const {
             detail: {
                 name,
@@ -74,7 +84,51 @@ class InfoPanel extends Component {
                         }
                     ]}
                 />
-
+                <SectionHeader
+                   title='Task List' 
+                   icon='list'
+                />
+                <DataTable 
+                    data={taskList.toJS()}
+                    columns={[
+                        {
+                            header: 'Id',
+                            id: 'id',
+                            width: '100px',
+                            cellAlign: 'center',
+                            template: ({id}) => (
+                                <LinkTitle 
+                                    to={`/admin/task/${id}`}
+                                    label={id}
+                                />
+                            )
+                        },
+                        {
+                            header: 'Status',
+                            id: 'status',
+                            width: '100px',
+                            cellAlign: 'center'
+                        },
+                        {
+                            header: 'Slot',
+                            id: 'slot',
+                            width: '100px',
+                            cellAlign: 'center'
+                        },
+                        {
+                            header: 'UpdatedAt',
+                            id: 'updatedAt',
+                            width: '100px',
+                            cellAlign: 'center'
+                        },
+                        {
+                            header: 'NodeId',
+                            id: 'nodeId',
+                            width: '100px',
+                            cellAlign: 'center'
+                        }
+                    ]} 
+                />
             </Aux>
         )
     }
@@ -85,10 +139,12 @@ export default compose(
     injectIntl,
     connect(
         state => ({
+            taskList: state.task.get('list'),
             inspectData: state.service.get('inspectData')
         }),
         dispatch => ({
-            ServiceAction: bindActionCreators(service, dispatch)
+            ServiceAction: bindActionCreators(service, dispatch),
+            TaskAction: bindActionCreators(task, dispatch)
         })
     )
 )(InfoPanel);
