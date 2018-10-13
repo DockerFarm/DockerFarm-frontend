@@ -73,6 +73,7 @@ export default {
     //REGISTRY
     'REG_LIST_HEADER': 'Registry List',
     'REG_INFO_HEADER': 'Registry Info',
+    'REG_CREATE_HEADER': 'Registry Add',
     'REG_BTN_ADD': 'Add Registry',
 
     //EndPoint

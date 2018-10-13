@@ -19,7 +19,8 @@ import {
 	RegistryPage,
     EventPage,
     SwarmPage,
-    ServicePage
+    ServicePage,
+    TaskInfoPage
 } from './admin';
 import locale from 'locale';
 import { Logo } from 'components/base/ui';
@@ -182,6 +183,7 @@ class MainPage extends Component {
                             <Route path='/admin/containers' component={ContainerPage}/>
                             <Route path='/admin/swarms' component={SwarmPage}/>
                             <Route path='/admin/services' component={ServicePage}/>
+                            <Route path='/admin/task/:id' component={TaskInfoPage}/>
                             <Route path='/admin/images' component={ImagePage}/>
                             <Route path='/admin/networks' component={NetworkPage}/>
                             <Route path='/admin/volumes' component={VolumePage}/>

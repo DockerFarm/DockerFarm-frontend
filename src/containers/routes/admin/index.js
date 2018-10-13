@@ -10,6 +10,7 @@ import RegistryPage from './registry';
 import SwarmPage from './swarm';
 import ServicePage from './service';
 import EventPage from './event';
+import { TaskInfoPage } from './task';
 
 export {
     SettingPage,
@@ -23,5 +24,6 @@ export {
     EndpointPage,
 	RegistryPage,
     EventPage,
-    ServicePage
+    ServicePage,
+    TaskInfoPage
 };

@@ -4,6 +4,7 @@ export default {
     'MENU_DASHBOARD': '대쉬보드',
     'MENU_CONTAINER': '컨테이너 관리',
     'MENU_SWARM': '스웜 관리',
+    'MENU_TASK': '태스크 관리',
     'MENU_SERVICE': '서비스 관리',
     'MENU_IMAGE': '이미지 관리',
     'MENU_NETWORK': '네트워크 관리',
@@ -103,6 +104,7 @@ export default {
     //REGISTRY
     'REG_LIST_HEADER': '레지스트리 목록',
     'REG_INFO_HEADER': '레지스트리 정보',
+    'REG_CREATE_HEADER': '레지스트리 생성',
     'REG_BTN_ADD': '레지스트리 생성',
 
     'SERVICE_LIST_HEADER': '서비스 목록',
