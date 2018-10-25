@@ -56,7 +56,7 @@ class LoginPage extends Component {
 
 
     onGoogleLogin = () => {
-        window.location.href = `${config.backendUrl}/auth/google`
+        window.location.href = `${config.backendUrl}/auth/google`;
     }
 
     render() {

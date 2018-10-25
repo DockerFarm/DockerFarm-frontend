@@ -13,6 +13,65 @@ import { InfoTable } from 'components/base/ui';
 import { toast } from 'react-toastify';
 import { keys } from 'lodash';
 import * as swarm from 'store/modules/swarm';
+import { Map } from 'immutable';
+
+let SwarmJoinForm = ({
+    handleSubmit,
+    onClose
+}) => (
+    <Form onSubmit={handleSubmit}>
+        <Form.Group>
+            <Form.Field inline>
+                <label>ListenAddr</label>
+                <Field 
+                    name='listenAddr' 
+                    component={ControlInput}
+                />
+            </Form.Field>
+            <Form.Field inline>
+                <label>AdvertiseAddr</label>
+                <Field 
+                    name='advertiseAddr' 
+                    component={ControlInput}
+                />
+            </Form.Field>
+            <Form.Field inline>
+                <label>RemoteAddr</label>
+                <Field 
+                    name='remoteAddr' 
+                    component={ControlInput}
+                />
+            </Form.Field>
+        </Form.Group>
+        <Form.Group>
+            <Form.Field inline width={10}>
+                <label>JoinToken</label>
+                <Field 
+                    name='token' 
+                    component={ControlInput}
+                />
+            </Form.Field>
+        </Form.Group>
+        <Form.Group>
+            <Button
+                type='submit'
+                color='blue'
+            >
+                Ok
+            </Button>
+            <Button
+                onClick={onClose}
+                type='button'
+            >
+                Cancel
+            </Button>
+        </Form.Group>
+    </Form>
+);
+
+SwarmJoinForm = reduxForm({
+    form: 'swarmjoin',
+})(SwarmJoinForm);
 
 let SwarmInitForm = ({
     handleSubmit,
@@ -112,7 +171,10 @@ const SwarmTokenTable = ({
 class SwarmInfoPage extends Component {
 
     state = {
-       isOpen: false
+        data: Map({
+            initFormOpen: false,
+            joinFormOpen: false
+        })
     }
 
     componentDidMount() {
@@ -127,14 +189,14 @@ class SwarmInfoPage extends Component {
     }
 
     swarmInit = async form => {
-        const { SwarmAction } = this.props;
+        const { SwarmAction, data } = this.props;
 
         try {
             await SwarmAction.init(form.toJS());    
             await SwarmAction.getSwarmInfo();
             await SwarmAction.getSwarmToken();
             this.setState({
-                isOpen: false
+                data: data.set('initFormOpen', false)
             })
             toast.success('Swarm Initialize Success!');
         } catch (e) {
@@ -155,6 +217,22 @@ class SwarmInfoPage extends Component {
         }
     }
 
+    swarmJoin = async form => {
+        const { SwarmAction, data } = this.props;
+
+        try {
+            await SwarmAction.join(form.toJS());    
+            await SwarmAction.getSwarmInfo();
+            await SwarmAction.getSwarmToken();
+            this.setState({
+                data: data.set('joinFormOpen', false)
+            })
+            toast.success('Swarm Join Success!');
+        } catch (e) {
+            /* handle error */
+        }
+    }
+
     swarmToken = async _ => {
         const { SwarmAction } = this.props;
 
@@ -165,21 +243,24 @@ class SwarmInfoPage extends Component {
         }
     }
 
-    close = _ => {
+    close = name =>  _ => {
+        const { data } = this.state;
         this.setState({
-            isOpen:false
-        });
+            data: data.set(name, false)
+        })
     }
 
-    open = _ => {
+    open = name => _ => {
+        const { data } = this.state;
         this.setState({
-            isOpen:true
+            data: data.set(name, true)
         })
     }
 
     render() {
         const token = this.props.token.toJS();
         const info = this.props.info.toJS();
+        const { data } = this.state;
         const isSwarmActive = !!info.nodeId;
         return (
             <Aux>
@@ -209,7 +290,7 @@ class SwarmInfoPage extends Component {
                 />
                 <Button
                     color='blue'
-                    onClick={this.open}
+                    onClick={this.open('initFormOpen')}
                 >
                     Init
                 </Button>
@@ -219,11 +300,16 @@ class SwarmInfoPage extends Component {
                 >
                     Leave
                 </Button>
+                <Button
+                    onClick={this.open('joinFormOpen')}
+                >
+                    Join
+                </Button>
                 
                 <Modal 
-                    open={this.state.isOpen}
+                    open={data.get('initFormOpen')}
                     close
-                    onClose={this.close}
+                    onClose={this.close('initFormOpen')}
                 >
                     <Modal.Header>
                         Initializing Swarm Node
@@ -231,6 +317,21 @@ class SwarmInfoPage extends Component {
                     <Modal.Content>
                         <SwarmInitForm
                             onSubmit={this.swarmInit} 
+                            onClose={this.close}
+                        />
+                    </Modal.Content>
+                </Modal>
+                <Modal 
+                    open={data.get('joinFormOpen')}
+                    close
+                    onClose={this.close('joinFormOpen')}
+                >
+                    <Modal.Header>
+                        Join Swarm
+                    </Modal.Header>
+                    <Modal.Content>
+                        <SwarmJoinForm
+                            onSubmit={this.swarmJoin} 
                             onClose={this.close}
                         />
                     </Modal.Content>
