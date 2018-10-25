@@ -1,9 +1,9 @@
 const config = {
     development : {
-        backendUrl: 'http://api.dockerfarm.cf'
+        backendUrl: 'http://api.dockerfarm.io'
     },
     production : {
-        backendUrl : 'http://api.dockerfarm.cf'
+        backendUrl : 'http://api.dockerfarm.io'
     }
 }
 
