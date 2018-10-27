@@ -1,6 +1,7 @@
 # DockerFarm-frontend
 
-![Build Status](http://jenkins.dockerfarm.io/buildStatus/icon?job=DockerFarm-frontend/master)
+![Build Status](https://jenkins.dockerfarm.io/buildStatus/icon?job=DockerFarm-frontend/master)
+[![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
 
 ![image](https://user-images.githubusercontent.com/2585676/45164345-3824ac00-b22d-11e8-8582-f401e7b9dca8.png)
 
