@@ -1,12 +1,12 @@
 const config = {
     development : {
-        backendUrl: 'http://api.dockerfarm.io'
+        backendUrl: 'http://localhost:3000'
     },
     production : {
-        backendUrl : 'http://api.dockerfarm.io'
+        backendUrl : 'https://api.dockerfarm.io'
     }
 }
 
-const env = process.env.NODE_ENV || 'dev';
+const env = process.env.NODE_ENV || 'development';
 
 export default config[env];
