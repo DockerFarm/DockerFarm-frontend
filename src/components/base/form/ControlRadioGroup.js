@@ -3,26 +3,27 @@ import { RadioGroup } from 'components/base/ui';
 import ErrorMessage from './ErrorMessage';
 
 const ControlRadio = ({
-    input, 
-    labels, 
+    input,
+    labels,
     values,
     defaultValue,
-    meta, 
-    ...custom 
+    meta,
+    ...custom
 }) => {
     return (
         <React.Fragment>
-            <RadioGroup 
-                labels={labels}  
+            <RadioGroup
+                labels={labels}
                 values={values}
                 defaultValue={defaultValue}
+                onInit={ _ => input.onChange(defaultValue)}
                 onChange={ value => input.onChange(value)}
                 {...custom}
             />
             <ErrorMessage
                 {...meta}
             />
-        </React.Fragment>    
+        </React.Fragment>
     )
 }
 
