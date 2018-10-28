@@ -36,7 +36,7 @@ class LogViewer extends Component {
         }
 
         this.timer = setInterval(requestLog, 5000);
-        requestLog();
+        setTimeout(requestLog, 100);
     }
 
     componentWillUnmount() {

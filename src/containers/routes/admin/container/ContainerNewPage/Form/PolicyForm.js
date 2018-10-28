@@ -19,8 +19,8 @@ class EnvForm extends Component {
                 <Field 
                     name='restartPolicy'
                     labels={['Never', 'Always', 'On Failure', 'Unless Stopped']}
-                    values={['never', 'always', 'onFailure', 'unlessStopped']}
-                    defaultValue='never'
+                    values={['', 'always', 'onFailure', 'unlessStopped']}
+                    defaultValue='always'
                     component={ControlRadioGroup}
                 />
            </Aux> 

@@ -4,7 +4,7 @@ import { Aux } from 'components/hoc';
 import { reduxForm, getFormValues} from 'redux-form/immutable';
 import { compose } from 'recompose';
 import { injectIntl } from 'react-intl';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { SectionHeader} from 'components/base/ui/header'
 import { ButtonWrapper } from 'components/base/ui';
 import { connect } from 'react-redux';
@@ -64,7 +64,8 @@ class Step3 extends Component {
                         <Button.Group floated='right'>
                             <Button
                                 size='tiny'
-                                onClick={this.handleNextStep} 
+                                as={Link}
+                                to={'/admin/containers/new/step2'}
                             >
                                 <Icon 
                                     name='arrow left'

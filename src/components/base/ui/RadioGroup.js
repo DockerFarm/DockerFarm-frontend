@@ -9,6 +9,12 @@ class RadioGroup extends Component {
             value: props.defaultValue
         }
     }
+
+    componentDidMount() {
+        if(this.props.onInit) {
+            this.props.onInit();
+        }
+    }
     
     render() {
         const {
