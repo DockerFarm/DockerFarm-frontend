@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { fontSize } from 'styled-system';
 
 const LinkTitle = ({
     to,
@@ -28,6 +29,7 @@ const LinkTitle = ({
 export default styled(LinkTitle)`
     cursor:pointer;
     text-decoration:underline;
+    ${fontSize}
     &:hover{
         text-decoration:underline;
     }

@@ -120,6 +120,7 @@ export default {
     'EP_MSG_REGISTER': '엔드포인트가 등록 되었습니다.',
     'EP_MSG_UPDATE': '엔드포인트가 수정 되었습니다.',
     'EP_MSG_DELETE': '엔드포인트가 삭제 되었습니다.',
+    'EP_MSG_GUIDE': '엔드포인트 등록 후 이용하실 수 있습니다.',
 
     //Common
     'BTN_REMOVE': '삭제',
@@ -132,6 +133,7 @@ export default {
     'BTN_GARBEGE_COLLECTION': '리소스 정리',
 
     'TABLE_NUMBER_OF_PAGES': '페이지 당',
+    'TABLE_NO_DATA': '조회된 데이터가 없습니다.',
 
     'CONFIRM_BTN_OK': '확인',
     'CONFIRM_BTN_CANCEL': '취소',

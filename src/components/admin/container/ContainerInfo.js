@@ -14,10 +14,11 @@ const GrpButton = ({
 }) => (
 
     <Button
+        size='tiny'
+        attached
         color={color}
         onClick={onClick}
         disabled={disabled}
-        type='button'
     >
         <Icon name={icon}/>{label}
    </Button>

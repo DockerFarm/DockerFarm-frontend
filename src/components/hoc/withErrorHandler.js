@@ -21,6 +21,7 @@ const withErrorHandler = (WrappedComponent) => {
                     const status = get(error, 'response.status' );
                     if( status === 401 ) {
                         toast.error('UnAuthorized');
+                        localStorage.setItem('user',null);
                         history.push('/login');
                     } else {
                         const message = get(error, 'response.data.message', error.response.data);

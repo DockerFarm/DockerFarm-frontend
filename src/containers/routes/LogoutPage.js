@@ -16,6 +16,7 @@ class LogoutPage extends Component {
         try {
             await AuthAction.logout();
             UserAction.setUserInfo(null);
+            localStorage.setItem('user', null);
             history.push('/login');
         } catch(e) {
         }
