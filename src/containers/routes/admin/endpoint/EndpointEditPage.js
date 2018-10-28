@@ -49,12 +49,12 @@ class EndpointEditPage extends Component {
         } = this.props;
 
         try {
-            await EndpointAction.deleteEndpoint(match.params.id);
+            await EndpointAction.removeEndpoint(match.params.id);
             toast.success(intl.formatMessage({id: 'EP_MSG_DELETE'}));
             await UserAction.selectMyInfo();
             history.push('/admin/endpoints');
         } catch(e) {
-
+            alert(e);
         }
     }
 
