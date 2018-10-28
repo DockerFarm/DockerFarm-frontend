@@ -39,10 +39,10 @@ class DataTable extends Component {
         const { data } = this.state;
         this.setState({
             data: data.set('currentPage', 1)
-                      .set('pageSize', value) 
+                      .set('pageSize', value)
         })
     }
-    
+
     handlePageChange = ({activePage}) => {
         const { data } = this.state;
         this.setState({
@@ -63,7 +63,7 @@ class DataTable extends Component {
                 data: data.update('checkedList', arr => arr.push(index))
             })
         }
-        
+
         if( this.props.onCheckChange ) {
             this.props.onCheckChange(this.state.data.get('checkedList').toJS());
         }
@@ -74,7 +74,7 @@ class DataTable extends Component {
         const { currentPage, pageSize, checkedList, allCheck } = this.state.data.toJS();
 
         let firstIndex = 0;
-        let lastIndex = data.length; 
+        let lastIndex = data.length;
         let checkedArray = checkedList.concat([]);
         let pageArray = [];
 
@@ -89,8 +89,8 @@ class DataTable extends Component {
 
         this.setState({
             data: this.state.data
-                        .set('checkedList', 
-                            !allCheck ? 
+                        .set('checkedList',
+                            !allCheck ?
                                 fromJS(union(checkedArray, pageArray)) :
                                 fromJS(difference(checkedArray, pageArray)))
                         .set('allCheck', !allCheck)
@@ -98,10 +98,10 @@ class DataTable extends Component {
     }
 
     render() {
-        const { 
-            data, 
-            columns, 
-            checkable, 
+        const {
+            data,
+            columns,
+            checkable,
             paging,
             intl
         } = this.props;
@@ -127,13 +127,13 @@ class DataTable extends Component {
         return (
             <Table fixed>
                     <colgroup>
-                        <If 
+                        <If
                             condition={checkable}
                             then={
                                 <col width='30px'></col>
                             }
                         />
-                        { 
+                        {
                             columns.map((column,i) => (
                                 <col key={i} width={column.width}></col>
                             ))
@@ -142,13 +142,13 @@ class DataTable extends Component {
                 <Table.Header>
                     <Table.Row>
                         <Aux>
-                            <If 
+                            <If
                                 condition={checkable}
                                 then={
                                     <Table.HeaderCell
                                         textAlign='center'
                                     >
-                                        <Checkbox 
+                                        <Checkbox
                                             name='allcheck'
                                             checked={allCheck}
                                             onClick={this.handleAllCheck}
@@ -160,30 +160,30 @@ class DataTable extends Component {
                             />
                             {
                                 columns.map( (column,i) => (
-                                        <Table.HeaderCell 
+                                        <Table.HeaderCell
                                             textAlign={column.headerAlign || 'center'}
                                             key={i}
                                         >
                                             {column.header}
                                         </Table.HeaderCell>
-                                )) 
+                                ))
                             }
-                        </Aux>                  
+                        </Aux>
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>
                     <If
-                        condition={currentDataList.length > 0} 
+                        condition={currentDataList.length > 0}
                         then={
                             currentDataList.map( (row, i) => (
                                 <Table.Row key={i}>
-                                    <If 
+                                    <If
                                         condition={checkable}
                                         then={
                                             <Table.Cell
                                                 textAlign='center'
                                             >
-                                                <Checkbox 
+                                                <Checkbox
                                                     checked={ checkedList.findIndex(v => v === (i+currentDataIndex)) !== -1}
                                                     onClick={ _ => this.handleCheck(i+currentDataIndex)}
                                                 />
@@ -192,12 +192,12 @@ class DataTable extends Component {
                                     />
                                     {
                                         columns.map( (column,i) => (
-                                            <Table.Cell 
+                                            <Table.Cell
                                                 textAlign={column.cellAlign || 'left'}
                                                 key={i}
                                             >
                                                 {
-                                                    column.template ? 
+                                                    column.template ?
                                                     column.template(row):
                                                     row[column.id]
                                                 }
@@ -210,19 +210,21 @@ class DataTable extends Component {
                         else={
 
                             <Table.Row>
-                                <Table.Cell colSpan={columns.length + (checkable ? 1 : 0)}>
+                                <Table.Cell
+                                    textAlign='center'
+                                    colSpan={columns.length + (checkable ? 1 : 0)}>
                                     {intl.formatMessage({id: 'TABLE_NO_DATA'})}
                                 </Table.Cell>
                             </Table.Row>
                         }
                     />
                 </Table.Body>
-                <If 
+                <If
                     condition={paging}
                     then={
                         <Table.Footer>
                             <Table.Row>
-                                <HeaderCell 
+                                <HeaderCell
                                     colSpan={columns.length + (checkable ? 1 : 0)}
                                 >
                                     <PagingWrapper>
@@ -230,13 +232,13 @@ class DataTable extends Component {
                                                 <label style={{marginRight: '6px'}}>
                                                 {intl.formatMessage({id: 'TABLE_NUMBER_OF_PAGES'})}
                                                 </label>
-                                                <Select 
+                                                <Select
                                                     value={pageSize}
                                                     onChange={ (e,props) => this.handlePageSizeChange(props)}
                                                     options={buildPageSizeOption(10)}
                                                 />
                                             </div>
-                                            <Pagination 
+                                            <Pagination
                                                 defaultActivePage={1}
                                                 totalPages={Math.ceil(data.length / pageSize)}
                                                 onPageChange={ (e,data) => this.handlePageChange(data)}

@@ -25,6 +25,7 @@ export default handleActions({
     ...pender({
         type: MY_INFO,
         onSuccess(state, action) {
+            localStorage.setItem('user', JSON.stringify(action.payload.data));
             return state.set('user', fromJS(action.payload.data))
                         .set('processed', true);
         },

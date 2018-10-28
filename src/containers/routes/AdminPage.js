@@ -24,6 +24,7 @@ import {
 } from './admin';
 import locale from 'locale';
 import { Logo } from 'components/base/ui';
+import { withEndpoint } from 'components/hoc';
 import { GlobalNavigationBar } from 'containers/routes/admin/header';
 import styled from 'styled-components';
 
@@ -179,17 +180,16 @@ class MainPage extends Component {
                     <GlobalNavigationBar />
                     <ContentWrapper>
                         <Switch>
-                            <Route path='/admin/dashboard' component={DashBoardPage} />
-                            <Route path='/admin/containers' component={ContainerPage}/>
-                            <Route path='/admin/swarms' component={SwarmPage}/>
-                            <Route path='/admin/services' component={ServicePage}/>
-                            <Route path='/admin/task/:id' component={TaskInfoPage}/>
-                            <Route path='/admin/images' component={ImagePage}/>
-                            <Route path='/admin/networks' component={NetworkPage}/>
-                            <Route path='/admin/volumes' component={VolumePage}/>
-                            <Route path='/admin/events' component={EventPage}/>
-                            <Route path='/admin/library' component={LibraryPage}/>
-                            <Route path='/admin/settings' component={SettingPage}/>
+                            <Route path='/admin/dashboard' component={withEndpoint(DashBoardPage)} />
+                            <Route path='/admin/containers' component={withEndpoint(ContainerPage)}/>
+                            <Route path='/admin/swarms' component={withEndpoint(SwarmPage)}/>
+                            <Route path='/admin/services' component={withEndpoint(ServicePage)}/>
+                            <Route path='/admin/task/:id' component={withEndpoint(TaskInfoPage)}/>
+                            <Route path='/admin/images' component={withEndpoint(ImagePage)}/>
+                            <Route path='/admin/networks' component={withEndpoint(NetworkPage)}/>
+                            <Route path='/admin/volumes' component={withEndpoint(VolumePage)}/>
+                            <Route path='/admin/events' component={withEndpoint(EventPage)}/>
+                            <Route path='/admin/library' component={withEndpoint(LibraryPage)}/>
                             <Route path='/admin/endpoints' component={EndpointPage}/>
                             <Route path='/admin/registries' component={RegistryPage}/>
                         </Switch>
