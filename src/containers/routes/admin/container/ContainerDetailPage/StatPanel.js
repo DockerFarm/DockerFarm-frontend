@@ -94,7 +94,7 @@ class StatPanel extends Component {
             /* handle error */
         }
         this.timerId = setInterval(requestStat, 5000);
-        requestStat();
+        setTimeout(requestStat, 100);
     }
 
     componentWillUnmount() {
