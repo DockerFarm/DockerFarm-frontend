@@ -37,7 +37,6 @@
 * immutable.js
 * react-intl
 
-## Browser Support
 
 ## Browsers support
 
