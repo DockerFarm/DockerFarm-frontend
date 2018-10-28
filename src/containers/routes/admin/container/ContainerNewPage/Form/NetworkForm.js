@@ -72,7 +72,7 @@ class Step3 extends Component {
                     <Form.Field width={5}>
                         <Field
                             label='Hostname'
-                            name='hostname'
+                            name='hostName'
                             component={ControlInput}
                         />
                     </Form.Field>
