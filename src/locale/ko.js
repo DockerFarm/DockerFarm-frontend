@@ -68,6 +68,7 @@ export default {
     'CON_STEP3_ADDDEVICE_LB': 'Device 추가',
     'CON_STEP3_OPTION_HEADER': '컨테이너 옵션설정(생략가능)',
     'CON_MSG_CREATE_SUCCESS': '컨테이너 생성완료',
+
     //Image Management
     'IMG_LIST_HEADER': '이미지 목록',
     'IMG_SEARCH_HEADER': '이미지 검색',
@@ -78,7 +79,6 @@ export default {
     'IMG_BTN_BUILD': '새 이미지 빌드',
     'IMG_BTN_BUILD_SAVE': '이미지 빌드',
 
-
     //Network Management
     'NET_LIST_HEADER': '네트워크 목록',
     'NET_CREATE_HEADER': '네트워크 생성',
@@ -88,7 +88,6 @@ export default {
     'NET_BTN_ADD': '네트워크 생성',
     'NET_BTN_DELETE': '네트워크 삭제',
     'NET_BTN_LEAVE': '네트워크 연결 해제',
-
 
     //Volume Management
     'VOL_LIST_HEADER': '볼륨 목록',
@@ -107,6 +106,7 @@ export default {
     'REG_CREATE_HEADER': '레지스트리 생성',
     'REG_BTN_ADD': '레지스트리 생성',
 
+    //Service
     'SERVICE_LIST_HEADER': '서비스 목록',
 
     //EndPoint
@@ -140,5 +140,4 @@ export default {
     'CONFIRM_DEFAULT_HEADER': '확인',
     'CONFIRM_INFO_HEADER': '알림',
     'CONFIRM_WARN_HEADER': '경고'
-
 }

@@ -4,6 +4,8 @@ export default {
     'MENU_DASHBOARD': 'Dashboard',
     'MENU_CONTAINER': 'Containers',
     'MENU_SWARM': 'Swarms',
+    'MENU_TASK': 'Tasks',
+    'MENU_SERVICE': 'Services',
     'MENU_IMAGE': 'Images',
     'MENU_NETWORK': 'Networks',
     'MENU_VOLUME': 'Volumes',
@@ -29,13 +31,43 @@ export default {
     'DB_NODE_VERSION': 'Docker Version',
     'DB_NODE_CPU': 'Node CPU',
     'DB_NODE_MEMORY': 'Node Memory',
+    'DB_ENGINE_HEADER': 'Engine Info',
+
 
     //Container Management
     'CON_LIST_HEADER': 'Container List',
     'CON_INFO_HEADER': 'Container Info',
     'CON_DETAIL_HEADER': 'Container Details',
     'CON_VOLUME_HEADER': 'Container in Volume',
-
+    'CON_STEP1_IMAGE_HEADER': "Image can be Pulled through the Docker Hub if you don't have image locally.",
+    'CON_STEP1_HUB_HEADER': 'Search Image on Docker Hub',
+    'CON_BTN_ADD': 'Create Container',
+    'CON_STEP1_TITLE': 'Select Image',
+    'CON_STEP1_DESC': 'Select an image to create the container.',
+    'CON_STEP2_TITLE': 'Basic Setting',
+    'CON_STEP2_DESC': 'Input required container informations',
+    'CON_STEP3_TITLE': 'Container Option Setting',
+    'CON_STEP3_DESC': 'Input required container options',
+    'CON_STEP1_FIELD_IMAGE': 'local image',
+    'CON_STEP2_BASIC_HEADER': 'Container Basic Setting',
+    'CON_STEP2_NAME_LB': 'Name',
+    'CON_STEP2_NAME_PH': 'Input Container Name ex) webserver',
+    'CON_STEP2_PORT_HEADER': 'Port Setting',
+    'CON_STEP2_ALLPORT_LB': 'Allow All ports',
+    'CON_STEP2_ADDPORT_LB': 'Add port',
+    'CON_STEP3_CMD_HEADER': 'Command Setting',
+    'CON_STEP3_VOL_HEADER': 'Volumne Setting',
+    'CON_STEP3_ADDVOL_LB': 'Add Volume Setting',
+    'CON_STEP3_NET_HEADER': 'Network Setting',
+    'CON_STEP3_ENV_HEADER': 'Env Setting',
+    'CON_STEP3_ADDENV_LB': 'Add Env',
+    'CON_STEP3_LB_HEADER': 'Label Setting',
+    'CON_STEP3_ADDLB_LB': 'Add Label',
+    'CON_STEP3_POLICY_HEADER': 'Restart Policy Setting',
+    'CON_STEP3_RUNTIME_HEADER': 'Runtime Setting',
+    'CON_STEP3_ADDDEVICE_LB': 'Add Device',
+    'CON_STEP3_OPTION_HEADER': 'Container Option Setting',
+    'CON_MSG_CREATE_SUCCESS': 'Complete Container deploy',
 
     //Image Management
     'IMG_LIST_HEADER': 'Image List',
@@ -47,7 +79,6 @@ export default {
     'IMG_BTN_BUILD': 'Build a New Image',
     'IMG_BTN_BUILD_SAVE': 'Build',
 
-
     //Network Management
     'NET_LIST_HEADER': 'Network List',
     'NET_CREATE_HEADER': 'Network Create',
@@ -57,7 +88,6 @@ export default {
     'NET_BTN_ADD': 'Add Network',
     'NET_BTN_DELETE': 'Delete Network',
     'NET_BTN_LEAVE': 'Leave Network',
-
 
     //Volume Management
     'VOL_LIST_HEADER': 'Volume List',
@@ -76,16 +106,30 @@ export default {
     'REG_CREATE_HEADER': 'Registry Add',
     'REG_BTN_ADD': 'Add Registry',
 
+    //Service
+    'SERVICE_LIST_HEADER': 'Service List',
+
     //EndPoint
     'EP_LIST_HEADER': 'Endpoint List',
-    'EP_BTN_ADD': 'Add Endpoint',
-    'EP_CONFIRM_ACTIVE': '엔드포인트를 활성화 하시겠습니까?',
+    'EP_EDIT_HEADER': 'Endpoint Edit',
+    'EP_NEW_HEADER': 'Endpoint Add',
+    'EP_BTN_ADD': 'Endpoint Add',
+    'EP_CONFIRM_ACTIVE': 'Do you want to enable Endpoint?',
+    'EP_MSG_ACTIVE_SUCCESS': 'Endpoint is enabled.',
+    'EP_MSG_ACTIVE_CONFIRM': 'Do you want to enable Endpoint?',
+    'EP_MSG_REGISTER': 'Endpoint is registered.',
+    'EP_MSG_UPDATE': 'Endpoint is upadted.',
+    'EP_MSG_DELETE': 'Endpoint is deleted.',
+    'EP_MSG_GUIDE': 'You can use it after registering an Endpoint.',
 
     //Common
     'BTN_REMOVE': 'Delete',
     'BTN_SAVE': 'Save',
     'BTN_LIST': 'List',
     'BTN_RESET': 'Reset',
+    'BTN_DELETE': 'Delete',
+    'BTN_NEXT': 'Next',
+    'BTN_PREV': 'Previous',
     'BTN_GARBEGE_COLLECTION': 'Grabege Collection',
 
     'TABLE_NUMBER_OF_PAGES': 'Number of Pages',
