@@ -114,6 +114,8 @@ export default {
     'EP_EDIT_HEADER': 'Endpoint Edit',
     'EP_NEW_HEADER': 'Endpoint Add',
     'EP_BTN_ADD': 'Endpoint Add',
+    'EP_BTN_ACTIVE': 'Activate',
+    'EP_BTN_IN_ACTIVE': 'Now Active',
     'EP_CONFIRM_ACTIVE': 'Do you want to enable Endpoint?',
     'EP_MSG_ACTIVE_SUCCESS': 'Endpoint is enabled.',
     'EP_MSG_ACTIVE_CONFIRM': 'Do you want to enable Endpoint?',

@@ -114,6 +114,8 @@ export default {
     'EP_EDIT_HEADER': '엔드포인트 수정',
     'EP_NEW_HEADER': '엔드포인트 생성',
     'EP_BTN_ADD': '엔드포인트 생성',
+    'EP_BTN_ACTIVE': '활성화',
+    'EP_BTN_IN_ACTIVE': '현재 활성',
     'EP_CONFIRM_ACTIVE': '엔드포인트를 활성화 하시겠습니까?',
     'EP_MSG_ACTIVE_SUCCESS': '엔드포인트가 활성화 되었습니다.',
     'EP_MSG_ACTIVE_CONFIRM': '엔드포인트를 활성화 하시겠습니까?',
