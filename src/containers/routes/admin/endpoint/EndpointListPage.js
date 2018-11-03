@@ -95,7 +95,7 @@ class EndpointListPage extends Component {
                                             <Aux>
                                                 <Label color='blue'>
                                                     <Icon name='checkmark'/> 
-                                                    현재 활성
+                                                    { intl.formatMessage({id : 'EP_BTN_IN_ACTIVE'}) } 
                                                 </Label>
                                             </Aux>
                                         }
@@ -109,7 +109,7 @@ class EndpointListPage extends Component {
                                                     onClick={  _ => this.activeEndpoint(_id, name)}
                                                 >
                                                     <Icon name='checkmark' />
-                                                    활성화
+                                                    { intl.formatMessage({id : 'EP_BTN_ACTIVE'}) } 
                                                 </Button>
                                             </Aux>
                                         }
